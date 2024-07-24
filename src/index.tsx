@@ -15,8 +15,9 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
         <Route index element={<h1>HomePage</h1>} />
         <Route path="home" element={<Navigate to={'/'} />} />
 
-        <Route path="phones" element={<h1>Phones</h1>}></Route>
-        <Route path="/:itemId?" element={<h1>PhonesItems</h1>} />
+        <Route path="phones" element={<h1>Phones</h1>}>
+          <Route path=":itemId?" element={<h1>PhonesItems</h1>} />
+        </Route>
 
         <Route path="tablets" element={<h1>Tablets</h1>}>
           <Route path=":itemId?" element={<h1>TabletsItems</h1>} />
