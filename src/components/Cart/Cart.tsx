@@ -1,0 +1,21 @@
+import React from "react";
+import { NavLink } from "react-router-dom";
+
+import classes from './Cart.module.scss';
+import classNames from "classnames";
+import { IconList } from "../Icon/utils/IconList";
+import { Icon } from "../Icon";
+
+const activeClass = ({ isActive }: { isActive: boolean }) => {
+    return classNames([classes.cart], { [classes.active]: isActive });
+};
+
+export const Cart = () => {
+    return (
+        <NavLink className={activeClass} to="/favorites">
+            <button type="button">
+                <Icon icon={IconList.cart} />
+            </button>
+        </NavLink>
+    )
+}
