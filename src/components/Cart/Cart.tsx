@@ -12,10 +12,8 @@ const activeClass = ({ isActive }: { isActive: boolean }) => {
 
 export const Cart = () => {
     return (
-        <NavLink className={activeClass} to="/favorites">
-            <button type="button">
-                <Icon icon={IconList.cart} />
-            </button>
+        <NavLink className={activeClass} to="/cart">
+            <Icon icon={IconList.cart} />
         </NavLink>
     )
 }

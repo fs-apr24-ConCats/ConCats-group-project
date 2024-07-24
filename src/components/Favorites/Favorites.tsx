@@ -13,9 +13,7 @@ const activeClass = ({ isActive }: { isActive: boolean }) => {
 export const Favorites = () => {
     return (
         <NavLink className={activeClass} to="/favorites">
-            <button type="button">
-                <Icon icon={IconList.favorites} />
-            </button>
+            <Icon icon={IconList.favorites} />
         </NavLink>
     )
 }
