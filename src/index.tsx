@@ -16,15 +16,15 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
         <Route path="home" element={<Navigate to={'/'} />} />
 
         <Route path="phones" element={<h1>Phones</h1>}>
-          <Route path=":itemId?" element={<h1>PhonesItems</h1>} />
+          <Route path=":phoneId?" element={<h1>PhonesItems</h1>} />
         </Route>
 
         <Route path="tablets" element={<h1>Tablets</h1>}>
-          <Route path=":itemId?" element={<h1>TabletsItems</h1>} />
+          <Route path=":tabletId?" element={<h1>TabletsItems</h1>} />
         </Route>
 
         <Route path="accessories" element={<h1>Acсessories</h1>}>
-          <Route path=":itemId?" element={<h1>AcсessoriesItems</h1>} />
+          <Route path=":accesorieId?" element={<h1>AcсessoriesItems</h1>} />
         </Route>
 
         <Route path="favorites" element={<h1>Favorites</h1>} />
