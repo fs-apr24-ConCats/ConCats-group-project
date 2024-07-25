@@ -10,7 +10,7 @@ const activeClass = ({ isActive }: { isActive: boolean }) => {
     return classNames([classes.cart], { [classes.active]: isActive });
 };
 
-export const Cart = () => {
+export const Cart: React.FC = () => {
     return (
         <NavLink className={activeClass} to="/cart">
             <Icon icon={IconList.cart} />

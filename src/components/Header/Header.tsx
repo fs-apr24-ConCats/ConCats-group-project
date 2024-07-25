@@ -5,7 +5,7 @@ import { Nav } from '../Nav';
 import { Favorites } from '../Favorites';
 import { Cart } from '../Cart';
 
-export const Header = () => {
+export const Header: React.FC = () => {
   return (
     <header className={classes.Header}>
       <div className={classes.Header__left}>
