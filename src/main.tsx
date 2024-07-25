@@ -1,5 +1,10 @@
 import { createRoot } from 'react-dom/client';
-import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import {
+  HashRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from 'react-router-dom';
 import { App } from './App';
 import { HomePage } from './modules/HomePage';
 
@@ -27,4 +32,5 @@ createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="*" element={<h1>NotFoundPage</h1>} />
       </Route>
     </Routes>
-  </Router>);
+  </Router>,
+);
