@@ -4,6 +4,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './HeroSlider.scss';
+import { picturesPath } from './picturesPath';
 
 interface Props {
   className?: string;
@@ -47,36 +48,21 @@ export const HeroSlider: React.FC = () => {
     nextArrow: <CustomNextArrow />,
     prevArrow: <CustomPrevArrow />,
   };
+
   return (
     <Slider {...settings} className="hero-slider">
-      <div className="hero-slider__wrap">
-        <img
-          src="img/banner-iphone.png"
-          alt="Phones"
-          className="hero-slider__image"
-        />
-      </div>
-      <div className="hero-slider__wrap">
-        <img
-          src="img/banner-phones.png"
-          alt="Phones"
-          className="hero-slider__image"
-        />
-      </div>
-      <div className="hero-slider__wrap">
-        <img
-          src="img/banner-tablets.png"
-          alt="Phones"
-          className="hero-slider__image"
-        />
-      </div>
-      <div className="hero-slider__wrap">
-        <img
-          src="img/banner-accessories.png"
-          alt="Phones"
-          className="hero-slider__image"
-        />
-      </div>
+      {picturesPath.map(picture => (
+        <div className="hero-slider__wrap" key={picture.id}>
+          <picture>
+            <source media="(min-width: 640px)" srcSet={picture.desktop} />
+            <img
+              src={picture.mobile}
+              alt={picture.category}
+              className="hero-slider__image"
+            />
+          </picture>
+        </div>
+      ))}
     </Slider>
   );
 };
