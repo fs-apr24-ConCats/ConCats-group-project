@@ -64,3 +64,15 @@
 @mixin uppercase {
   text-transform: uppercase;
 }
+
+@mixin hover($property, $value) {
+  &:hover {
+    #{$property}: $value;
+  }
+}
+
+@mixin on-mobile {
+  @media (max-width: 639px) {
+    @content
+  }
+}
