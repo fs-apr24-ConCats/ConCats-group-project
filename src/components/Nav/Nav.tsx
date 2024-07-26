@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { NavLink } from 'react-router-dom';
 import { PAGES } from '../../pages/pages';
 
-export const Nav = () => {
+export const Nav: React.FC = () => {
   const activeClass = ({ isActive }: { isActive: boolean }) => {
     return classNames([classes.Nav__item], { [classes.active]: isActive });
   };
