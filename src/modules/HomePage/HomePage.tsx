@@ -1,8 +1,11 @@
-import React from "react"
-import classes from './HomePage.module.scss';
+import React from 'react';
+// import classes from './HomePage.module.scss';
+import { HeroSlider } from '../../components/HeroSlider';
 
 export const HomePage = () => {
-    return(
-        <h1 className={classes.title}>Header ↑</h1>
-    )
-}
+  return (
+    <>
+      <HeroSlider />
+    </>
+  );
+};
