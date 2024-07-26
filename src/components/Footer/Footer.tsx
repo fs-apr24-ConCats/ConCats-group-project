@@ -1,28 +1,29 @@
+// src/components/Footer/Footer.tsx
 import React from 'react';
-import './Footer.scss'
+import styles from './Footer.module.scss';
 import logo from '../../img/Logo.png';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="footer">
-      <div className="container">
-        <div className="footer__logo">
+    <footer className={styles.footer}>
+      <div className={styles.container}>
+        <div className={styles.footer__logo}>
           <img src={logo} alt="Logo" />
         </div>
-        <div className="footer__links">
-          <a className="link" href="#">
+        <div className={styles.footer__links}>
+          <a className={styles.link} href="#">
             GitHub
           </a>
-          <a className="link" href="#">
+          <a className={styles.link} href="#">
             Contacts
           </a>
-          <a className="link" href="#">
+          <a className={styles.link} href="#">
             Rights
           </a>
         </div>
-        <div className="footer__backToTop">
-          <a className='footer__textInfo'>Back to top</a>
-          <a href='#' className="arrow"></a>
+        <div className={styles.footer__backToTop}>
+          <a className={styles.footer__textInfo}>Back to top</a>
+          <a href='#' className={styles.arrow}></a>
         </div>
       </div>
     </footer>
