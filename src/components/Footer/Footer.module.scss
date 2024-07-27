@@ -3,18 +3,7 @@
     background-color: #0F1121;
     padding: 20px 0;
     font-family: 'Montserrat', sans-serif;
-    position: sticky;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    z-index: 20;
     border-top: 1px #3B3E4A  solid;
-  
-
-  
-    &__logo img {
-      height: 40px;
-    }
   
     &__links {
       display: flex;
@@ -35,52 +24,9 @@
       }
     }
   
-    .link {
-      color: #fff;
-      text-decoration: none;
-      font-size: 12px;
-      text-transform: uppercase;
-      margin: 0 10px;
-      line-height: 11px;
-      letter-spacing: 2px;
-  
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  
     &__backToTop {
       display: flex;
-      align-items: center;
-  
-      a {
-        color: gray;
-        text-decoration: none;
-        font-size: 12px;
-        text-transform: uppercase;
-        margin-right: 10px;
-      }
-  
-      .arrow {
-        width: 32px;
-        height: 32px;
-        background-color: #555;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 4px;
-  
-        &::before {
-          content: '';
-          display: inline-block;
-          width: 8px;
-          height: 8px;
-          border-right: 2px solid white;
-          border-top: 2px solid white;
-          transform: rotate(-45deg);
-        }
-      }
-  
+      align-items: center;  
       @media (max-width: 639px) {
         flex-direction: row;
         justify-content: center;
@@ -90,13 +36,40 @@
           margin-right: -2px;
         }
   
-        .arrow {
-          margin-left: 0;
-        }
+        
       }
     }
   }
+
+  a {
+    color: gray;
+    text-decoration: none;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-right: 10px;
+  }
   
+  .arrow {
+    width: 32px;
+    height: 32px;
+    background-color: #555;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    margin-left: 0;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-right: 2px solid white;
+      border-top: 2px solid white;
+      transform: rotate(-45deg);
+    }
+  }
+
   .container {
     display: grid;
     grid-template-columns: auto 1fr auto;
@@ -115,3 +88,26 @@
       gap: 12px;
     }
   }
+
+  .link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin: 0 10px;
+    line-height: 11px;
+    letter-spacing: 2px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .footer__textInfo{
+    padding-block: 10px;
+  }
+
+  .footer__backToTop{
+    cursor: pointer;
+  }
+  

@@ -1,15 +1,16 @@
 // src/components/Footer/Footer.tsx
 import React from 'react';
 import styles from './Footer.module.scss';
-import logo from '../../img/Logo.png';
+import { Logo } from '../Logo';
 
 export const Footer: React.FC = () => {
+  function scrollToTop() {
+    window.scrollTo(0, 0);
+}
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
-        <div className={styles.footer__logo}>
-          <img src={logo} alt="Logo" />
-        </div>
+        <Logo />
         <div className={styles.footer__links}>
           <a className={styles.link} href="#">
             GitHub
@@ -22,8 +23,8 @@ export const Footer: React.FC = () => {
           </a>
         </div>
         <div className={styles.footer__backToTop}>
-          <a className={styles.footer__textInfo}>Back to top</a>
-          <a href='#' className={styles.arrow}></a>
+          <a onClick={scrollToTop} className={styles.footer__textInfo}>Back to top</a>
+          <a onClick={scrollToTop} className={styles.arrow}></a>
         </div>
       </div>
     </footer>
