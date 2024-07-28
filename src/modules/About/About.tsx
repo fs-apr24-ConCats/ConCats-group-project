@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './CartItem.module.scss';
+import classes from './About.module.scss';
 // import { Link } from 'react-router-dom';
 // import phones from '/api/phones.json';
 
