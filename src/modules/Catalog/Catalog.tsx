@@ -6,6 +6,7 @@ import { Pagination } from '../../components/Pagination';
 
 export const Catalog: React.FC = () => {
   const { phones } = usePhonesContext();
+  console.log('catalog', phones[0]);
   const ALL_OPTIONS = {4: 4, 8: 8, 16: 16, all: phones.length};
   const [itemsPerPage, setItemsPerPage] = useState(ALL_OPTIONS.all);
   // const [currentPage, setCurrentPage] = useState(1);
