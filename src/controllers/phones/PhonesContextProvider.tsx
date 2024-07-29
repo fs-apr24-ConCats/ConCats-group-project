@@ -1,6 +1,6 @@
-import React, { useMemo, useState } from "react";
-import { Phone } from "../../types";
-import { PhonesContext } from "./PhonesContext";
+import React, { useEffect, useMemo, useState } from 'react';
+import { Phone } from '../../types';
+import { PhonesContext } from './PhonesContext';
 
 interface Props {
   children: React.ReactNode;
@@ -11,18 +11,19 @@ export const PhonesContextProvider: React.FC<Props> = ({ children }) => {
 
   const jsonPath = '/api/phones.json';
 
-
-fetch(jsonPath)
-.then(response => {
-  if (!response.ok) {
-    throw new Error('Network response was not ok ' + response.statusText);
-  }
-  return response.json();
-})
-.then(setPhones)
-.catch(error => {
-  console.error('There was a problem with the fetch operation:', error);
-});
+  useEffect(() => {
+    fetch(jsonPath)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+      })
+      .then(setPhones)
+      .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+      });
+  }, []);
 
   const values = useMemo(
     () => ({
