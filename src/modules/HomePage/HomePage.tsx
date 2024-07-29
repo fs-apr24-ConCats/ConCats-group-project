@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react';
 import cn from 'classnames';
 import classes from './HomePage.module.scss';
 import { ProductCard } from '../../components/ProductCard';
@@ -79,39 +79,76 @@ export const HomePage: React.FC = () => {
             </div>
           </section>
 
-          <section className={classes.category}>
-            <h2 className={classes.section_top_title}>Shop by category</h2>
+      <section className={classes.category}>
+        <h2 className={classes.section_top_title}>Shop by category</h2>
 
-
-            <div className={classes.category_bottom}>
-              <Link to="/phones" className={cn(classes.category_card, classes.category__column1)}>
-                <div className={cn(classes.picture_wrapper, classes.picture_wrapper_color1)}>
-                  <img src="\_old\v2\img\image6.png" alt="" className={classes.picture}/>
-                </div>
-                <h3 className={classes.category__title}>Mobile phones</h3>
-                <p className={classes.category_amount}>95 models</p>
-              </Link>
-              <Link to="/tablets" className={cn(classes.category_card, classes.category__column2)}>
-                <div className={cn(classes.picture_wrapper, classes.picture_wrapper_color2)}>
-                  <img src="\_old\v2\img\image5.png" alt="" className={classes.picture}/>
-                </div>
-                <h3 className={classes.category__title}>Tablets</h3>
-                <p className={classes.category_amount}>24 models</p>
-              </Link>
-              <Link to="/accessories" className={cn(classes.category_card, classes.category__column3)}>
-                <div className={cn(classes.picture_wrapper, classes.picture_wrapper_color3)}>
-                  <img src="\_old\v2\img\image7.png" alt="" className={classes.picture}/>
-                </div>
-                <h3 className={classes.category__title}>Accessories</h3>
-                <p className={classes.category_amount}>100 models</p>
-              </Link>
+        <div className={classes.category_bottom}>
+          <Link
+            to="/phones"
+            className={cn(classes.category_card, classes.category__column1)}
+          >
+            <div
+              className={cn(
+                classes.picture_wrapper,
+                classes.picture_wrapper_color1,
+              )}
+            >
+              <img
+                src="\_old\v2\img\image6.png"
+                alt=""
+                className={classes.picture}
+              />
             </div>
-          </section>
-
-          <section className={cn(classes.phones_slider, classes.phones_slider_hot_price)}>
-            <div className={classes.section_top}>
-              <h2 className={classes.section_top_title}>Hot prices</h2>
+            <h3 className={classes.category__title}>Mobile phones</h3>
+            <p className={classes.category_amount}>95 models</p>
+          </Link>
+          <Link
+            to="/tablets"
+            className={cn(classes.category_card, classes.category__column2)}
+          >
+            <div
+              className={cn(
+                classes.picture_wrapper,
+                classes.picture_wrapper_color2,
+              )}
+            >
+              <img
+                src="\_old\v2\img\image5.png"
+                alt=""
+                className={classes.picture}
+              />
             </div>
+            <h3 className={classes.category__title}>Tablets</h3>
+            <p className={classes.category_amount}>24 models</p>
+          </Link>
+          <Link
+            to="/accessories"
+            className={cn(classes.category_card, classes.category__column3)}
+          >
+            <div
+              className={cn(
+                classes.picture_wrapper,
+                classes.picture_wrapper_color3,
+              )}
+            >
+              <img
+                src="\_old\v2\img\image7.png"
+                alt=""
+                className={classes.picture}
+              />
+            </div>
+            <h3 className={classes.category__title}>Accessories</h3>
+            <p className={classes.category_amount}>100 models</p>
+          </Link>
+        </div>
+      </section>
+
+      <section
+        className={cn(classes.phones_slider, classes.phones_slider_hot_price)}
+      >
+        <div className={classes.section_top}>
+          <h2 className={classes.section_top_title}>Hot prices</h2>
+        </div>
 
             <div className={classes.phones_slider_bottom}>
                <ProductCard

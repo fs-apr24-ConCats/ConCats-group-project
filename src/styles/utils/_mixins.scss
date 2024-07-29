@@ -96,3 +96,9 @@
   row-gap: 40px;
   grid-template-columns: repeat(auto-fit, minmax(229px,1fr));
 }
+
+@mixin hover($property, $value) {
+  &:hover {
+    #{$property}: $value;
+  }
+}
