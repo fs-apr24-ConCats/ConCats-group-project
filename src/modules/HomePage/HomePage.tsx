@@ -5,6 +5,7 @@ import { ProductCard } from '../../components/ProductCard';
 import { Product } from '../../types/Product';
 import { HeroSlider } from '../../components/HeroSlider';
 import { Link } from 'react-router-dom';
+import { CarouselCards } from '../../components/CarouselCards';
 
 export const HomePage: React.FC = () => {
   const exampleProduct: Product = {
@@ -41,7 +42,8 @@ export const HomePage: React.FC = () => {
           <h2 className={classes.section_top_title}>Brand new models</h2>
         </div>
 
-        <div className={classes.phones_slider_bottom}>
+        <CarouselCards />
+        {/* <div className={classes.phones_slider_bottom}>
           <ProductCard
             product={exampleProduct}
             products={[exampleProduct]}
@@ -74,7 +76,7 @@ export const HomePage: React.FC = () => {
             onAddToFavourites={handleAddToFavourites}
             onAddToCart={handleAddToCart}
           />
-        </div>
+        </div> */}
       </section>
 
       <section className={classes.category}>

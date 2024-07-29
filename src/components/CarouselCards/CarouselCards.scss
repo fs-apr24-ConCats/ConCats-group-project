@@ -1,0 +1,55 @@
+@import '../../styles/main.scss';
+
+.carousel-container {
+  position: relative;
+
+  .carousel-arrow {
+    position: absolute;
+    top: -25px;
+    width: 32px; // Adjust width as needed
+    height: 32px; // Adjust height as needed
+    background-color: #333;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    cursor: pointer;
+    z-index: 1;
+
+    &--next {
+      right: 20px; // Position the next arrow on the right
+    }
+
+    // .carousel-container .carousel-arrow.slick-prev &--prev {
+    //   right: 60px !important; // Position the prev arrow left of the next arrow
+    // }
+
+    &:hover {
+      background-color: $surface-2-color;
+    }
+
+    &:before {
+      top: -2px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      font-size: 16px;
+    }
+  }
+}
+
+.slick-arrow {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.slick-prev {
+  right: 60px;
+}
+
+.carousel-container.slick-arrow.slick-prev.carousel-arrow.carousel-arrow--prev {
+  right: 60px;
+}
