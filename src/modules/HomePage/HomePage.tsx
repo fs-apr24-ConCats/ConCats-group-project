@@ -1,10 +1,36 @@
 import React from "react"
 import cn from 'classnames';
 import classes from './HomePage.module.scss';
+import { ProductCard } from '../../components/ProductCard';
+import { Product } from '../../types/Product';
 import { HeroSlider } from '../../components/HeroSlider';
 import { Link } from "react-router-dom";
 
+
 export const HomePage: React.FC = () => {
+  const exampleProduct: Product = {
+    id: 0,
+    category: "electronics",
+    itemId: "example-id",
+    name: "Example Product",
+    fullPrice: 1000,
+    price: 800,
+    screen: "6.1 inches",
+    capacity: "128GB",
+    color: "Black",
+    ram: "4GB",
+    year: 2022,
+    image: "example-image-url.jpg",
+  };
+
+  const handleAddToFavourites = (id: string) => {
+    console.log(`Added to favourites: ${id}`);
+  };
+
+  const handleAddToCart = (id: string) => {
+    console.log(`Added to cart: ${id}`);
+  };
+
     return(
         <div className={classes.home}>
           <h1 className={classes.home__title}>Welcome to Nice Gadgets store!</h1>
@@ -17,10 +43,38 @@ export const HomePage: React.FC = () => {
             </div>
 
             <div className={classes.phones_slider_bottom}>
-              <div className={cn(classes.phones_slider_bottom__card_example, classes.phones_slider_bottom__column1)}></div>
-              <div className={cn(classes.phones_slider_bottom__card_example, classes.phones_slider_bottom__column2)}></div>
-              <div className={cn(classes.phones_slider_bottom__card_example, classes.phones_slider_bottom__column3)}></div>
-              <div className={cn(classes.phones_slider_bottom__card_example, classes.phones_slider_bottom__column4)}></div>
+               <ProductCard
+                  product={exampleProduct}
+                  products={[exampleProduct]}
+                  favourites={[exampleProduct]}
+                  cart={[]}
+                  onAddToFavourites={handleAddToFavourites}
+                  onAddToCart={handleAddToCart}
+               />
+               <ProductCard
+                  product={exampleProduct}
+                  products={[exampleProduct]}
+                  favourites={[exampleProduct]}
+                  cart={[]}
+                  onAddToFavourites={handleAddToFavourites}
+                  onAddToCart={handleAddToCart}
+               />
+              <ProductCard
+                  product={exampleProduct}
+                  products={[exampleProduct]}
+                  favourites={[exampleProduct]}
+                  cart={[]}
+                  onAddToFavourites={handleAddToFavourites}
+                  onAddToCart={handleAddToCart}
+               />
+              <ProductCard
+                  product={exampleProduct}
+                  products={[exampleProduct]}
+                  favourites={[exampleProduct]}
+                  cart={[]}
+                  onAddToFavourites={handleAddToFavourites}
+                  onAddToCart={handleAddToCart}
+               />
             </div>
           </section>
 
@@ -59,10 +113,38 @@ export const HomePage: React.FC = () => {
             </div>
 
             <div className={classes.phones_slider_bottom}>
-              <div className={cn(classes.phones_slider_bottom__card_example, classes.phones_slider_bottom__column1)}></div>
-              <div className={cn(classes.phones_slider_bottom__card_example, classes.phones_slider_bottom__column2)}></div>
-              <div className={cn(classes.phones_slider_bottom__card_example, classes.phones_slider_bottom__column3)}></div>
-              <div className={cn(classes.phones_slider_bottom__card_example, classes.phones_slider_bottom__column4)}></div>
+               <ProductCard
+                  product={exampleProduct}
+                  products={[exampleProduct]}
+                  favourites={[exampleProduct]}
+                  cart={[]}
+                  onAddToFavourites={handleAddToFavourites}
+                  onAddToCart={handleAddToCart}
+               />
+               <ProductCard
+                  product={exampleProduct}
+                  products={[exampleProduct]}
+                  favourites={[exampleProduct]}
+                  cart={[]}
+                  onAddToFavourites={handleAddToFavourites}
+                  onAddToCart={handleAddToCart}
+               />
+               <ProductCard
+                  product={exampleProduct}
+                  products={[exampleProduct]}
+                  favourites={[exampleProduct]}
+                  cart={[]}
+                  onAddToFavourites={handleAddToFavourites}
+                  onAddToCart={handleAddToCart}
+               />
+               <ProductCard
+                  product={exampleProduct}
+                  products={[exampleProduct]}
+                  favourites={[exampleProduct]}
+                  cart={[]}
+                  onAddToFavourites={handleAddToFavourites}
+                  onAddToCart={handleAddToCart}
+               />
             </div>
           </section>
         </div>
