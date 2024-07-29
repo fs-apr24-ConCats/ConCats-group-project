@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import styles from './Buttons.module.scss';
-import { getId } from '../../styles/utils/getId';
+import { getId } from '../../pages/utils/getId';
 import { Product } from '../../types/Product';
 
 type Props = {
