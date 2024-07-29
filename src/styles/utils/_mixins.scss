@@ -55,6 +55,27 @@
   @include on-desktop {
     --columns: 24;
   }
+
+  @include on-tablet {
+    padding-inline: 24px;
+  }
+}
+
+@mixin uppercase {
+  text-transform: uppercase;
+}
+
+
+@mixin hover($property, $value) {
+  &:hover {
+    #{$property}: $value;
+  }
+}
+
+@mixin on-mobile {
+  @media (max-width: 639px) {
+    @content
+  }
 }
 
 @mixin common-margins {
