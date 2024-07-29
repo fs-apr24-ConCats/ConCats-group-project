@@ -1,3 +1,4 @@
+import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { App } from './App';
@@ -7,6 +8,7 @@ import { NotFoundPage } from './pages/notFoundPage/NotFoundPage';
 import { PhonesContextProvider } from './controllers/phones';
 import { Catalog } from './modules/Catalog';
 import { ProductsContextProvider } from './controllers/products';
+import { Test } from './components/Favorites';
 
 createRoot(document.getElementById('root') as HTMLElement).render(
   <Router>
@@ -26,7 +28,7 @@ createRoot(document.getElementById('root') as HTMLElement).render(
             <Route path="accessories/:itemId" element={<About />} />
             <Route path="accessories" element={<h1>Acсessories</h1>} />
 
-            <Route path="favorites" element={<h1>Favorites</h1>} />
+            <Route path="favorites" element={<Test />} />
             <Route path="cart" element={<h1>Cart</h1>} />
             <Route path="*" element={<NotFoundPage />} />
           </Route>
