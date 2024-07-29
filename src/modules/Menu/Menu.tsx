@@ -17,10 +17,10 @@ export const Menu: React.FC<MenuProps> = ({
     <aside className={styles.menu} id="menu">
       <div className={styles.menu__header}>
         <div className="logo">
-          <img src="../../../public/img/icons/logoMenu.svg" alt="Nice Gadgets Logo" />
+          <img src="/img/icons/logoMenu.svg" alt="Nice Gadgets Logo" />
         </div>
         <button className={styles.closeButton} onClick={onClose}>
-          <img src="../../../public/img/icons/Close.svg"/>
+          <img src="/img/icons/Close.svg"/>
         </button>
       </div>
       <div className={styles.container}>

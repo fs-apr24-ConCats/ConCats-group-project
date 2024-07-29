@@ -1,6 +1,7 @@
 @import "../../styles/main.scss";
 
 .product {
+  font-family: 'Montserrat', sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -25,6 +26,12 @@
   }
 
   &__title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 21px;
+    text-align: left;
+
     margin: 0;
     padding-top: 16px;
     text-decoration: none;
@@ -39,12 +46,23 @@
   }
 
   &__prices {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 30.8px;
+  text-align: left;
+
     display: flex;
     flex-direction: row;
     gap: 8px;
   }
 
   &__price {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 30.8px;
+    text-align: left;
     margin-top: 8px;
     margin-bottom: 0;
 
@@ -66,8 +84,9 @@
 }
 
 .info {
+  font-family: 'Montserrat', sans-serif;
   @extend %text-small;
-
+  
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -80,14 +99,27 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    color: $secondary-color;
   }
 
   &-key {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 15.34px;
+    text-align: left;
+
+
     margin: 0;
-    font-weight: 500;
   }
 
   &-value {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 15.34px;
+    text-align: right;
+    color: $white-color;
     margin: 0;
     text-align: right;
     text-wrap: wrap;
