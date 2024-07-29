@@ -4,24 +4,22 @@ import classes from './HomePage.module.scss';
 import { ProductCard } from '../../components/ProductCard';
 import { Product } from '../../types/Product';
 import { HeroSlider } from '../../components/HeroSlider';
-import { Link } from "react-router-dom";
-import { HeroSlider } from "../../components/HeroSlider";
-
+import { Link } from 'react-router-dom';
 
 export const HomePage: React.FC = () => {
   const exampleProduct: Product = {
     id: 0,
-    category: "electronics",
-    itemId: "example-id",
-    name: "Example Product",
+    category: 'electronics',
+    itemId: 'example-id',
+    name: 'Example Product',
     fullPrice: 1000,
     price: 800,
-    screen: "6.1 inches",
-    capacity: "128GB",
-    color: "Black",
-    ram: "4GB",
+    screen: '6.1 inches',
+    capacity: '128GB',
+    color: 'Black',
+    ram: '4GB',
     year: 2022,
-    image: "example-image-url.jpg",
+    image: 'example-image-url.jpg',
   };
 
   const handleAddToFavourites = (id: string) => {
@@ -32,52 +30,52 @@ export const HomePage: React.FC = () => {
     console.log(`Added to cart: ${id}`);
   };
 
-    return(
-        <div className={classes.home}>
-          <h1 className={classes.home__title}>Welcome to Nice Gadgets store!</h1>
-          <div className={classes.slider}>
-            <HeroSlider />
-          </div>
-          <section className={classes.phones_slider}>
-            <div className={classes.section_top}>
-              <h2 className={classes.section_top_title}>Brand new models</h2>
-            </div>
+  return (
+    <div className={classes.home}>
+      <h1 className={classes.home__title}>Welcome to Nice Gadgets store!</h1>
+      <div className={classes.slider}>
+        <HeroSlider />
+      </div>
+      <section className={classes.phones_slider}>
+        <div className={classes.section_top}>
+          <h2 className={classes.section_top_title}>Brand new models</h2>
+        </div>
 
-            <div className={classes.phones_slider_bottom}>
-               <ProductCard
-                  product={exampleProduct}
-                  products={[exampleProduct]}
-                  favourites={[exampleProduct]}
-                  cart={[]}
-                  onAddToFavourites={handleAddToFavourites}
-                  onAddToCart={handleAddToCart}
-               />
-               <ProductCard
-                  product={exampleProduct}
-                  products={[exampleProduct]}
-                  favourites={[exampleProduct]}
-                  cart={[]}
-                  onAddToFavourites={handleAddToFavourites}
-                  onAddToCart={handleAddToCart}
-               />
-              <ProductCard
-                  product={exampleProduct}
-                  products={[exampleProduct]}
-                  favourites={[exampleProduct]}
-                  cart={[]}
-                  onAddToFavourites={handleAddToFavourites}
-                  onAddToCart={handleAddToCart}
-               />
-              <ProductCard
-                  product={exampleProduct}
-                  products={[exampleProduct]}
-                  favourites={[exampleProduct]}
-                  cart={[]}
-                  onAddToFavourites={handleAddToFavourites}
-                  onAddToCart={handleAddToCart}
-               />
-            </div>
-          </section>
+        <div className={classes.phones_slider_bottom}>
+          <ProductCard
+            product={exampleProduct}
+            products={[exampleProduct]}
+            favourites={[exampleProduct]}
+            cart={[]}
+            onAddToFavourites={handleAddToFavourites}
+            onAddToCart={handleAddToCart}
+          />
+          <ProductCard
+            product={exampleProduct}
+            products={[exampleProduct]}
+            favourites={[exampleProduct]}
+            cart={[]}
+            onAddToFavourites={handleAddToFavourites}
+            onAddToCart={handleAddToCart}
+          />
+          <ProductCard
+            product={exampleProduct}
+            products={[exampleProduct]}
+            favourites={[exampleProduct]}
+            cart={[]}
+            onAddToFavourites={handleAddToFavourites}
+            onAddToCart={handleAddToCart}
+          />
+          <ProductCard
+            product={exampleProduct}
+            products={[exampleProduct]}
+            favourites={[exampleProduct]}
+            cart={[]}
+            onAddToFavourites={handleAddToFavourites}
+            onAddToCart={handleAddToCart}
+          />
+        </div>
+      </section>
 
       <section className={classes.category}>
         <h2 className={classes.section_top_title}>Shop by category</h2>
@@ -150,42 +148,41 @@ export const HomePage: React.FC = () => {
           <h2 className={classes.section_top_title}>Hot prices</h2>
         </div>
 
-            <div className={classes.phones_slider_bottom}>
-               <ProductCard
-                  product={exampleProduct}
-                  products={[exampleProduct]}
-                  favourites={[exampleProduct]}
-                  cart={[]}
-                  onAddToFavourites={handleAddToFavourites}
-                  onAddToCart={handleAddToCart}
-               />
-               <ProductCard
-                  product={exampleProduct}
-                  products={[exampleProduct]}
-                  favourites={[exampleProduct]}
-                  cart={[]}
-                  onAddToFavourites={handleAddToFavourites}
-                  onAddToCart={handleAddToCart}
-               />
-               <ProductCard
-                  product={exampleProduct}
-                  products={[exampleProduct]}
-                  favourites={[exampleProduct]}
-                  cart={[]}
-                  onAddToFavourites={handleAddToFavourites}
-                  onAddToCart={handleAddToCart}
-               />
-               <ProductCard
-                  product={exampleProduct}
-                  products={[exampleProduct]}
-                  favourites={[exampleProduct]}
-                  cart={[]}
-                  onAddToFavourites={handleAddToFavourites}
-                  onAddToCart={handleAddToCart}
-               />
-            </div>
-          </section>
+        <div className={classes.phones_slider_bottom}>
+          <ProductCard
+            product={exampleProduct}
+            products={[exampleProduct]}
+            favourites={[exampleProduct]}
+            cart={[]}
+            onAddToFavourites={handleAddToFavourites}
+            onAddToCart={handleAddToCart}
+          />
+          <ProductCard
+            product={exampleProduct}
+            products={[exampleProduct]}
+            favourites={[exampleProduct]}
+            cart={[]}
+            onAddToFavourites={handleAddToFavourites}
+            onAddToCart={handleAddToCart}
+          />
+          <ProductCard
+            product={exampleProduct}
+            products={[exampleProduct]}
+            favourites={[exampleProduct]}
+            cart={[]}
+            onAddToFavourites={handleAddToFavourites}
+            onAddToCart={handleAddToCart}
+          />
+          <ProductCard
+            product={exampleProduct}
+            products={[exampleProduct]}
+            favourites={[exampleProduct]}
+            cart={[]}
+            onAddToFavourites={handleAddToFavourites}
+            onAddToCart={handleAddToCart}
+          />
         </div>
-    )
-}
-
+      </section>
+    </div>
+  );
+};
