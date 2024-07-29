@@ -42,11 +42,6 @@
   @include on-tablet {
     @include content-padding-inline;
   }
-
-  &_content{
-    background-color: white;
-    height: 352px;
-  }
 }
 
 .phones_slider{

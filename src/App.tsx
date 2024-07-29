@@ -2,6 +2,7 @@ import React from 'react';
 import './App.scss';
 import { Header } from './components/Header/Header';
 import { Outlet } from 'react-router-dom';
+import { Footer } from './components/Footer/Footer';
 
 export const App: React.FC = () => {
   return (
@@ -11,11 +12,11 @@ export const App: React.FC = () => {
           <div className="App__header">
             <Header />
           </div>
-          <div className="App__content">
+          <div id="page-top" className="App__content">
             <Outlet />
           </div>
           <div className='App__footer'>
-            {/* Footer */}
+            <Footer />
           </div>
         </div>
       </div>
