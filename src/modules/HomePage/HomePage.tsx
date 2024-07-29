@@ -1,6 +1,7 @@
 import React from "react"
 import cn from 'classnames';
 import classes from './HomePage.module.scss';
+import { HeroSlider } from '../../components/HeroSlider';
 import { Link } from "react-router-dom";
 
 export const HomePage: React.FC = () => {
@@ -8,7 +9,7 @@ export const HomePage: React.FC = () => {
         <div className={classes.home}>
           <h1 className={classes.home__title}>Welcome to Nice Gadgets store!</h1>
           <div className={classes.slider}>
-            <div className={classes.slider_content}></div>
+            <HeroSlider />
           </div>
           <section className={classes.phones_slider}>
             <div className={classes.section_top}>
@@ -67,3 +68,4 @@ export const HomePage: React.FC = () => {
         </div>
     )
 }
+
