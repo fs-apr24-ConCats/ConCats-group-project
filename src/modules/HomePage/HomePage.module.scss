@@ -1,4 +1,8 @@
+@import '../../styles/main';
+
 .title {
     font-size: 35px;
     padding-top: 40px;
+
+    @extend %h1;
 }
