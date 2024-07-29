@@ -1,23 +1,8 @@
 import React from 'react';
 import Slider from 'react-slick';
-import { Product } from '../../types/Product';
 import { ProductCard } from '../ProductCard';
+import { useProductsContext } from '../../controllers/products';
 import './CarouselCards.scss';
-
-const exampleProduct: Product = {
-  id: 0,
-  category: 'electronics',
-  itemId: 'example-id',
-  name: 'Example Product',
-  fullPrice: 1000,
-  price: 800,
-  screen: '6.1 inches',
-  capacity: '128GB',
-  color: 'Black',
-  ram: '4GB',
-  year: 2022,
-  image: 'example-image-url.jpg',
-};
 
 const handleAddToFavourites = (id: string) => {
   console.log(`Added to favourites: ${id}`);
@@ -56,7 +41,7 @@ const CustomPrevArrow: React.FC<Props> = ({ className, style, onClick }) => {
     </div>
   );
 };
-export function CarouselCards() {
+export const CarouselCards: React.FC = () => {
   const settings = {
     dots: false,
     infinite: true,
@@ -65,70 +50,61 @@ export function CarouselCards() {
     nextArrow: <CustomNextArrow />,
     prevArrow: <CustomPrevArrow />,
   };
+
+  const { products } = useProductsContext();
+
   return (
     <div className="carousel-container">
       <Slider {...settings}>
-        <div>
-          <ProductCard
-            product={exampleProduct}
-            products={[exampleProduct]}
-            favourites={[exampleProduct]}
-            cart={[]}
-            onAddToFavourites={handleAddToFavourites}
-            onAddToCart={handleAddToCart}
-          />
-        </div>
-        <div>
-          <ProductCard
-            product={exampleProduct}
-            products={[exampleProduct]}
-            favourites={[exampleProduct]}
-            cart={[]}
-            onAddToFavourites={handleAddToFavourites}
-            onAddToCart={handleAddToCart}
-          />
-        </div>
-        <div>
-          <ProductCard
-            product={exampleProduct}
-            products={[exampleProduct]}
-            favourites={[exampleProduct]}
-            cart={[]}
-            onAddToFavourites={handleAddToFavourites}
-            onAddToCart={handleAddToCart}
-          />
-        </div>
-        <div>
-          <ProductCard
-            product={exampleProduct}
-            products={[exampleProduct]}
-            favourites={[exampleProduct]}
-            cart={[]}
-            onAddToFavourites={handleAddToFavourites}
-            onAddToCart={handleAddToCart}
-          />
-        </div>
-        <div>
-          <ProductCard
-            product={exampleProduct}
-            products={[exampleProduct]}
-            favourites={[exampleProduct]}
-            cart={[]}
-            onAddToFavourites={handleAddToFavourites}
-            onAddToCart={handleAddToCart}
-          />
-        </div>
-        <div>
-          <ProductCard
-            product={exampleProduct}
-            products={[exampleProduct]}
-            favourites={[exampleProduct]}
-            cart={[]}
-            onAddToFavourites={handleAddToFavourites}
-            onAddToCart={handleAddToCart}
-          />
-        </div>
+        <ProductCard
+          product={products[0]}
+          products={products}
+          favourites={[products[3]]}
+          cart={[]}
+          onAddToFavourites={handleAddToFavourites}
+          onAddToCart={handleAddToCart}
+        />
+        <ProductCard
+          product={products[0]}
+          products={products}
+          favourites={[products[3]]}
+          cart={[]}
+          onAddToFavourites={handleAddToFavourites}
+          onAddToCart={handleAddToCart}
+        />
+        <ProductCard
+          product={products[0]}
+          products={products}
+          favourites={[products[3]]}
+          cart={[]}
+          onAddToFavourites={handleAddToFavourites}
+          onAddToCart={handleAddToCart}
+        />
+        <ProductCard
+          product={products[0]}
+          products={products}
+          favourites={[products[3]]}
+          cart={[]}
+          onAddToFavourites={handleAddToFavourites}
+          onAddToCart={handleAddToCart}
+        />
+        <ProductCard
+          product={products[0]}
+          products={products}
+          favourites={[products[3]]}
+          cart={[]}
+          onAddToFavourites={handleAddToFavourites}
+          onAddToCart={handleAddToCart}
+        />
+        <ProductCard
+          product={products[0]}
+          products={products}
+          favourites={[products[3]]}
+          cart={[]}
+          onAddToFavourites={handleAddToFavourites}
+          onAddToCart={handleAddToCart}
+        />
       </Slider>
     </div>
   );
-}
+};

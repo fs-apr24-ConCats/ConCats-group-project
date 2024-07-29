@@ -41,40 +41,6 @@ export const HomePage: React.FC = () => {
           />
         ) : (
           <CarouselCards />
-          // <div className={classes.phones_slider_bottom}>
-          //   <ProductCard
-          //     product={products[0]}
-          //     products={products}
-          //     favourites={[products[3]]}
-          //     cart={[]}
-          //     onAddToFavourites={handleAddToFavourites}
-          //     onAddToCart={handleAddToCart}
-          //   />
-          //   <ProductCard
-          //     product={products[0]}
-          //     products={products}
-          //     favourites={[products[3]]}
-          //     cart={[]}
-          //     onAddToFavourites={handleAddToFavourites}
-          //     onAddToCart={handleAddToCart}
-          //   />
-          //   <ProductCard
-          //     product={products[0]}
-          //     products={products}
-          //     favourites={[products[3]]}
-          //     cart={[]}
-          //     onAddToFavourites={handleAddToFavourites}
-          //     onAddToCart={handleAddToCart}
-          //   />
-          //   <ProductCard
-          //     product={products[0]}
-          //     products={products}
-          //     favourites={[products[3]]}
-          //     cart={[]}
-          //     onAddToFavourites={handleAddToFavourites}
-          //     onAddToCart={handleAddToCart}
-          //   />
-          // </div>
         )}
       </section>
 
