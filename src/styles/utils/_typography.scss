@@ -46,6 +46,15 @@
     }
   }
   
+
+  %h3-category{
+    font-family: Mont, sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 26px;
+  }
+
+
   %h4 {
     font-family: Mont, sans-serif;
     font-size: 16px;
@@ -87,6 +96,7 @@
     font-weight: 700;
     line-height: 15.34px;
   }
+
 
   @mixin buttons {
     font-weight: 600;
@@ -133,3 +143,4 @@
     background-color: transparent;
     border: 1px solid $elements-color;
   }
+
