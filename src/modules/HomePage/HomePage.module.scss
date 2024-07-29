@@ -174,3 +174,10 @@
 .category_card:hover{
   transform: scale(1.05);
 }
+
+.loader{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-block: 153px;
+}
