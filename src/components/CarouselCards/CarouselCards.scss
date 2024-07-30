@@ -20,9 +20,10 @@
       right: 20px; // Position the next arrow on the right
     }
 
-    // .carousel-container .carousel-arrow.slick-prev &--prev {
-    //   right: 60px !important; // Position the prev arrow left of the next arrow
-    // }
+    &--prev {
+      left: initial;
+      right: 60px; // Position the prev arrow left of the next arrow
+    }
 
     &:hover {
       background-color: $surface-2-color;
