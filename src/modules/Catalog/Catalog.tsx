@@ -6,14 +6,15 @@ import { Pagination } from '../../components/Pagination';
 
 export const Catalog: React.FC = () => {
   const { phones } = usePhonesContext();
+  console.log('catalog', phones[0]);
   const ALL_OPTIONS = {4: 4, 8: 8, 16: 16, all: phones.length};
   const [itemsPerPage, setItemsPerPage] = useState(ALL_OPTIONS.all);
-  // const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
 
 
   const changeItemsPerPage = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setItemsPerPage(+event.target.value);
-    // setCurrentPage(1);
+    setCurrentPage(1);
   };
 
 
@@ -61,10 +62,10 @@ export const Catalog: React.FC = () => {
       </div>
 
       <Pagination
-        // total={phones.length}
-        // perPage={itemsPerPage}
-        // currentPage={currentPage}
-        // onPageChange={num => setCurrentPage(num)}
+        total={phones.length}
+        perPage={itemsPerPage}
+        currentPage={currentPage}
+        onPageChange={num => setCurrentPage(num)}
       />
     </div>
   );
