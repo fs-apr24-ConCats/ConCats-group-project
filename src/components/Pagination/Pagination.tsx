@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Pagination.module.scss';
+import ReactPaginate from 'react-paginate';
 
 interface Props {
   total: number;
@@ -16,46 +17,29 @@ export const Pagination: React.FC<Props> = (
   onPageChange,
 }) => {
   const numberOfPages = Math.ceil(total / perPage);
-  const visiblePageNumbers = Array.from({ length: numberOfPages }, (_, i) => i + 1);
-  // console.log(total);
-  // console.log(perPage);
-  // console.log(currentPage);
-  // console.log(onPageChange);
+
+  const handlePageClick = (event: { selected: number }) => {
+    onPageChange(event.selected + 1);
+  };
 
   return (
     <div className={styles['pagination-block']}>
-      <button
-        type="button"
-        className={`${styles['pagination-btn']} ${styles['pagination-squareSm']} ${currentPage <= 1 ? styles['pagination-disabled'] : ''}`}
-        onClick={() => onPageChange(currentPage - 1)}
-        disabled={currentPage <= 1}
-      >
-        <span className={`${styles['pagination-icon']} ${styles['pagination-arrowLeft']}`}></span>
-      </button>
-
-      <ul className={styles['pagination-pages']}>
-        {visiblePageNumbers.map((page) => (
-          <li key={page}>
-            <button
-              type="button"
-              className={`${styles['pagination-btn']} ${styles['pagination-squareSm']} ${page === currentPage ? styles['pagination-selected'] : ''}`}
-              onClick={() => onPageChange(page)}
-              disabled={page === currentPage}
-            >
-              {page}
-            </button>
-          </li>
-        ))}
-      </ul>
-
-      <button
-        type="button"
-        className={`${styles['pagination-btn']} ${styles['pagination-squareSm']} ${currentPage >= numberOfPages ? styles['pagination-disabled'] : ''}`}
-        onClick={() => onPageChange(currentPage + 1)}
-        disabled={currentPage >= numberOfPages}
-      >
-        <span className={`${styles['pagination-icon']} ${styles['pagination-arrowRight']}`}></span>
-      </button>
+      <ReactPaginate
+        previousLabel={<span className={`${styles['pagination-icon']} ${styles['pagination-arrowLeft']}`}></span>}
+        nextLabel={<span className={`${styles['pagination-icon']} ${styles['pagination-arrowRight']}`}></span>}
+        breakLabel={'...'}
+        breakClassName={'break-me'}
+        pageCount={numberOfPages}
+        marginPagesDisplayed={2}
+        pageRangeDisplayed={5}
+        onPageChange={handlePageClick}
+        containerClassName={styles['pagination-pages']}
+        activeClassName={styles['pagination-selected']}
+        previousClassName={`${styles['pagination-btn']} ${styles['pagination-squareSm']}`}
+        nextClassName={`${styles['pagination-btn']} ${styles['pagination-squareSm']}`}
+        pageClassName={`${styles['pagination-btn']} ${styles['pagination-squareSm']}`}
+        disabledClassName={styles['pagination-disabled']}
+        />
     </div>
   );
 };

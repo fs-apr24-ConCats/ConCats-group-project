@@ -1,6 +1,9 @@
 @import '../../styles/main.scss';
 
 .pagination-block {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
   display: flex;
   margin-top: 60px;
   margin-bottom: 60px;
@@ -13,6 +16,7 @@
   display: flex;
   gap: 8px;
   cursor: pointer;
+  list-style: none;
 }
 
 .pagination-btn {
@@ -84,4 +88,8 @@
   &-arrowRight {
     mask: url(/img/icons/Vector-right.svg) no-repeat 50% 50%;
   }
+}
+
+.break-me {
+  display: none;
 }
