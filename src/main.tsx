@@ -1,7 +1,9 @@
+import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { App } from './App';
 import { HomePage } from './modules/HomePage';
+import { CartPage } from './modules/CartPage';
 import { About } from './modules/About';
 import { NotFoundPage } from './pages/notFoundPage/NotFoundPage';
 import { Catalog } from './modules/Catalog';
@@ -23,7 +25,7 @@ createRoot(document.getElementById('root') as HTMLElement).render(
             <Route path="accessories" element={<Catalog />} />
 
             <Route path="favorites" element={<h1>Favorites</h1>} />
-            <Route path="cart" element={<h1>Cart</h1>} />
+            <Route path="cart" element={<CartPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>

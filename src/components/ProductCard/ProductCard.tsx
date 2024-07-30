@@ -12,7 +12,7 @@ type Props = {
   favourites: Product[];
   cart: Product[];
   onAddToFavourites: (id: string) => void;
-  onAddToCart: (id: string) => void;
+  onAddToCart: (product: Product) => void;
 };
 
 export const ProductCard: React.FC<Props> = ({ 
@@ -96,7 +96,7 @@ export const ProductCard: React.FC<Props> = ({
         favourites={favourites}
         cart={cart}
         onAddToFavourites={onAddToFavourites}
-        onAddToCart={onAddToCart}
+        onAddToCart={() => onAddToCart(product)}
         category={category}
         id={itemId} 
       />

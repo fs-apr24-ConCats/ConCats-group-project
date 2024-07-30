@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 import classes from './Favorites.module.scss';
@@ -11,9 +11,12 @@ const activeClass= ({ isActive }: { isActive: boolean }) => {
 };
 
 export const Favorites: React.FC  = () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [counter, setCounter] = useState(2);
+
     return (
         <NavLink className={activeClass} to="/favorites">
-            <Icon icon={IconList.favorites} />
+            <Icon icon={IconList.favorites} counter={counter} />
         </NavLink>
     )
 }
