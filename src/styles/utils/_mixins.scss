@@ -65,6 +65,7 @@
   text-transform: uppercase;
 }
 
+
 @mixin hover($property, $value) {
   &:hover {
     #{$property}: $value;
@@ -74,5 +75,30 @@
 @mixin on-mobile {
   @media (max-width: 639px) {
     @content
+  }
+}
+
+@mixin common-margins {
+  margin-bottom: 56px;
+
+  @include on-tablet {
+    margin-bottom: 64px;
+  }
+
+  @include on-desktop {
+    margin-bottom: 80px;
+  }
+}
+
+@mixin catalog-grid {
+  display: grid;
+  column-gap: 16px;
+  row-gap: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(229px,1fr));
+}
+
+@mixin hover($property, $value) {
+  &:hover {
+    #{$property}: $value;
   }
 }

@@ -1,0 +1,86 @@
+@import '../../styles/main.scss';
+
+.pagination-block {
+  display: flex;
+  margin-top: 60px;
+  margin-bottom: 60px;
+  justify-content: center;
+  gap: 16px;
+  max-height: 32px;
+}
+
+.pagination-pages {
+  display: flex;
+  gap: 8px;
+}
+
+.pagination-btn {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 8.5px;
+  background-color: $surface-2-color;
+  border: 1px solid $icons-color;
+  transition: background-color 0.3s ease-in-out;
+
+  &:focus-visible {
+    outline: auto;
+  }
+
+  &:focus-visible,
+  &:hover:enabled {
+    background-color: $icons-color;
+    border-color: $icons-color;
+  }
+
+  &.pagination-primary {
+    color: $white-color;
+    border: 1px solid $accent-color;
+    background-color: $accent-color;
+
+    &:focus-visible,
+    &:hover:enabled {
+      border: 1px solid $primary-color;
+      background-color: $primary-color;
+    }
+  }
+
+  &.pagination-selected {
+    cursor: default;
+    color: $white-color;
+    background-color: $surface-2-color;
+  }
+
+  &.pagination-disabled {
+    border: 1px solid $elements-color;
+    background-color: $surface-1-color;
+    cursor: default;
+  }
+
+  &.pagination-squareSm {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.pagination-icon {
+  width: 16px;
+  height: 16px;
+  display: block;
+  background-size: cover;
+  background-color: $white-color;
+}
+
+.pagination {
+  &-arrowLeft {
+    mask: url(/img/icons/Vector-left.svg) no-repeat 50% 50%;
+  }
+
+  &-arrowRight {
+    mask: url(/img/icons/Vector-right.svg) no-repeat 50% 50%;
+  }
+}
