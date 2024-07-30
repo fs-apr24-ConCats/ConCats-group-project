@@ -102,3 +102,10 @@
     #{$property}: $value;
   }
 }
+
+@mixin loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-block: 153px;
+}
