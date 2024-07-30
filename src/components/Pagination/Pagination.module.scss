@@ -12,6 +12,7 @@
 .pagination-pages {
   display: flex;
   gap: 8px;
+  cursor: pointer;
 }
 
 .pagination-btn {
@@ -36,34 +37,34 @@
     background-color: $icons-color;
     border-color: $icons-color;
   }
+}
 
-  &.pagination-primary {
-    color: $white-color;
-    border: 1px solid $accent-color;
-    background-color: $accent-color;
+.pagination-selected {
+  cursor: default;
+  color: $white-color;
+  background-color: $surface-2-color;
+}
 
-    &:focus-visible,
-    &:hover:enabled {
-      border: 1px solid $primary-color;
-      background-color: $primary-color;
-    }
-  }
+.pagination-disabled {
+  border: 1px solid $elements-color;
+  background-color: $surface-1-color;
+  cursor: default;
+}
 
-  &.pagination-selected {
-    cursor: default;
-    color: $white-color;
-    background-color: $surface-2-color;
-  }
+.pagination-squareSm {
+  width: 32px;
+  height: 32px;
+}
 
-  &.pagination-disabled {
-    border: 1px solid $elements-color;
-    background-color: $surface-1-color;
-    cursor: default;
-  }
+.pagination-primary {
+  color: $white-color;
+  border: 1px solid $accent-color;
+  background-color: $accent-color;
 
-  &.pagination-squareSm {
-    width: 32px;
-    height: 32px;
+  &:focus-visible,
+  &:hover:enabled {
+    border: 1px solid $primary-color;
+    background-color: $primary-color;
   }
 }
 
