@@ -48,3 +48,7 @@
   background-color: bisque;
   height: 506px;
 }
+
+.loader{
+  @include loader;
+}
