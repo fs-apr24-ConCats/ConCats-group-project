@@ -37,6 +37,9 @@ export const Catalog: React.FC = () => {
 
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(ALL_OPTIONS.all);
+  // const itemsPerPage = 10;
 
   const { pathname } = useLocation();
 
@@ -51,6 +54,16 @@ export const Catalog: React.FC = () => {
 
   const handleAddToFavourites = (id: string) => {
     console.log(`Added to favourites: ${id}`);
+  };
+
+  const totalItems = products.length;
+  const currentItems = products.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage,
+  );
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
   };
 
   const handleAddToCart = (id: string) => {
@@ -70,7 +83,6 @@ export const Catalog: React.FC = () => {
     Cheapest: 'cheapest',
   };
 
-  const [itemsPerPage, setItemsPerPage] = useState(ALL_OPTIONS.all);
   const [sortBy, setSortBy] = useState(SORT_BY_OPTIONS.Newest);
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -155,12 +167,19 @@ export const Catalog: React.FC = () => {
               />
             ))}
           </ul>
+          {/* <div className={styles.card_holder}>
+              {currentItems.map(product => (
+                <div key={product.id} className={styles.card}>
+                  {}
+                </div>
+              ))}
+            </div> */}
 
           <Pagination
-          // total={phones.length}
-          // perPage={itemsPerPage}
-          // currentPage={currentPage}
-          // onPageChange={num => setCurrentPage(num)}
+            total={totalItems}
+            perPage={itemsPerPage}
+            currentPage={currentPage}
+            onPageChange={handlePageChange}
           />
         </>
       )}
