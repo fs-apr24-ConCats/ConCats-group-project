@@ -5,8 +5,8 @@ import { ProductCard } from '../../components/ProductCard';
 import { HeroSlider } from '../../components/HeroSlider';
 import { Link } from 'react-router-dom';
 import { ThreeCircles } from 'react-loader-spinner';
-import { getProducts } from '../../api/dataFromServer';
 import { Product } from '../../types';
+import { getProducts } from '../../api/dataFromServer';
 
 export const HomePage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -20,14 +20,6 @@ export const HomePage: React.FC = () => {
       })
       .finally(() => setIsLoading(false));
   }, []);
-
-  const handleAddToFavourites = (id: string) => {
-    console.log(`Added to favourites: ${id}`);
-  };
-
-  const handleAddToCart = (id: string) => {
-    console.log(`Added to cart: ${id}`);
-  };
 
   return (
     <div className={classes.home}>
@@ -54,35 +46,15 @@ export const HomePage: React.FC = () => {
 
             <ProductCard
               product={products[0]}
-              products={products}
-              favourites={[products[3]]}
-              cart={[]}
-              onAddToFavourites={handleAddToFavourites}
-              onAddToCart={handleAddToCart}
             />
             <ProductCard
-              product={products[0]}
-              products={products}
-              favourites={[products[3]]}
-              cart={[]}
-              onAddToFavourites={handleAddToFavourites}
-              onAddToCart={handleAddToCart}
+              product={products[1]}
             />
             <ProductCard
-              product={products[0]}
-              products={products}
-              favourites={[products[3]]}
-              cart={[]}
-              onAddToFavourites={handleAddToFavourites}
-              onAddToCart={handleAddToCart}
+              product={products[2]}
             />
             <ProductCard
-              product={products[0]}
-              products={products}
-              favourites={[products[3]]}
-              cart={[]}
-              onAddToFavourites={handleAddToFavourites}
-              onAddToCart={handleAddToCart}
+              product={products[3]}
             />
           </div>
         )}
@@ -173,35 +145,15 @@ export const HomePage: React.FC = () => {
           <div className={classes.phones_slider_bottom}>
             <ProductCard
               product={products[0]}
-              products={products}
-              favourites={[products[3]]}
-              cart={[]}
-              onAddToFavourites={handleAddToFavourites}
-              onAddToCart={handleAddToCart}
             />
             <ProductCard
-              product={products[0]}
-              products={products}
-              favourites={[products[3]]}
-              cart={[]}
-              onAddToFavourites={handleAddToFavourites}
-              onAddToCart={handleAddToCart}
+              product={products[1]}
             />
             <ProductCard
-              product={products[0]}
-              products={products}
-              favourites={[products[3]]}
-              cart={[]}
-              onAddToFavourites={handleAddToFavourites}
-              onAddToCart={handleAddToCart}
+              product={products[2]}
             />
             <ProductCard
-              product={products[0]}
-              products={products}
-              favourites={[products[3]]}
-              cart={[]}
-              onAddToFavourites={handleAddToFavourites}
-              onAddToCart={handleAddToCart}
+              product={products[3]}
             />
           </div>
         )}
