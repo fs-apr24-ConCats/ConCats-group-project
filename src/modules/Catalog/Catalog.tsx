@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Catalog.module.scss';
 import { Pagination } from '../../components/Pagination';
-import { Product } from '../../types';
-import { getProducts } from '../../api/dataFromServer';
+import { Item, Product } from '../../types';
+import { getItems, getProducts } from '../../api/dataFromServer';
 import { ThreeCircles } from 'react-loader-spinner';
+import { useLocation } from 'react-router-dom';
 // import { ProductCard } from '../../components/ProductCard';
 
 export const Catalog: React.FC = () => {
-  // const [items, setItems] = useState<Item[]>([]);
-  // const [isLoadingItem, setIsLoadingItem] = useState(true);
+  const [items, setItems] = useState<Item[]>([]);
+  const [isLoadingItem, setIsLoadingItem] = useState(true);
+  const { pathname } = useLocation();
   
 
   const [products, setProducts] = useState<Product[]>([]);
@@ -25,34 +27,34 @@ export const Catalog: React.FC = () => {
 
 
   console.log(products);
-  // const category = pathname.split('/')[1];
+  const category = pathname.split('/')[1];
 
-  // useEffect(() => {
-  //   getItems(category)
-  //     .then(setItems)
-  //     .catch(error => {
-  //       console.error('There was a problem with the fetch operation:', error);
-  //     })
-      // .finally(() => setIsLoadingItem(false));
-  // }, []);
+  useEffect(() => {
+    getItems(category)
+      .then(setItems)
+      .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+      })
+      .finally(() => setIsLoadingItem(false));
+  }, []);
 
-  // const ALL_OPTIONS = { 4: 4, 8: 8, 16: 16, all: items.length };
-  // const [itemsPerPage, setItemsPerPage] = useState(ALL_OPTIONS.all);
+  const ALL_OPTIONS = { 4: 4, 8: 8, 16: 16, all: items.length };
+  const [itemsPerPage, setItemsPerPage] = useState(ALL_OPTIONS.all);
 
-  // const changeItemsPerPage = (event: React.ChangeEvent<HTMLSelectElement>) => {
-  //   setItemsPerPage(+event.target.value);
-    // setCurrentPage(1);
-  // };
+  const changeItemsPerPage = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setItemsPerPage(+event.target.value);
+    setCurrentPage(1);
+  };
 
   return (
     <div className={styles.catalog}>
       <div className={styles.breadCrumbs}></div>
 
       <h1 className={styles.catalog_title}>Mobile phones</h1>
-      {/* <p className={styles.amount}>{`${items.length} phones`}</p> */}
+      <p className={styles.amount}>{`${items.length} phones`}</p>
       <div className={styles.filters}>
         <div className={styles.sort}>Sort by</div>
-        {/* <select
+        <select
           id="perPageSelector"
           className="form-control"
           value={itemsPerPage}
@@ -63,7 +65,7 @@ export const Catalog: React.FC = () => {
               {key}
             </option>
           ))}
-        </select> */}
+        </select>
       </div>
 
       {isLoading ? (

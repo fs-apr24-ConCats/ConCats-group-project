@@ -6,6 +6,7 @@ import styles from './About.module.scss';
 import { Item } from '../../types';
 import { getItems } from '../../api/dataFromServer';
 import { ThreeCircles } from 'react-loader-spinner';
+import { Breadcrumbs } from '../../components/Breadcrumbs';
 
 export const About: React.FC = () => {
   // const navigate = useNavigate();
@@ -43,7 +44,7 @@ export const About: React.FC = () => {
 
   return (
     <div className={styles.about}>
-      <div className={styles.breadCrumbs}></div>
+      <Breadcrumbs />
       <Link to="/" className={styles.back_link}>
         <img src="/img/icons/Chevron(ArrowRight).svg" alt="ArrowBack" />
         <p className={styles.back_text}>Back</p>
@@ -64,21 +65,21 @@ export const About: React.FC = () => {
           <h2 className={styles.title}>{item?.name}</h2>
 
           <section className={styles.images_container}>
-            <div className={styles.small_images}>
-              {item?.images.map(image => (
-                <img
-                  key={uuidv4()}
-                  src={image}
-                  alt={item.name}
-                  className={cn(styles.small_img, { 'styles.active': false })}
-                  onClick={() => setActiveImage(image)}
-                />
-              ))}
-            </div>
+              <div className={styles.small_images}>
+                {item?.images.map(image => (
+                  <img
+                    key={uuidv4()}
+                    src={image}
+                    alt={item.name}
+                    className={cn(styles.small_img, { 'styles.active': false })}
+                    onClick={() => setActiveImage(image)}
+                  />
+                ))}
+              </div>
 
-            <div className={styles.big_image}>
-              <img src={activeImage || item?.images[0]} alt={item?.name} />
-            </div>
+              <div className={styles.big_image}>
+                <img src={activeImage || item?.images[0]} alt={item?.name} />
+              </div>
           </section>
         </>
       )}
