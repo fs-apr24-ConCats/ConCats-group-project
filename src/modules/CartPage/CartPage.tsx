@@ -17,12 +17,15 @@ export const CartPage: React.FC = () => {
   useEffect(() => {
     const validCart = cart.filter(item => item.price !== undefined && item.amount !== undefined && item.amount > 0);
 
-    const total = cart.reduce((p, item) => p + item.price * item.amount, 0);
-    const quantity = cart.reduce((p, item) => p + item.amount, 0);
+    if (validCart.length !== cart.length) {
+      setCart(validCart);
+    }
+
+    const total = validCart.reduce((p, item) => p + item.price * item.amount, 0);
+    const quantity = validCart.reduce((p, item) => p + item.amount, 0);
 
     setSum(total);
     setAmount(quantity);
-    setCart(validCart);
   }, [cart, setCart]);
 
   const increaseAmount = (id: number) => {
