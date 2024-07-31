@@ -11,7 +11,7 @@ type Props = {
   favourites: Product[];
   cart: Product[];
   onAddToFavourites: (id: string) => void;
-  onAddToCart: (id: string) => void;
+  onAddToCart: () => void;
 };
 
 export const Buttons: React.FC<Props> = ({
@@ -33,10 +33,7 @@ export const Buttons: React.FC<Props> = ({
   };
 
   const onClickCart = () => {
-    const itemId = getId(category, products, id);
-    if (itemId !== undefined) {
-      onAddToCart(itemId.toString());
-    }
+    onAddToCart();
   };
 
   return (

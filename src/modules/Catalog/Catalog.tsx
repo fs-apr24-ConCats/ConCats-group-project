@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Catalog.module.scss';
 import { Pagination } from '../../components/Pagination';
+import { Breadcrumbs } from '../../components/Breadcrumbs';
 import { Product } from '../../types';
 import { getProducts } from '../../api/dataFromServer';
 import { ThreeCircles } from 'react-loader-spinner';
@@ -54,7 +55,7 @@ export const Catalog: React.FC = () => {
 
   return (
     <div className={styles.catalog}>
-      <div className={styles.breadCrumbs}></div>
+      <Breadcrumbs />
 
       <h1 className={styles.catalog_title}>Mobile phones</h1>
       {/* <p className={styles.amount}>{`${items.length} phones`}</p> */}
