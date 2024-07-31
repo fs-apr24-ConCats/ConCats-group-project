@@ -10,9 +10,7 @@ type Props = {
   discount?: boolean;
   products: Product[];
   favourites: Product[];
-  cart: Product[];
   onAddToFavourites: (id: string) => void;
-  onAddToCart: (product: Product) => void;
 };
 
 export const ProductCard: React.FC<Props> = ({ 
@@ -20,9 +18,7 @@ export const ProductCard: React.FC<Props> = ({
   discount,
   products,
   favourites,
-  cart,
   onAddToFavourites,
-  onAddToCart,
 }) => {
   const {
     image,
@@ -92,13 +88,12 @@ export const ProductCard: React.FC<Props> = ({
       </div>
 
       <Buttons 
+        id={itemId} 
+        category={category}
+        product={product}
         products={products}
         favourites={favourites}
-        cart={cart}
         onAddToFavourites={onAddToFavourites}
-        onAddToCart={() => onAddToCart(product)}
-        category={category}
-        id={itemId} 
       />
     </div>
   );
