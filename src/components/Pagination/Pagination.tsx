@@ -16,7 +16,7 @@ export const Pagination: React.FC<Props> = ({
   onPageChange 
 }) => {
   const numberOfPages = Math.ceil(total / perPage);
-
+  console.log(currentPage);
   return (
     <ReactPaginate
       previousLabel={<span className={`${styles['pagination-arrowLeft']} ${styles.page}`}></span>}

@@ -46,19 +46,15 @@ export const HomePage: React.FC = () => {
             {/* {products.map(product => )} */}
             <ProductCard
               product={products[0]}
-              products={products}
             />
             <ProductCard
-              product={products[0]}
-              products={products}
+              product={products[1]}
             />
             <ProductCard
-              product={products[0]}
-              products={products}
+              product={products[2]}
             />
             <ProductCard
-              product={products[0]}
-              products={products}
+              product={products[3]}
             />
           </div>
         )}
@@ -149,19 +145,15 @@ export const HomePage: React.FC = () => {
           <div className={classes.phones_slider_bottom}>
             <ProductCard
               product={products[0]}
-              products={products}
             />
             <ProductCard
-              product={products[0]}
-              products={products}
+              product={products[1]}
             />
             <ProductCard
-              product={products[0]}
-              products={products}
+              product={products[2]}
             />
             <ProductCard
-              product={products[0]}
-              products={products}
+              product={products[3]}
             />
           </div>
         )}
