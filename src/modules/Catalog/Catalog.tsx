@@ -34,6 +34,7 @@ const sortProducts = (products: Product[], sortBy: string) => {
 export const Catalog: React.FC = () => {
   // const [items, setItems] = useState<Item[]>([]);
   // const [isLoadingItem, setIsLoadingItem] = useState(true);
+  const ALL_OPTIONS = { 4: 4, 8: 8, 16: 16, all: 10 };
 
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -76,7 +77,6 @@ export const Catalog: React.FC = () => {
     product => product.category === category,
   );
 
-  const ALL_OPTIONS = { 4: 4, 8: 8, 16: 16, all: filteredProducts.length };
   const SORT_BY_OPTIONS = {
     Newest: 'newest',
     Alphabetically: 'alphabetically',
