@@ -1,24 +1,20 @@
 import React from 'react';
 import Slider from 'react-slick';
 import { ProductCard } from '../ProductCard';
-import { useProductsContext } from '../../controllers/products';
+import { Product } from '../../types';
 import './CarouselCards.scss';
 
-const handleAddToFavourites = (id: string) => {
-  console.log(`Added to favourites: ${id}`);
-};
-
-const handleAddToCart = (id: string) => {
-  console.log(`Added to cart: ${id}`);
-};
-
-interface Props {
+interface PropsArrow {
   className?: string;
   style?: React.CSSProperties;
   onClick?: () => void;
 }
 
-const CustomNextArrow: React.FC<Props> = ({ className, style, onClick }) => {
+const CustomNextArrow: React.FC<PropsArrow> = ({
+  className,
+  style,
+  onClick,
+}) => {
   return (
     <div
       className={`${className} carousel-arrow carousel-arrow--next`}
@@ -30,7 +26,11 @@ const CustomNextArrow: React.FC<Props> = ({ className, style, onClick }) => {
   );
 };
 
-const CustomPrevArrow: React.FC<Props> = ({ className, style, onClick }) => {
+const CustomPrevArrow: React.FC<PropsArrow> = ({
+  className,
+  style,
+  onClick,
+}) => {
   return (
     <div
       className={`${className} carousel-arrow carousel-arrow--prev`}
@@ -41,7 +41,12 @@ const CustomPrevArrow: React.FC<Props> = ({ className, style, onClick }) => {
     </div>
   );
 };
-export const CarouselCards: React.FC = () => {
+
+interface Props {
+  products: Product[];
+}
+
+export const CarouselCards: React.FC<Props> = ({ products }) => {
   const settings = {
     dots: false,
     infinite: true,
@@ -51,59 +56,12 @@ export const CarouselCards: React.FC = () => {
     prevArrow: <CustomPrevArrow />,
   };
 
-  const { products } = useProductsContext();
-
   return (
     <div className="carousel-container">
       <Slider {...settings}>
-        <ProductCard
-          product={products[0]}
-          products={products}
-          favourites={[products[3]]}
-          cart={[]}
-          onAddToFavourites={handleAddToFavourites}
-          onAddToCart={handleAddToCart}
-        />
-        <ProductCard
-          product={products[0]}
-          products={products}
-          favourites={[products[3]]}
-          cart={[]}
-          onAddToFavourites={handleAddToFavourites}
-          onAddToCart={handleAddToCart}
-        />
-        <ProductCard
-          product={products[0]}
-          products={products}
-          favourites={[products[3]]}
-          cart={[]}
-          onAddToFavourites={handleAddToFavourites}
-          onAddToCart={handleAddToCart}
-        />
-        <ProductCard
-          product={products[0]}
-          products={products}
-          favourites={[products[3]]}
-          cart={[]}
-          onAddToFavourites={handleAddToFavourites}
-          onAddToCart={handleAddToCart}
-        />
-        <ProductCard
-          product={products[0]}
-          products={products}
-          favourites={[products[3]]}
-          cart={[]}
-          onAddToFavourites={handleAddToFavourites}
-          onAddToCart={handleAddToCart}
-        />
-        <ProductCard
-          product={products[0]}
-          products={products}
-          favourites={[products[3]]}
-          cart={[]}
-          onAddToFavourites={handleAddToFavourites}
-          onAddToCart={handleAddToCart}
-        />
+        {products.map(product => (
+          <ProductCard product={product} key={product.id} />
+        ))}
       </Slider>
     </div>
   );
