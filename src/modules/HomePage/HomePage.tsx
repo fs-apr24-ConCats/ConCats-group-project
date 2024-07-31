@@ -21,10 +21,6 @@ export const HomePage: React.FC = () => {
       .finally(() => setIsLoading(false));
   }, []);
 
-  const handleAddToFavourites = (id: string) => {
-    console.log(`Added to favourites: ${id}`);
-  };
-
   return (
     <div className={classes.home}>
       <h1 className={classes.home__title}>Welcome to Nice Gadgets store!</h1>
@@ -51,26 +47,18 @@ export const HomePage: React.FC = () => {
             <ProductCard
               product={products[0]}
               products={products}
-              favourites={[products[3]]}
-              onAddToFavourites={handleAddToFavourites}
             />
             <ProductCard
               product={products[0]}
               products={products}
-              favourites={[products[3]]}
-              onAddToFavourites={handleAddToFavourites}
             />
             <ProductCard
               product={products[0]}
               products={products}
-              favourites={[products[3]]}
-              onAddToFavourites={handleAddToFavourites}
             />
             <ProductCard
               product={products[0]}
               products={products}
-              favourites={[products[3]]}
-              onAddToFavourites={handleAddToFavourites}
             />
           </div>
         )}
@@ -162,26 +150,18 @@ export const HomePage: React.FC = () => {
             <ProductCard
               product={products[0]}
               products={products}
-              favourites={[products[3]]}
-              onAddToFavourites={handleAddToFavourites}
             />
             <ProductCard
               product={products[0]}
               products={products}
-              favourites={[products[3]]}
-              onAddToFavourites={handleAddToFavourites}
             />
             <ProductCard
               product={products[0]}
               products={products}
-              favourites={[products[3]]}
-              onAddToFavourites={handleAddToFavourites}
             />
             <ProductCard
               product={products[0]}
               products={products}
-              favourites={[products[3]]}
-              onAddToFavourites={handleAddToFavourites}
             />
           </div>
         )}

@@ -57,11 +57,6 @@ export const Catalog: React.FC = () => {
       .finally(() => setIsLoading(false));
   }, []);
 
-  const handleAddToFavourites = (id: string) => {
-    console.log(`Added to favourites: ${id}`);
-  };
-
-
   const handlePageChange = (page: number) => {
     const params = new URLSearchParams(searchParams);
     params.set('currentPage', `${page}`);
@@ -155,8 +150,6 @@ export const Catalog: React.FC = () => {
                 key={product.id}
                 product={product}
                 products={products}
-                favourites={[products[3]]}
-                onAddToFavourites={handleAddToFavourites}
               />
             ))}
           </ul>
