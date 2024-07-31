@@ -3,26 +3,27 @@ import classNames from 'classnames';
 import styles from './Buttons.module.scss';
 import { Product } from '../../types/Product';
 import { getId } from '../../utils/getId';
+import { useCartAndFavouritsContextContext } from '../../components/controllers/CartAndFavourits/useCartAndFavouritsContext';
 
 type Props = {
-  category: string;
   id: string;
+  category: string;
+  product: Product;
   products: Product[];
   favourites: Product[];
-  cart: Product[];
   onAddToFavourites: (id: string) => void;
-  onAddToCart: () => void;
 };
 
 export const Buttons: React.FC<Props> = ({
-  category,
   id,
+  category,
+  product,
   products,
   favourites,
-  cart,
   onAddToFavourites,
-  onAddToCart,
 }) => {
+  const { cart, onAddToCart } = useCartAndFavouritsContextContext();
+
   const hasInCart = cart.some(item => item.id === getId(category, products, id));
 
   const onClickFavHandle = () => {
@@ -33,7 +34,7 @@ export const Buttons: React.FC<Props> = ({
   };
 
   const onClickCart = () => {
-    onAddToCart();
+    onAddToCart(product);
   };
 
   return (

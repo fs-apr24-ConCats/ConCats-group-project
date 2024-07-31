@@ -7,6 +7,7 @@ import { getProducts } from '../../api/dataFromServer';
 import { ThreeCircles } from 'react-loader-spinner';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { ProductCard } from '../../components/ProductCard';
+import { SortOptions } from '../../types/SortOptions';
 
 const sortProducts = (products: Product[], sortBy: string) => {
   const sortedProducts = [...products];
@@ -32,10 +33,18 @@ const sortProducts = (products: Product[], sortBy: string) => {
   return sortedProducts;
 };
 
+const DEFAULT_ITEM_PER_PAGE = 16;
+
 export const Catalog: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const sortBy = searchParams.get('sortBy') || SortOptions.Newest;
+  const currentPage = +(searchParams.get('currentPage') || 1);
+  const itemsPerPage = +(searchParams.get('itemsPerPage') || DEFAULT_ITEM_PER_PAGE);
+  console.log(currentPage, itemsPerPage);
+  const ALL_OPTIONS = { 4: 4, 8: 8, 16: 16, all: products.length };
 
   const { pathname } = useLocation();
 
@@ -52,13 +61,13 @@ export const Catalog: React.FC = () => {
     console.log(`Added to favourites: ${id}`);
   };
 
+
   const handlePageChange = (page: number) => {
-    setCurrentPage(page);
+    const params = new URLSearchParams(searchParams);
+    params.set('currentPage', `${page}`);
+    setSearchParams(params);
   };
 
-  const handleAddToCart = (id: string) => {
-    console.log(`Added to cart: ${id}`);
-  };
 
   const category = pathname.split('/')[1];
 
@@ -66,31 +75,20 @@ export const Catalog: React.FC = () => {
     product => product.category === category,
   );
 
-  const SORT_BY_OPTIONS = {
-    Newest: 'newest',
-    Alphabetically: 'alphabetically',
-    Cheapest: 'cheapest',
-  };
-  const ALL_OPTIONS = { 4: 4, 8: 8, 16: 16, all: 1000 };
-
-  const [sortBy, setSortBy] = useState(SORT_BY_OPTIONS.Newest);
-  const [itemsPerPage, setItemsPerPage] = useState(ALL_OPTIONS.all);
-  const [searchParams, setSearchParams] = useSearchParams();
 
   const sortedProducts = sortProducts(filteredProducts, sortBy);
 
   const changeItemsPerPage = (value: string) => {
-    setItemsPerPage(+value);
     const params = new URLSearchParams(searchParams);
+
     params.set('itemsPerPage', value);
+    params.set('currentPage', '1');
     setSearchParams(params);
-    setCurrentPage(1);
   };
 
   const handleSortBy = (value: string) => {
-    setSortBy(value);
     const params = new URLSearchParams(searchParams);
-    params.set('sort', value);
+    params.set('sortBy', value);
     setSearchParams(params);
   };
 
@@ -115,7 +113,7 @@ export const Catalog: React.FC = () => {
             value={sortBy}
             onChange={event => handleSortBy(event.target.value)}
           >
-            {Object.entries(SORT_BY_OPTIONS).map(([key, value]) => (
+            {Object.entries(SortOptions).map(([key, value]) => (
               <option key={value} value={value}>
                 {key}
               </option>
@@ -158,9 +156,7 @@ export const Catalog: React.FC = () => {
                 product={product}
                 products={products}
                 favourites={[products[3]]}
-                cart={[]}
                 onAddToFavourites={handleAddToFavourites}
-                onAddToCart={handleAddToCart}
               />
             ))}
           </ul>

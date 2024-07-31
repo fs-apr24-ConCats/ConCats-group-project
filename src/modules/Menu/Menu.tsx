@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import styles from './Menu.module.scss';
 import { Link } from 'react-router-dom';
+import React from 'react';
 
 interface MenuProps {
   favouritesCount: number;
