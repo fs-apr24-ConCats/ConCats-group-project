@@ -8,7 +8,7 @@ import { useLocation, useSearchParams } from 'react-router-dom';
 import { ProductCard } from '../../components/ProductCard';
 
 const sortProducts = (products: Product[], sortBy: string) => {
-  const sortedProducts = products;
+  const sortedProducts = [...products];
 
   if (sortBy === 'newest') {
     return sortedProducts.sort(
@@ -32,15 +32,9 @@ const sortProducts = (products: Product[], sortBy: string) => {
 };
 
 export const Catalog: React.FC = () => {
-  // const [items, setItems] = useState<Item[]>([]);
-  // const [isLoadingItem, setIsLoadingItem] = useState(true);
-  const ALL_OPTIONS = { 4: 4, 8: 8, 16: 16, all: 10 };
-
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(ALL_OPTIONS.all);
-  // const itemsPerPage = 10;
 
   const { pathname } = useLocation();
 
@@ -56,12 +50,6 @@ export const Catalog: React.FC = () => {
   const handleAddToFavourites = (id: string) => {
     console.log(`Added to favourites: ${id}`);
   };
-
-  const totalItems = products.length;
-  const currentItems = products.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage,
-  );
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -82,16 +70,20 @@ export const Catalog: React.FC = () => {
     Alphabetically: 'alphabetically',
     Cheapest: 'cheapest',
   };
+  const ALL_OPTIONS = { 4: 4, 8: 8, 16: 16, all: 1000 };
 
   const [sortBy, setSortBy] = useState(SORT_BY_OPTIONS.Newest);
+  const [itemsPerPage, setItemsPerPage] = useState(ALL_OPTIONS.all);
   const [searchParams, setSearchParams] = useSearchParams();
+
+  const sortedProducts = sortProducts(filteredProducts, sortBy);
 
   const changeItemsPerPage = (value: string) => {
     setItemsPerPage(+value);
     const params = new URLSearchParams(searchParams);
     params.set('itemsPerPage', value);
     setSearchParams(params);
-    // setCurrentPage(1);
+    setCurrentPage(1);
   };
 
   const handleSortBy = (value: string) => {
@@ -101,7 +93,11 @@ export const Catalog: React.FC = () => {
     setSearchParams(params);
   };
 
-  const sortedProducts = sortProducts(filteredProducts, sortBy);
+  const totalItems = sortedProducts.length;
+  const currentItems = sortedProducts.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage,
+  );
 
   return (
     <div className={styles.catalog}>
@@ -155,7 +151,7 @@ export const Catalog: React.FC = () => {
       ) : (
         <>
           <ul className={styles.card_holder}>
-            {sortedProducts.map(product => (
+            {currentItems.map(product => (
               <ProductCard
                 key={product.id}
                 product={product}
@@ -167,13 +163,6 @@ export const Catalog: React.FC = () => {
               />
             ))}
           </ul>
-          {/* <div className={styles.card_holder}>
-              {currentItems.map(product => (
-                <div key={product.id} className={styles.card}>
-                  {}
-                </div>
-              ))}
-            </div> */}
 
           <Pagination
             total={totalItems}
