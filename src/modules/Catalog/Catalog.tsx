@@ -149,7 +149,6 @@ export const Catalog: React.FC = () => {
               <ProductCard
                 key={product.id}
                 product={product}
-                products={products}
               />
             ))}
           </ul>

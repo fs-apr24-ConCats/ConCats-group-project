@@ -8,13 +8,11 @@ import { Buttons } from '../../modules/Buttons';
 type Props = {
   product: Product;
   discount?: boolean;
-  products: Product[];
 };
 
 export const ProductCard: React.FC<Props> = ({ 
   product,
   discount,
-  products,
 }) => {
   const {
     image,
@@ -87,7 +85,6 @@ export const ProductCard: React.FC<Props> = ({
         id={itemId} 
         category={category}
         product={product}
-        products={products}
       />
     </div>
   );

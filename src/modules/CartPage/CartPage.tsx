@@ -7,6 +7,7 @@ import { Modal } from './components/Modal';
 import { ModalContent } from './components/ModalContent';
 import { useLocaleStorage } from '../../utils/useLocaleStorage';
 import { CartProduct } from '../../types';
+import { v4 as uuidv4 } from 'uuid';
 
 export const CartPage: React.FC = () => {
   const [cart, setCart] = useLocaleStorage<CartProduct[]>('cartItems', []);
@@ -67,7 +68,7 @@ export const CartPage: React.FC = () => {
             <div className={classes.CartPage__list}>
               {cart.map(item => (
                 <CartItem
-                  key={item.id}
+                  key={uuidv4()}
                   product={item}
                   increaseAmount={() => increaseAmount(item.id)}
                   decreaseAmount={() => decreaseAmount(item.id)}

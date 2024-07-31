@@ -1,35 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import styles from './Buttons.module.scss';
 import { Product } from '../../types/Product';
 import { getId } from '../../utils/getId';
 import { useCartAndFavouritsContextContext } from '../../components/controllers/CartAndFavourits/useCartAndFavouritsContext';
+import { getProducts } from '../../api/dataFromServer';
 
 type Props = {
   id: string;
   category: string;
   product: Product;
-  products: Product[];
-  favourites: Product[];
-  onAddToFavourites: (id: string) => void;
 };
 
 export const Buttons: React.FC<Props> = ({
   id,
   category,
   product,
-  products,
-  favourites,
-  onAddToFavourites,
 }) => {
+  const [products, setProducts] = useState<Product[]>([]);
   const { cart, onAddToCart } = useCartAndFavouritsContextContext();
+  const { favourites, onUpdateFavorites } = useCartAndFavouritsContextContext();
 
+  useEffect(() => {
+    getProducts().then(setProducts);
+  },[])
   const hasInCart = cart.some(item => item.id === getId(category, products, id));
 
   const onClickFavHandle = () => {
     const itemId = getId(category, products, id);
     if (itemId !== undefined) {
-      onAddToFavourites(itemId.toString());
+      onUpdateFavorites(product);
     }
   };
 
