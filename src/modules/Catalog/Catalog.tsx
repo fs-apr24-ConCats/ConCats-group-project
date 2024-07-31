@@ -13,6 +13,8 @@ export const Catalog: React.FC = () => {
 
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
   useEffect(() => {
     getProducts()
@@ -23,6 +25,12 @@ export const Catalog: React.FC = () => {
       .finally(() => setIsLoading(false));
   }, []);
 
+  const totalItems = products.length;
+  const currentItems = products.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
 
   console.log(products);
   // const category = pathname.split('/')[1];
@@ -79,29 +87,18 @@ export const Catalog: React.FC = () => {
       ) : (
         <>
           <div className={styles.card_holder}>
-          <div className={styles.card}></div>
-        <div className={styles.card}></div>
-        <div className={styles.card}></div>
-        <div className={styles.card}></div>
-        <div className={styles.card}></div>
-        <div className={styles.card}></div>
-        <div className={styles.card}></div>
-        <div className={styles.card}></div>
-        <div className={styles.card}></div>
-        <div className={styles.card}></div>
-        <div className={styles.card}></div>
-        <div className={styles.card}></div>
-        <div className={styles.card}></div>
-        <div className={styles.card}></div>
-        <div className={styles.card}></div>
-        <div className={styles.card}></div>
+            {currentItems.map(product => (
+              <div key={product.id} className={styles.card}>
+                {}
+              </div>
+            ))}
           </div>
 
           <Pagination
-          // total={phones.length}
-          // perPage={itemsPerPage}
-          // currentPage={currentPage}
-          // onPageChange={num => setCurrentPage(num)}
+            total={totalItems}
+            perPage={itemsPerPage}
+            currentPage={currentPage}
+            onPageChange={handlePageChange}
           />
         </>
       )}
