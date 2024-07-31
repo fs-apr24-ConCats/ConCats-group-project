@@ -1,23 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import cn from 'classnames';
 import classes from './HomePage.module.scss';
 import { ProductCard } from '../../components/ProductCard';
 import { HeroSlider } from '../../components/HeroSlider';
 import { Link } from 'react-router-dom';
 import { ThreeCircles } from 'react-loader-spinner';
-import { useProductsContext } from '../../controllers/products';
-import { CarouselCards } from '../../components/CarouselCards';
+import { Product } from '../../types';
+import { getProducts } from '../../api/dataFromServer';
 
 export const HomePage: React.FC = () => {
-  const { products } = useProductsContext();
+  const [products, setProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const handleAddToFavourites = (id: string) => {
-    console.log(`Added to favourites: ${id}`);
-  };
-
-  const handleAddToCart = (id: string) => {
-    console.log(`Added to cart: ${id}`);
-  };
+  useEffect(() => {
+    getProducts()
+      .then(setProducts)
+      .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+      })
+      .finally(() => setIsLoading(false));
+  }, []);
 
   return (
     <div className={classes.home}>
@@ -29,7 +31,7 @@ export const HomePage: React.FC = () => {
         <div className={classes.section_top}>
           <h2 className={classes.section_top_title}>Brand new models</h2>
         </div>
-        {!products.length ? (
+        {isLoading ? (
           <ThreeCircles
             visible={true}
             height="200"
@@ -115,7 +117,7 @@ export const HomePage: React.FC = () => {
           <h2 className={classes.section_top_title}>Hot prices</h2>
         </div>
 
-        {!products.length ? (
+        {isLoading ? (
           <ThreeCircles
             visible={true}
             height="200"
@@ -127,38 +129,10 @@ export const HomePage: React.FC = () => {
           />
         ) : (
           <div className={classes.phones_slider_bottom}>
-            <ProductCard
-              product={products[0]}
-              products={products}
-              favourites={[products[3]]}
-              cart={[]}
-              onAddToFavourites={handleAddToFavourites}
-              onAddToCart={handleAddToCart}
-            />
-            <ProductCard
-              product={products[0]}
-              products={products}
-              favourites={[products[3]]}
-              cart={[]}
-              onAddToFavourites={handleAddToFavourites}
-              onAddToCart={handleAddToCart}
-            />
-            <ProductCard
-              product={products[0]}
-              products={products}
-              favourites={[products[3]]}
-              cart={[]}
-              onAddToFavourites={handleAddToFavourites}
-              onAddToCart={handleAddToCart}
-            />
-            <ProductCard
-              product={products[0]}
-              products={products}
-              favourites={[products[3]]}
-              cart={[]}
-              onAddToFavourites={handleAddToFavourites}
-              onAddToCart={handleAddToCart}
-            />
+            <ProductCard product={products[0]} />
+            <ProductCard product={products[1]} />
+            <ProductCard product={products[2]} />
+            <ProductCard product={products[3]} />
           </div>
         )}
       </section>
