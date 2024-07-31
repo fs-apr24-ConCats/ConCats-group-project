@@ -32,6 +32,7 @@
 
 .Favourites{
   margin-top: 40px;
+  @include content-padding-inline;
 }
 .titleFav{
   font-size: 48px;
