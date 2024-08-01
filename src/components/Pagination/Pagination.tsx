@@ -33,6 +33,7 @@ export const Pagination: React.FC<Props> = ({
       nextClassName={styles.page}
       pageClassName={styles.page}
       disabledClassName={styles.disabled}
+      forcePage={currentPage - 1}
     />
   );
 };

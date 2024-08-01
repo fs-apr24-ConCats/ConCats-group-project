@@ -5,13 +5,10 @@ import { ProductCard } from '../../components/ProductCard';
 import { HeroSlider } from '../../components/HeroSlider';
 import { Link } from 'react-router-dom';
 import { ThreeCircles } from 'react-loader-spinner';
-import { useLocaleStorage } from '../../utils/useLocaleStorage';
-import { CartProduct, Product } from '../../types';
+import { Product } from '../../types';
 import { getProducts } from '../../api/dataFromServer';
 
 export const HomePage: React.FC = () => {
-  const [cart, setCart] = useLocaleStorage<CartProduct[]>('cartItems', []);
-
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -23,21 +20,6 @@ export const HomePage: React.FC = () => {
       })
       .finally(() => setIsLoading(false));
   }, []);
-
-  const handleAddToFavourites = (id: string) => {
-    console.log(`Added to favourites: ${id}`);
-  };
-
-  const handleAddToCart = (product: Product) => {
-    const existingItem = cart.find(cartItem => cartItem.id === product.id);
-    if (existingItem) {
-      setCart(cart.map(cartItem =>
-        cartItem.id === product.id ? { ...cartItem, amount: (cartItem.amount || 1) + 1 } : cartItem
-      ));
-    } else {
-      setCart([...cart, { ...product, amount: 1 }]);
-    }
-  };
 
   return (
     <div className={classes.home}>
@@ -64,35 +46,15 @@ export const HomePage: React.FC = () => {
             {/* {products.map(product => )} */}
             <ProductCard
               product={products[0]}
-              products={products}
-              favourites={[products[3]]}
-              cart={[]}
-              onAddToFavourites={handleAddToFavourites}
-              onAddToCart={handleAddToCart}
             />
             <ProductCard
-              product={products[0]}
-              products={products}
-              favourites={[products[3]]}
-              cart={[]}
-              onAddToFavourites={handleAddToFavourites}
-              onAddToCart={handleAddToCart}
+              product={products[1]}
             />
             <ProductCard
-              product={products[0]}
-              products={products}
-              favourites={[products[3]]}
-              cart={[]}
-              onAddToFavourites={handleAddToFavourites}
-              onAddToCart={handleAddToCart}
+              product={products[2]}
             />
             <ProductCard
-              product={products[0]}
-              products={products}
-              favourites={[products[3]]}
-              cart={[]}
-              onAddToFavourites={handleAddToFavourites}
-              onAddToCart={handleAddToCart}
+              product={products[3]}
             />
           </div>
         )}
@@ -183,35 +145,15 @@ export const HomePage: React.FC = () => {
           <div className={classes.phones_slider_bottom}>
             <ProductCard
               product={products[0]}
-              products={products}
-              favourites={[products[3]]}
-              cart={[]}
-              onAddToFavourites={handleAddToFavourites}
-              onAddToCart={handleAddToCart}
             />
             <ProductCard
-              product={products[0]}
-              products={products}
-              favourites={[products[3]]}
-              cart={[]}
-              onAddToFavourites={handleAddToFavourites}
-              onAddToCart={handleAddToCart}
+              product={products[1]}
             />
             <ProductCard
-              product={products[0]}
-              products={products}
-              favourites={[products[3]]}
-              cart={[]}
-              onAddToFavourites={handleAddToFavourites}
-              onAddToCart={handleAddToCart}
+              product={products[2]}
             />
             <ProductCard
-              product={products[0]}
-              products={products}
-              favourites={[products[3]]}
-              cart={[]}
-              onAddToFavourites={handleAddToFavourites}
-              onAddToCart={handleAddToCart}
+              product={products[3]}
             />
           </div>
         )}
