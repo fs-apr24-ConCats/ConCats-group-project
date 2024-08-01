@@ -4,7 +4,7 @@ import styles from './Buttons.module.scss';
 import { Product } from '../../types/Product';
 import { getId } from '../../utils/getId';
 import { useCartAndFavouritsContextContext } from '../../components/controllers/CartAndFavourits/useCartAndFavouritsContext';
-import { getProducts, getQuickProducts } from '../../api/dataFromServer';
+import { getQuickProducts } from '../../api/dataFromServer';
 
 type Props = {
   id: string;
