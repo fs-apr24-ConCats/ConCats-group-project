@@ -4,6 +4,10 @@
   padding-top: 24px;
   @include content-padding-inline;
   @include page-grid;
+
+  // @include on-desktop {
+  //   column-gap: 64px;
+  // }
 }
 
 .breadCrumbs {
@@ -25,6 +29,16 @@
 
 .loader{
   @include loader;
+  margin: 0 auto; 
+  width: (100vw);
+  min-width: 320px;
+
+
+  @include on-desktop {
+    width: 1136px;
+  }
+
+
 }
 
 .title {
@@ -45,120 +59,86 @@
   grid-auto-rows: repeat(2, auto); 
   grid-template-columns: repeat(var(--columns), 1fr);
   column-gap: 16px;
+  margin-bottom: 40px;
 
   @include on-tablet {
     grid-auto-rows: repeat(1, auto); 
     grid-column: 1/8;
     --columns: 7;
+    margin-bottom: 64px;
   }
 
   @include on-desktop {
     grid-column: 1/13;
     --columns: 12;
+    margin-bottom: 80px;
   }
 }
-
-
-.small_images {
-  display: flex;
-  flex-direction: row;
-  gap: 16px;
-  grid-column: 1/-1;
-  grid-row: 2/3;
-
-  @include on-tablet {
-    flex-direction: column;
-    grid-column: 1/2;
-    grid-row: 1/2;
-  }
-
-  @include on-desktop {
-    grid-column: 1/3;
-  }
-}
-
-.small_img {
-  width: 80px;
-  height: 80px;
-  object-fit: contain;
-  padding: 5px;
-  border: 0.2px solid $white-color;
-}
-
-.big_image_wrapper {
-  grid-column: 1/-1;
-  grid-row: 1/2;
-  display: flex;
-  justify-content: center;
-  object-fit: contain;
-  position: relative;
-  height: 0;
-  padding-bottom: 100%;
-
-  @include on-tablet {
-    grid-row: 1/2;
-    grid-column: 2/8;
-  }
-
-  @include on-desktop {
-    grid-column: 3/13;
-  }
-}
-
-.big_image{
-  height: 100%;
-  object-fit: cover;
-  position: absolute;
-}
-
 
 
 // second section
 
 .choice_params {
   grid-column: 1/5;
-
+  margin-bottom: 56px;
 
   @include on-tablet {
     grid-column: 8/13;
   }
 
   @include on-desktop {
-    grid-column: 13/20;
+    grid-column: 14/21;
   }
 }
 
-.colors_params {
-  position: relative;
-  margin-bottom: 46px;
+
+// about
+
+.section_about {
+  grid-column: 1/-1;
+  margin-bottom: 32px;
+
+  @include on-desktop {
+    grid-column: 1/13;
+  }
 }
 
-.colors_params::after {
+.title_about {
+  @extend %h3;
+  position: relative;
+  margin-bottom: 48px;
+}
+
+.title_about::after {
   content: '';
   display: block;
   position: absolute;
-  top: 80px;
+  top: 47px;
   width: 100%;
   height: 0.5px;
-  background-color: $white-color;
+  background-color: $elements-color;
+}
+
+.text_title {
+  @extend %h4;
+  margin-bottom: 16px;
   color: $white-color;
 }
 
-.colors_text {
-  @extend %text-small;
+.text_about {
+  @extend  %text-body;
+  margin-bottom: 32px;
   color: $secondary-color;
-  margin-bottom: 8px;
 }
 
-.radio_color {
-  height: 32px;
-  width: 32px;
-  appearance: none;
-  border-radius: 50%;
-  border: 1px solid $white-color;
-  cursor: pointer;
-  // outline: 1px solid $white-color;
-  // box-shadow: 0 0 0 1px transparent, 0 0 0 1px green;
-  margin-right: 8px;
+// tech
+
+.section_tech {
+  grid-column: 1/-1;
+  margin-bottom: 64px;
+
+  @include on-desktop {
+    grid-column: 14/25;
+  }
 }
 

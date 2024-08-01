@@ -1982,11 +1982,11 @@
     "colorsAvailable": ["black", "rosegold", "gold", "silver"],
     "color": "black",
     "images": [
-      "/img/phones/apple-iphone-7/black/00.webp",
-      "/img/phones/apple-iphone-7/black/01.webp",
-      "/img/phones/apple-iphone-7/black/02.webp",
-      "/img/phones/apple-iphone-7/black/03.webp",
-      "/img/phones/apple-iphone-7/black/04.webp"
+      "img/phones/apple-iphone-7/black/00.webp",
+      "img/phones/apple-iphone-7/black/01.webp",
+      "img/phones/apple-iphone-7/black/02.webp",
+      "img/phones/apple-iphone-7/black/03.webp",
+      "img/phones/apple-iphone-7/black/04.webp"
     ],
     "description": [
       {
