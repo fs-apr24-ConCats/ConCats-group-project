@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import styles from './ProductCard.module.scss';
 import classNames from 'classnames';
 import { Product } from '../../types/Product';
@@ -10,10 +11,9 @@ type Props = {
   discount?: boolean;
 };
 
-export const ProductCard: React.FC<Props> = ({ 
-  product,
-  discount,
-}) => {
+export const ProductCard: React.FC<Props> = ({ product, discount }) => {
+  const { t } = useTranslation();
+
   const {
     image,
     name,
@@ -66,26 +66,22 @@ export const ProductCard: React.FC<Props> = ({
 
       <div className={classNames(styles.product__info, styles.info)}>
         <div className={styles.info__screen}>
-          <p className={styles['info-key']}>Screen</p>
+          <p className={styles['info-key']}>{t('productCard.screen')}</p>
           <p className={styles['info-value']}>{screen}</p>
         </div>
 
         <div className={styles.info__capacity}>
-          <p className={styles['info-key']}>Capacity</p>
+          <p className={styles['info-key']}>{t('productCard.capacity')}</p>
           <p className={styles['info-value']}>{capacity}</p>
         </div>
 
         <div className={styles.info__ram}>
-          <p className={styles['info-key']}>RAM</p>
+          <p className={styles['info-key']}>{t('productCard.ram')}</p>
           <p className={styles['info-value']}>{ram}</p>
         </div>
       </div>
 
-      <Buttons 
-        id={itemId} 
-        category={category}
-        product={product}
-      />
+      <Buttons id={itemId} category={category} product={product} />
     </div>
   );
 };

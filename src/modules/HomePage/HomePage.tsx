@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import cn from 'classnames';
 import classes from './HomePage.module.scss';
 import { ProductCard } from '../../components/ProductCard';
@@ -11,6 +12,7 @@ import { getProducts } from '../../api/dataFromServer';
 export const HomePage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { t } = useTranslation();
 
   useEffect(() => {
     getProducts()
@@ -23,13 +25,13 @@ export const HomePage: React.FC = () => {
 
   return (
     <div className={classes.home}>
-      <h1 className={classes.home__title}>Welcome to Nice Gadgets store!</h1>
+      <h1 className={classes.home__title}>{t('welcome')}</h1>
       <div className={classes.slider}>
         <HeroSlider />
       </div>
       <section className={classes.phones_slider}>
         <div className={classes.section_top}>
-          <h2 className={classes.section_top_title}>Brand new models</h2>
+          <h2 className={classes.section_top_title}>{t('sliders.new')}</h2>
         </div>
         {isLoading ? (
           <ThreeCircles
@@ -43,25 +45,16 @@ export const HomePage: React.FC = () => {
           />
         ) : (
           <div className={classes.phones_slider_bottom}>
-
-            <ProductCard
-              product={products[0]}
-            />
-            <ProductCard
-              product={products[1]}
-            />
-            <ProductCard
-              product={products[2]}
-            />
-            <ProductCard
-              product={products[3]}
-            />
+            <ProductCard product={products[0]} />
+            <ProductCard product={products[1]} />
+            <ProductCard product={products[2]} />
+            <ProductCard product={products[3]} />
           </div>
         )}
       </section>
 
       <section className={classes.category}>
-        <h2 className={classes.section_top_title}>Shop by category</h2>
+        <h2 className={classes.section_top_title}>{t('categories.title')}</h2>
 
         <div className={classes.category_bottom}>
           <Link
@@ -128,7 +121,7 @@ export const HomePage: React.FC = () => {
         className={cn(classes.phones_slider, classes.phones_slider_hot_price)}
       >
         <div className={classes.section_top}>
-          <h2 className={classes.section_top_title}>Hot prices</h2>
+          <h2 className={classes.section_top_title}>{t('sliders.hot')}</h2>
         </div>
 
         {isLoading ? (
@@ -143,18 +136,10 @@ export const HomePage: React.FC = () => {
           />
         ) : (
           <div className={classes.phones_slider_bottom}>
-            <ProductCard
-              product={products[0]}
-            />
-            <ProductCard
-              product={products[1]}
-            />
-            <ProductCard
-              product={products[2]}
-            />
-            <ProductCard
-              product={products[3]}
-            />
+            <ProductCard product={products[0]} />
+            <ProductCard product={products[1]} />
+            <ProductCard product={products[2]} />
+            <ProductCard product={products[3]} />
           </div>
         )}
       </section>

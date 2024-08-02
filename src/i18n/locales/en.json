@@ -1,0 +1,46 @@
+{
+  "welcome": "Welcome to Gadgets Depot store!",
+  "nav": {
+    "home": "Home",
+    "phones": "Phones",
+    "tablets": "Tablets",
+    "accessories": "Accessories"
+  },
+  "sliders": {
+    "new": "Brand new models",
+    "hot": "Hot prices",
+    "also": "You also may like"
+  },
+  "categories": {
+    "title": "Shop by category",
+    "mobile": "Mobile phones",
+    "tablet": "Tablets",
+    "accessories": "Accessories",
+    "models": "models"
+  },
+  "buttons": {
+    "cart": "Add to cart",
+    "cart-added": "Added",
+    "fav": "Add to favourites"
+  },
+  "pageTitles": {
+    "phones": "phones",
+    "tablets": "tablets",
+    "accessories": "accessories"
+  },
+  "catalog": {
+    "sortBy": "Sort by",
+    "itemsOnPage": "Items on page"
+  },
+  "footer": {
+    "contacts": "contacts",
+    "rights": "rights",
+    "top": "back to top"
+  },
+  "productCard": {
+    "screen": "Screen",
+    "capacity": "Capacity",
+    "ram": "RAM",
+    "addToCart": "Add to cart"
+  }
+}

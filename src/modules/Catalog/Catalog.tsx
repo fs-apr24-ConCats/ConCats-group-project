@@ -8,6 +8,7 @@ import { ThreeCircles } from 'react-loader-spinner';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { ProductCard } from '../../components/ProductCard';
 import { SortOptions } from '../../types/SortOptions';
+import { useTranslation } from 'react-i18next';
 
 const sortProducts = (products: Product[], sortBy: string) => {
   const sortedProducts = [...products];
@@ -40,10 +41,13 @@ export const Catalog: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [searchParams, setSearchParams] = useSearchParams();
 
+  const { t } = useTranslation();
+
   const sortBy = searchParams.get('sortBy') || SortOptions.Newest;
   const currentPage = +(searchParams.get('currentPage') || 1);
-  const itemsPerPage = +(searchParams.get('itemsPerPage') || DEFAULT_ITEM_PER_PAGE);
-  console.log(currentPage, itemsPerPage);
+  const itemsPerPage = +(
+    searchParams.get('itemsPerPage') || DEFAULT_ITEM_PER_PAGE
+  );
   const ALL_OPTIONS = { 4: 4, 8: 8, 16: 16, all: products.length };
 
   const { pathname } = useLocation();
@@ -63,13 +67,12 @@ export const Catalog: React.FC = () => {
     setSearchParams(params);
   };
 
-
   const category = pathname.split('/')[1];
+  console.log(category);
 
   const filteredProducts = products.filter(
     product => product.category === category,
   );
-
 
   const sortedProducts = sortProducts(filteredProducts, sortBy);
 
@@ -98,12 +101,13 @@ export const Catalog: React.FC = () => {
       <div className={styles.breadCrumbs}>
         <Breadcrumbs />
       </div>
-
-      <h1 className={styles.catalog_title}>{category}</h1>
-      <p className={styles.amount}>{`${sortedProducts.length} models`}</p>
+      <h1 className={styles.catalog_title}>{t(`pageTitles.${category}`)}</h1>
+      <p
+        className={styles.amount}
+      >{`${sortedProducts.length} ${t('categories.models')}`}</p>
       <div className={styles.filters}>
         <div className={styles.sort_wrap}>
-          <p className={styles.sort}>Sort by</p>
+          <p className={styles.sort}>{t('catalog.sortBy')}</p>
           <select
             id="sortBy"
             className={styles.sortFormControl}
@@ -118,7 +122,7 @@ export const Catalog: React.FC = () => {
           </select>
         </div>
         <div className={styles.sort_wrap}>
-          <p className={styles.sort}>Items on page</p>
+          <p className={styles.sort}>{t('catalog.itemsOnPage')}</p>
           <select
             id="perPageSelector"
             className={styles.pageFormControl}
@@ -148,10 +152,7 @@ export const Catalog: React.FC = () => {
         <>
           <ul className={styles.card_holder}>
             {currentItems.map(product => (
-              <ProductCard
-                key={product.id}
-                product={product}
-              />
+              <ProductCard key={product.id} product={product} />
             ))}
           </ul>
 

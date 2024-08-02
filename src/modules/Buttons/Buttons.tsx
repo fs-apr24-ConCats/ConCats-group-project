@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 import styles from './Buttons.module.scss';
 import { Product } from '../../types/Product';
@@ -22,12 +23,15 @@ export const Buttons: React.FC<Props> = ({
   const [products, setProducts] = useState<Product[]>([]);
   const { cart, onAddToCart } = useCartAndFavouritsContextContext();
   const { favourites, onUpdateFavorites } = useCartAndFavouritsContextContext();
+  const { t } = useTranslation();
 
   useEffect(() => {
     getQuickProducts().then(setProducts);
-  },[])
+  }, []);
 
-  const hasInCart = cart.some(item => item.id === getId(category, products, id));
+  const hasInCart = cart.some(
+    item => item.id === getId(category, products, id),
+  );
 
   const onClickFavHandle = () => {
     onUpdateFavorites(product);
@@ -47,7 +51,7 @@ export const Buttons: React.FC<Props> = ({
             styles['buttons__button-cartActive'],
             {
               [styles.biggerHeight]: biggerButtons,
-            }
+            },
           )}
           onClick={onClickCart}
         >
@@ -60,11 +64,11 @@ export const Buttons: React.FC<Props> = ({
             styles['buttons__button-cart'],
             {
               [styles.biggerHeight]: biggerButtons,
-            }
+            },
           )}
           onClick={onClickCart}
         >
-          Add to cart
+          {t('productCard.addToCart')}
         </button>
       )}
 
@@ -73,9 +77,11 @@ export const Buttons: React.FC<Props> = ({
           styles.buttons__button,
           styles['buttons__button-fav'],
           {
-            [styles['buttons__button-fav-selected']]: favourites.some(item => item.id === getId(category, products, id)),
+            [styles['buttons__button-fav-selected']]: favourites.some(
+              item => item.id === getId(category, products, id),
+            ),
             [styles.biggerHeight]: biggerButtons,
-          }
+          },
         )}
         onClick={onClickFavHandle}
       />

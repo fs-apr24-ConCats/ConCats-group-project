@@ -1,0 +1,46 @@
+{
+  "welcome": "Ласкаво просимо до магазину Gadgets Depot",
+  "nav": {
+    "home": "Головна",
+    "phones": "Телефони",
+    "tablets": "Планшети",
+    "accessories": "Аксесуари"
+  },
+  "sliders": {
+    "new": "Нові моделі",
+    "hot": "Гарячі ціни",
+    "also": "Вам також може сподобатися"
+  },
+  "categories": {
+    "title": "Купуйте за категоріями",
+    "mobile": "Мобільні телефони",
+    "tablets": "Планшети",
+    "accessories": "Аксесуари",
+    "models": "моделі"
+  },
+  "buttons": {
+    "cart": "В корзину",
+    "cart-added": "Додано",
+    "fav": "В обрані"
+  },
+  "pageTitles": {
+    "phones": "телефони",
+    "tablets": "планшети",
+    "accessories": "аксесуари"
+  },
+  "catalog": {
+    "sortBy": "Сортувати по",
+    "itemsOnPage": "Кількість на сторінці"
+  },
+  "footer": {
+    "contacts": "контакти",
+    "rights": "права",
+    "top": "догори"
+  },
+  "productCard": {
+    "screen": "Екран",
+    "capacity": "Місткість",
+    "ram": "ОЗП",
+    "addToCart": "В корзину"
+  }
+}
