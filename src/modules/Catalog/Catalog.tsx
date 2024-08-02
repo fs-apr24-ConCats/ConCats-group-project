@@ -8,7 +8,6 @@ import { ThreeCircles } from 'react-loader-spinner';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { ProductCard } from '../../components/ProductCard';
 import { SortOptions } from '../../types/SortOptions';
-import { Search } from '../../components/Searcher';
 import { useTranslation } from 'react-i18next';
 
 const sortProducts = (products: Product[], sortBy: string) => {
