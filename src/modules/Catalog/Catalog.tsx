@@ -9,6 +9,7 @@ import { ThreeCircles } from 'react-loader-spinner';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { ProductCard } from '../../components/ProductCard';
 import { SortOptions } from '../../types/SortOptions';
+import { Search } from '../../components/Searcher';
 
 const sortProducts = (products: Product[], sortBy: string) => {
   const sortedProducts = [...products];
@@ -43,6 +44,8 @@ export const Catalog: React.FC = () => {
   const sortBy = searchParams.get('sortBy') || SortOptions.Newest;
   const currentPage = +(searchParams.get('currentPage') || 1);
   const itemsPerPage = +(searchParams.get('itemsPerPage') || DEFAULT_ITEM_PER_PAGE);
+  const searchQuery = searchParams.get('query') || '';
+
   const ALL_OPTIONS = { 4: 4, 8: 8, 16: 16, all: products.length };
 
   const { pathname } = useLocation();
@@ -65,9 +68,9 @@ export const Catalog: React.FC = () => {
 
   const category = pathname.split('/')[1];
 
-  const filteredProducts = products.filter(
-    product => product.category === category,
-  );
+  const filteredProducts = products
+    .filter(product => product.category === category)
+    .filter(product => product.name.toLowerCase().includes(searchQuery.toLowerCase()));
 
 
   const sortedProducts = sortProducts(filteredProducts, sortBy);
@@ -100,38 +103,44 @@ export const Catalog: React.FC = () => {
 
       <h1 className={styles.catalog_title}>{category}</h1>
       <p className={styles.amount}>{`${sortedProducts.length} models`}</p>
-      <div className={styles.filters}>
-        <div className={styles.sort_wrap}>
-          <p className={styles.sort}>Sort by</p>
-          <select
-            id="sortBy"
-            className={styles.sortFormControl}
-            value={sortBy}
-            onChange={event => handleSortBy(event.target.value)}
-          >
-            {Object.entries(SortOptions).map(([key, value]) => (
-              <option key={value} value={value}>
-                {key}
-              </option>
-            ))}
-          </select>
+      <div className={styles.allfilters}>
+        <div className={styles.filters}>
+          <div className={styles.sort_wrap}>
+            <p className={styles.sort}>Sort by</p>
+            <select
+              id="sortBy"
+              className={styles.sortFormControl}
+              value={sortBy}
+              onChange={event => handleSortBy(event.target.value)}
+            >
+              {Object.entries(SortOptions).map(([key, value]) => (
+                <option key={value} value={value}>
+                  {key}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className={styles.sort_wrap}>
+            <p className={styles.sort}>Items on page</p>
+            <select
+              id="perPageSelector"
+              className={styles.pageFormControl}
+              value={itemsPerPage}
+              onChange={event => changeItemsPerPage(event.target.value)}
+            >
+              {Object.entries(ALL_OPTIONS).map(([key, value]) => (
+                <option key={value} value={value}>
+                  {key}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
-        <div className={styles.sort_wrap}>
-          <p className={styles.sort}>Items on page</p>
-          <select
-            id="perPageSelector"
-            className={styles.pageFormControl}
-            value={itemsPerPage}
-            onChange={event => changeItemsPerPage(event.target.value)}
-          >
-            {Object.entries(ALL_OPTIONS).map(([key, value]) => (
-              <option key={value} value={value}>
-                {key}
-              </option>
-            ))}
-          </select>
-        </div>
+          <div className={styles.search}>
+            <Search />
+          </div>
       </div>
+
 
       {isLoading ? (
         <ThreeCircles
