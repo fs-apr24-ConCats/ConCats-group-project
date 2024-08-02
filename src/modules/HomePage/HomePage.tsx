@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import cn from 'classnames';
 import classes from './HomePage.module.scss';
-import { ProductCard } from '../../components/ProductCard';
 import { HeroSlider } from '../../components/HeroSlider';
 import { Link } from 'react-router-dom';
 import { ThreeCircles } from 'react-loader-spinner';
 import { Product } from '../../types';
 import { getProducts } from '../../api/dataFromServer';
+import { CarouselCards } from '../../components/CarouselCards';
 
 export const HomePage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -22,6 +22,11 @@ export const HomePage: React.FC = () => {
       })
       .finally(() => setIsLoading(false));
   }, []);
+
+  const newModels = [...products].sort((a, b) => b.year - a.year).slice(0, 10);
+  const hotPriceModels = [...products]
+    .sort((a, b) => a.price - b.price)
+    .slice(0, 10);
 
   return (
     <div className={classes.home}>
@@ -44,12 +49,7 @@ export const HomePage: React.FC = () => {
             wrapperClass={classes.loader}
           />
         ) : (
-          <div className={classes.phones_slider_bottom}>
-            <ProductCard product={products[0]} />
-            <ProductCard product={products[1]} />
-            <ProductCard product={products[2]} />
-            <ProductCard product={products[3]} />
-          </div>
+          <CarouselCards products={newModels} />
         )}
       </section>
 
@@ -135,12 +135,7 @@ export const HomePage: React.FC = () => {
             wrapperClass={classes.loader}
           />
         ) : (
-          <div className={classes.phones_slider_bottom}>
-            <ProductCard product={products[0]} />
-            <ProductCard product={products[1]} />
-            <ProductCard product={products[2]} />
-            <ProductCard product={products[3]} />
-          </div>
+          <CarouselCards products={hotPriceModels} />
         )}
       </section>
     </div>
