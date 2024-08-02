@@ -46,6 +46,9 @@
 
 .card_holder {
   @include catalog-grid;
+}
+
+.card_holder_justify {
   justify-content: center;
 }
 

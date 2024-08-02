@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import cn from 'classnames';
 import styles from './Catalog.module.scss';
 import { Pagination } from '../../components/Pagination';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
@@ -12,22 +13,21 @@ import { SortOptions } from '../../types/SortOptions';
 const sortProducts = (products: Product[], sortBy: string) => {
   const sortedProducts = [...products];
 
-  if (sortBy === 'newest') {
-    return sortedProducts.sort(
-      (product1, product2) => product2.year - product1.year,
-    );
-  }
-
-  if (sortBy === 'alphabetically') {
-    return sortedProducts.sort((product1, product2) =>
-      product1.name.localeCompare(product2.name),
-    );
-  }
-
-  if (sortBy === 'cheapest') {
-    return sortedProducts.sort(
-      (product1, product2) => product1.price - product2.price,
-    );
+  switch (sortBy) {
+    case SortOptions.Newest: 
+      return sortedProducts.sort(
+        (product1, product2) => product2.year - product1.year,
+      );
+    
+    case SortOptions.Alphabetically:
+      return sortedProducts.sort((product1, product2) =>
+        product1.name.localeCompare(product2.name),
+      );
+    
+    case SortOptions.Cheapest:
+      return sortedProducts.sort(
+        (product1, product2) => product1.price - product2.price,
+      );
   }
 
   return sortedProducts;
@@ -43,7 +43,6 @@ export const Catalog: React.FC = () => {
   const sortBy = searchParams.get('sortBy') || SortOptions.Newest;
   const currentPage = +(searchParams.get('currentPage') || 1);
   const itemsPerPage = +(searchParams.get('itemsPerPage') || DEFAULT_ITEM_PER_PAGE);
-  console.log(currentPage, itemsPerPage);
   const ALL_OPTIONS = { 4: 4, 8: 8, 16: 16, all: products.length };
 
   const { pathname } = useLocation();
@@ -55,7 +54,7 @@ export const Catalog: React.FC = () => {
         console.error('There was a problem with the fetch operation:', error);
       })
       .finally(() => setIsLoading(false));
-  }, []);
+  }, [pathname]);
 
   const handlePageChange = (page: number) => {
     const params = new URLSearchParams(searchParams);
@@ -146,7 +145,7 @@ export const Catalog: React.FC = () => {
         />
       ) : (
         <>
-          <ul className={styles.card_holder}>
+          <ul className={cn(styles.card_holder, {[styles.card_holder_justify]: currentItems.length > 3 })}>
             {currentItems.map(product => (
               <ProductCard
                 key={product.id}

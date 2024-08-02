@@ -4,7 +4,7 @@ import cn from 'classnames';
 import styles from './ChoiceParams.module.scss';
 import { Item, Product } from '../../types';
 import { Buttons } from '../../modules/Buttons';
-import { getProducts } from '../../api/dataFromServer';
+import { getQuickProducts } from '../../api/dataFromServer';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 
@@ -25,7 +25,7 @@ export const ChoiceParams: React.FC<Props> = ({ item }) => {
   const itemId = pathname.split('/')[2];
 
   useEffect(() => {
-    getProducts()
+    getQuickProducts()
       .then(devices => {
         if (devices !== undefined) {
           setProduct(devices.find(device => device.itemId === itemId) || null);
@@ -47,6 +47,8 @@ export const ChoiceParams: React.FC<Props> = ({ item }) => {
       `${urlArr.slice(0, urlArr.length - 2).join('-')}-${capacityLower}-${urlArr[urlArr.length - 1]}`,
     );
   };
+
+  const discount = product && product?.id % 3 === 0;
 
   return (
     <>
@@ -97,7 +99,7 @@ export const ChoiceParams: React.FC<Props> = ({ item }) => {
             </div>
 
             <div className={styles.section_params_price}>
-              {item?.priceDiscount ? (
+              {discount ? (
                 <div className={styles.product__prices}>
                   <p className={cn(styles.product__price)}>
                     ${item.priceDiscount}

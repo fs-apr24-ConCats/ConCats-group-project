@@ -7,12 +7,10 @@ import { Buttons } from '../../modules/Buttons';
 
 type Props = {
   product: Product;
-  discount?: boolean;
 };
 
 export const ProductCard: React.FC<Props> = ({ 
   product,
-  discount,
 }) => {
   const {
     image,
@@ -26,9 +24,11 @@ export const ProductCard: React.FC<Props> = ({
     category,
   } = product;
 
+  const discount = product.id % 3 === 0;
+
   const priceCell = () => (
     <div>
-      {discount && (
+      {discount ? (
         <div className={styles.product__prices}>
           <p className={classNames(styles.product__price)}>${price}</p>
           <p
@@ -40,8 +40,9 @@ export const ProductCard: React.FC<Props> = ({
             ${fullPrice}
           </p>
         </div>
+      ) : (
+        <p className={styles.product__price}>${fullPrice}</p>
       )}
-      {!discount && <p className={styles.product__price}>${fullPrice}</p>}
     </div>
   );
 
