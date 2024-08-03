@@ -34,7 +34,7 @@ export const HomePage: React.FC = () => {
       </div>
       <section className={classes.phones_slider}>
         <div className={classes.section_top}>
-          <h2 className={classes.section_top_title}>Brand new models</h2>
+          <h2 className={cn(classes.section_top_title, classes.top_title)}>Brand new models</h2>
         </div>
         {isLoading ? (
           <ThreeCircles
@@ -47,7 +47,7 @@ export const HomePage: React.FC = () => {
             wrapperClass={classes.loader}
           />
         ) : (
-          <CarouselCards products={newModels} />
+          <CarouselCards products={newModels} topPlus={true}/>
         )}
       </section>
 
