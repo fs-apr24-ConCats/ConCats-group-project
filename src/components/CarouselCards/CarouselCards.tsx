@@ -52,6 +52,7 @@ export const CarouselCards: React.FC<Props> = ({ products }) => {
     infinite: true,
     slidesToShow: 4,
     slidesToScroll: 1,
+    swipeToSlide: true,
     nextArrow: <CustomNextArrow />,
     prevArrow: <CustomPrevArrow />,
   };

@@ -82,11 +82,13 @@ export const ProductCard: React.FC<Props> = ({
         </div>
       </div>
 
-      <Buttons 
-        id={itemId} 
-        category={category}
-        product={product}
-      />
+      <div className={styles.button_hover}>
+        <Buttons 
+          id={itemId} 
+          category={category}
+          product={product}
+        />
+      </div>
     </div>
   );
 };

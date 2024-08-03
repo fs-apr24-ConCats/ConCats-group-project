@@ -5,7 +5,7 @@
 
   .carousel-arrow {
     position: absolute;
-    top: -25px;
+    top: -43.5px;;
     width: 32px; // Adjust width as needed
     height: 32px; // Adjust height as needed
     background-color: #333;
@@ -42,6 +42,10 @@
   }
 }
 
+.slick-prev, .slick-next {
+  border-radius: 0;
+}
+
 .slick-arrow {
   display: flex;
   justify-content: flex-end;
@@ -53,4 +57,22 @@
 
 .carousel-container.slick-arrow.slick-prev.carousel-arrow.carousel-arrow--prev {
   right: 60px;
+}
+
+.slick-track {
+  display: flex;
+  gap: 16px;
+  padding: 10px;
+}
+
+.slick-slide{
+  min-width: 212px;
+
+  @include on-tablet {
+    min-width: 237px;
+  }
+  
+  @include on-desktop {
+    min-width: 272px;
+  }
 }

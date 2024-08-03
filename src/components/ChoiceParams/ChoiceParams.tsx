@@ -18,8 +18,14 @@ export const ChoiceParams: React.FC<Props> = ({ item }) => {
   const navigate = useNavigate();
 
   const urlArr = pathname.split('-');
-  const colorFromUrl = urlArr[urlArr.length - 1];
-  const capacityFromUrl = urlArr[urlArr.length - 2];
+
+  let colorFromUrl = urlArr[urlArr.length - 1];
+  let capacityFromUrl = urlArr[urlArr.length - 2];
+
+  if (item.colorsAvailable.includes(`${capacityFromUrl} ${colorFromUrl}`)) {
+    colorFromUrl = `${capacityFromUrl} ${colorFromUrl}`;
+    capacityFromUrl = urlArr[urlArr.length - 3];
+  }
 
   const category = pathname.split('/')[1];
   const itemId = pathname.split('/')[2];
@@ -37,14 +43,26 @@ export const ChoiceParams: React.FC<Props> = ({ item }) => {
   }, []);
 
   const handleChangeColor = (color: string) => {
+    if (colorFromUrl.split(' ').length > 1) {
+      urlArr.pop();
+    }
+
     urlArr.pop();
-    navigate(`${urlArr.join('-')}-${color}`);
+    navigate(`${urlArr.join('-')}-${color.replace(' ', '-')}`);
   };
 
   const handleChangeCapacity = (capacity: string) => {
     const capacityLower = capacity.toLocaleLowerCase();
+    let endElement = urlArr[urlArr.length - 1];
+    let startIndex = urlArr.length - 2;
+
+    if (colorFromUrl.split(' ').length > 1) {
+      endElement = colorFromUrl.replace(' ', '-');
+      startIndex = urlArr.length - 3;
+    }
+
     navigate(
-      `${urlArr.slice(0, urlArr.length - 2).join('-')}-${capacityLower}-${urlArr[urlArr.length - 1]}`,
+      `${urlArr.slice(0, startIndex).join('-')}-${capacityLower}-${endElement}`,
     );
   };
 
