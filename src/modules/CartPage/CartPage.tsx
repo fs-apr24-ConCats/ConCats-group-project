@@ -46,7 +46,7 @@ export const CartPage: React.FC = () => {
 
       {cart.length > 0 && (
         <div className={classes.CartPage__container}>
-          <h2>Cart</h2>
+          <h2>{t('nav.cart')}</h2>
 
           <div className={classes.CartPage__content}>
             <div className={classes.CartPage__list}>
@@ -67,7 +67,7 @@ export const CartPage: React.FC = () => {
             <div className={classes.CartPage__total}>
               <div className={classes.CartPage__sum}>{`$${sum}`}</div>
               <div className={classes.CartPage__number}>
-                {`Total for ${amount} item${amount === 1 ? '' : 's'}`}
+                {`${t('cart.total')} ${amount} ${amount === 1 ? t('cart.item') : t('cart.items')}`}
               </div>
               <div className={classes.CartPage__line} />
               <button
@@ -75,7 +75,7 @@ export const CartPage: React.FC = () => {
                 className={classes.CartPage__button}
                 onClick={() => setModalVisibility(true)}
               >
-                Checkout
+                {t('cart.checkout')}
               </button>
 
               <Modal isOpen={modalVisibility}>

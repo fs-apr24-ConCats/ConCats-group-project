@@ -4,11 +4,13 @@ import { useSearchParams } from 'react-router-dom';
 import { getSearchWith } from '../../utils/searchHelper';
 import { useCallback, useState } from 'react';
 import debounce from 'lodash.debounce';
+import { useTranslation } from 'react-i18next';
 
 export const Search = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [value, setValue] = useState('');
   const searchQuery = searchParams.get('query') || '';
+  const { t } = useTranslation();
 
   // console.log('search', searchParams);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -16,7 +18,6 @@ export const Search = () => {
     const search = getSearchWith(searchParams, params);
     setSearchParams(search);
   }
-
 
   const debouncedSetSearchWith = useCallback(
     debounce(params => {
@@ -42,11 +43,15 @@ export const Search = () => {
         value={searchQuery}
         type="text"
         className={styles.searchForm__input}
-        placeholder="Search"
+        placeholder={t('productCard.search')}
         onChange={handleQueryChange}
       />
       {value && (
-        <button type="button" className={styles.clearButton} onClick={clearSearch}>
+        <button
+          type="button"
+          className={styles.clearButton}
+          onClick={clearSearch}
+        >
           &times;
         </button>
       )}

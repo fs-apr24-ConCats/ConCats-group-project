@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { v4 as uuidv4 } from 'uuid';
 import cn from 'classnames';
@@ -30,18 +30,6 @@ export const ChoiceParams: React.FC<Props> = ({ item, product }) => {
 
   const category = pathname.split('/')[1];
   const itemId = pathname.split('/')[2];
-
-  useEffect(() => {
-    getProducts()
-      .then(devices => {
-        if (devices !== undefined) {
-          setProduct(devices.find(device => device.itemId === itemId) || null);
-        }
-      })
-      .catch(error => {
-        console.error('There was a problem with the fetch operation:', error);
-      });
-  }, []);
 
   const handleChangeColor = (color: string) => {
     if (colorFromUrl.split(' ').length > 1) {
@@ -119,23 +107,6 @@ export const ChoiceParams: React.FC<Props> = ({ item, product }) => {
         </div>
       </div>
 
-      <div className={styles.section_params_price}>
-        {item?.priceDiscount ? (
-          <div className={styles.product__prices}>
-            <p className={cn(styles.product__price)}>${item.priceDiscount}</p>
-            <p
-              className={cn(
-                styles.product__price,
-                styles['product__price-discount'],
-              )}
-            >
-              ${item.priceRegular}
-            </p>
-          </div>
-        ) : (
-          <p className={styles.product__price}>${item?.priceRegular}</p>
-        )}
-      </div>
       <div className={styles.section_params_price}>
         {discount ? (
           <div className={styles.product__prices}>

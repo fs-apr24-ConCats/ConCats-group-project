@@ -12,30 +12,6 @@ import { SortOptions } from '../../types/SortOptions';
 import { getSearchWith, SearchParams, sortProducts } from '../../utils';
 import { useTranslation } from 'react-i18next';
 
-const sortProducts = (products: Product[], sortBy: string) => {
-  const sortedProducts = [...products];
-
-  if (sortBy === 'newest') {
-    return sortedProducts.sort(
-      (product1, product2) => product2.year - product1.year,
-    );
-  }
-
-  if (sortBy === 'alphabetically') {
-    return sortedProducts.sort((product1, product2) =>
-      product1.name.localeCompare(product2.name),
-    );
-  }
-
-  if (sortBy === 'cheapest') {
-    return sortedProducts.sort(
-      (product1, product2) => product1.price - product2.price,
-    );
-  }
-
-  return sortedProducts;
-};
-
 const DEFAULT_ITEM_PER_PAGE = 16;
 
 export const Catalog: React.FC = () => {

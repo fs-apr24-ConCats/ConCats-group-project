@@ -4,7 +4,8 @@
     "home": "Home",
     "phones": "Phones",
     "tablets": "Tablets",
-    "accessories": "Accessories"
+    "accessories": "Accessories",
+    "cart": "Cart"
   },
   "sliders": {
     "new": "Brand new models",
@@ -52,7 +53,8 @@
     "addToCart": "Add to cart",
     "added": "Added",
     "color": "Available colors",
-    "selectCapacity": "Select capacity"
+    "selectCapacity": "Select capacity",
+    "search": "Search"
   },
   "empty": {
     "fav": "Your favourites is empty",
@@ -67,5 +69,13 @@
     "8": "8",
     "16": "16",
     "All": "All"
+  },
+  "cart": {
+    "total": "Total for",
+    "item": "item",
+    "items": "items",
+    "checkout": "Checkout",
+    "checkoutNot": "Checkout is not implemented yet.",
+    "seeYou": "See you soon :)"
   }
 }

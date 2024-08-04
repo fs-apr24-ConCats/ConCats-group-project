@@ -10,7 +10,7 @@ type Props = {
   product: Product;
 };
 
-export const ProductCard: React.FC<Props> = ({ product, discount }) => {
+export const ProductCard: React.FC<Props> = ({ product }) => {
   const { t } = useTranslation();
 
   const {
