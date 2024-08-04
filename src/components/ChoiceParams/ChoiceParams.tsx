@@ -1,19 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import cn from 'classnames';
 import styles from './ChoiceParams.module.scss';
 import { Item, Product } from '../../types';
 import { Buttons } from '../../modules/Buttons';
-import { getQuickProducts } from '../../api/dataFromServer';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 
 interface Props {
   item: Item;
+  product: Product;
 }
 
-export const ChoiceParams: React.FC<Props> = ({ item }) => {
-  const [product, setProduct] = useState<Product | null>(null);
+export const ChoiceParams: React.FC<Props> = ({ item, product }) => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
@@ -30,17 +29,7 @@ export const ChoiceParams: React.FC<Props> = ({ item }) => {
   const category = pathname.split('/')[1];
   const itemId = pathname.split('/')[2];
 
-  useEffect(() => {
-    getQuickProducts()
-      .then(devices => {
-        if (devices !== undefined) {
-          setProduct(devices.find(device => device.itemId === itemId) || null);
-        }
-      })
-      .catch(error => {
-        console.error('There was a problem with the fetch operation:', error);
-      });
-  }, []);
+
 
   const handleChangeColor = (color: string) => {
     if (colorFromUrl.split(' ').length > 1) {

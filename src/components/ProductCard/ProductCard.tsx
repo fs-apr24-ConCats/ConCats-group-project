@@ -46,6 +46,7 @@ export const ProductCard: React.FC<Props> = ({
     </div>
   );
 
+  console.log(image);
   return (
     <div className={styles.product}>
       <Link
