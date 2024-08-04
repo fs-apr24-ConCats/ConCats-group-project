@@ -5,10 +5,10 @@ import classNames from "classnames";
 
 type Props = {
     icon: IconList
-    counter: number;
+    counter?: number;
 }
 
-export const Icon: React.FC<Props> = ({ icon, counter }) => (
+export const Icon: React.FC<Props> = ({ icon, counter = 0 }) => (
     <div className={classNames(classes.Icon, {
         [classes['Icon--counter']]: counter,
     })}>
