@@ -23,9 +23,10 @@ export const HomePage: React.FC = () => {
       .finally(() => setIsLoading(false));
   }, []);
 
-  const newModels = [...products].sort((a, b) => b.year - a.year).slice(0, 10);
+  const newModels = [...products].filter(item => item.id % 3 !== 0 ).sort((a, b) => b.price - a.price).slice(0, 10);
   const hotPriceModels = [...products]
-    .sort((a, b) => a.price - b.price)
+    .filter(item => item.id % 3 === 0 )
+    .sort(() => Math.random() - 0.5)
     .slice(0, 10);
 
   return (
@@ -37,6 +38,7 @@ export const HomePage: React.FC = () => {
       <section className={classes.phones_slider}>
         <div className={classes.section_top}>
           <h2 className={classes.section_top_title}>{t('sliders.new')}</h2>
+
         </div>
         {isLoading ? (
           <ThreeCircles
@@ -49,7 +51,7 @@ export const HomePage: React.FC = () => {
             wrapperClass={classes.loader}
           />
         ) : (
-          <CarouselCards products={newModels} />
+          <CarouselCards products={newModels} topPlus={true}/>
         )}
       </section>
 
