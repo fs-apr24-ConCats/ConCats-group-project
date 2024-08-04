@@ -8,7 +8,6 @@ import { Buttons } from '../../modules/Buttons';
 
 type Props = {
   product: Product;
-  discount?: boolean;
 };
 
 export const ProductCard: React.FC<Props> = ({ product, discount }) => {
@@ -26,9 +25,11 @@ export const ProductCard: React.FC<Props> = ({ product, discount }) => {
     category,
   } = product;
 
+  const discount = product.id % 3 === 0;
+
   const priceCell = () => (
     <div>
-      {discount && (
+      {discount ? (
         <div className={styles.product__prices}>
           <p className={classNames(styles.product__price)}>${price}</p>
           <p
@@ -40,8 +41,9 @@ export const ProductCard: React.FC<Props> = ({ product, discount }) => {
             ${fullPrice}
           </p>
         </div>
+      ) : (
+        <p className={styles.product__price}>${fullPrice}</p>
       )}
-      {!discount && <p className={styles.product__price}>${fullPrice}</p>}
     </div>
   );
 
@@ -50,7 +52,7 @@ export const ProductCard: React.FC<Props> = ({ product, discount }) => {
       <Link
         to={`../../${category}/${itemId}`}
         className={styles.product__image}
-        style={{ backgroundImage: `url(${image})` }}
+        style={{ backgroundImage: `url(/${image})` }}
       />
 
       <Link
@@ -81,7 +83,9 @@ export const ProductCard: React.FC<Props> = ({ product, discount }) => {
         </div>
       </div>
 
-      <Buttons id={itemId} category={category} product={product} />
+      <div className={styles.button_hover}>
+        <Buttons id={itemId} category={category} product={product} />
+      </div>
     </div>
   );
 };

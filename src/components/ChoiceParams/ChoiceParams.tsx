@@ -1,27 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { v4 as uuidv4 } from 'uuid';
 import cn from 'classnames';
 import styles from './ChoiceParams.module.scss';
 import { Item, Product } from '../../types';
 import { Buttons } from '../../modules/Buttons';
-import { getProducts } from '../../api/dataFromServer';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 interface Props {
   item: Item;
+  product: Product;
 }
 
-export const ChoiceParams: React.FC<Props> = ({ item }) => {
-  const [product, setProduct] = useState<Product | null>(null);
+export const ChoiceParams: React.FC<Props> = ({ item, product }) => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
   const { t } = useTranslation();
 
   const urlArr = pathname.split('-');
-  const colorFromUrl = urlArr[urlArr.length - 1];
-  const capacityFromUrl = urlArr[urlArr.length - 2];
+
+  let colorFromUrl = urlArr[urlArr.length - 1];
+  let capacityFromUrl = urlArr[urlArr.length - 2];
+
+  if (item.colorsAvailable.includes(`${capacityFromUrl} ${colorFromUrl}`)) {
+    colorFromUrl = `${capacityFromUrl} ${colorFromUrl}`;
+    capacityFromUrl = urlArr[urlArr.length - 3];
+  }
 
   const category = pathname.split('/')[1];
   const itemId = pathname.split('/')[2];
@@ -39,16 +44,30 @@ export const ChoiceParams: React.FC<Props> = ({ item }) => {
   }, []);
 
   const handleChangeColor = (color: string) => {
+    if (colorFromUrl.split(' ').length > 1) {
+      urlArr.pop();
+    }
+
     urlArr.pop();
-    navigate(`${urlArr.join('-')}-${color}`);
+    navigate(`${urlArr.join('-')}-${color.replace(' ', '-')}`);
   };
 
   const handleChangeCapacity = (capacity: string) => {
     const capacityLower = capacity.toLocaleLowerCase();
+    let endElement = urlArr[urlArr.length - 1];
+    let startIndex = urlArr.length - 2;
+
+    if (colorFromUrl.split(' ').length > 1) {
+      endElement = colorFromUrl.replace(' ', '-');
+      startIndex = urlArr.length - 3;
+    }
+
     navigate(
-      `${urlArr.slice(0, urlArr.length - 2).join('-')}-${capacityLower}-${urlArr[urlArr.length - 1]}`,
+      `${urlArr.slice(0, startIndex).join('-')}-${capacityLower}-${endElement}`,
     );
   };
+
+  const discount = product && product?.id % 3 === 0;
 
   return (
     <>
@@ -115,6 +134,23 @@ export const ChoiceParams: React.FC<Props> = ({ item }) => {
           </div>
         ) : (
           <p className={styles.product__price}>${item?.priceRegular}</p>
+        )}
+      </div>
+      <div className={styles.section_params_price}>
+        {discount ? (
+          <div className={styles.product__prices}>
+            <p className={cn(styles.product__price)}>${product.price}</p>
+            <p
+              className={cn(
+                styles.product__price,
+                styles['product__price-discount'],
+              )}
+            >
+              ${product.fullPrice}
+            </p>
+          </div>
+        ) : (
+          <p className={styles.product__price}>${product.fullPrice}</p>
         )}
       </div>
 
