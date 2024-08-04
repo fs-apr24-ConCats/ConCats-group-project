@@ -14,19 +14,21 @@
   "categories": {
     "title": "Shop by category",
     "mobile": "Mobile phones",
-    "tablet": "Tablets",
+    "tablets": "Tablets",
     "accessories": "Accessories",
     "models": "models"
   },
   "buttons": {
     "cart": "Add to cart",
     "cart-added": "Added",
-    "fav": "Add to favourites"
+    "fav": "Add to favourites",
+    "goHome": "GO HOME"
   },
   "pageTitles": {
     "phones": "phones",
     "tablets": "tablets",
-    "accessories": "accessories"
+    "accessories": "accessories",
+    "fav": "Favorites"
   },
   "catalog": {
     "sortBy": "Sort by",
@@ -38,9 +40,32 @@
     "top": "back to top"
   },
   "productCard": {
+    "tech": "Tech specs",
     "screen": "Screen",
     "capacity": "Capacity",
     "ram": "RAM",
-    "addToCart": "Add to cart"
+    "resolution": "Resolution",
+    "processor": "Processor",
+    "camera": "Camera",
+    "zoom": "Zoom",
+    "cell": "Cell",
+    "addToCart": "Add to cart",
+    "added": "Added",
+    "color": "Available colors",
+    "selectCapacity": "Select capacity"
+  },
+  "empty": {
+    "fav": "Your favourites is empty",
+    "cart": "Your cart is empty",
+    "404": "Oooops! Page not found..."
+  },
+  "sortBy": {
+    "Newest": "Newest",
+    "Alphabetically": "Alphabetically",
+    "Cheapest": "Cheapest",
+    "4": "4",
+    "8": "8",
+    "16": "16",
+    "All": "All"
   }
 }

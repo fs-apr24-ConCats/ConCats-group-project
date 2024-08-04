@@ -55,7 +55,7 @@ export const Buttons: React.FC<Props> = ({
           )}
           onClick={onClickCart}
         >
-          Added
+          {t('productCard.added')}
         </button>
       ) : (
         <button

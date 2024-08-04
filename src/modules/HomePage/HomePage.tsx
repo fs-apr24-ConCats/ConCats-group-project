@@ -73,8 +73,12 @@ export const HomePage: React.FC = () => {
                 className={classes.picture}
               />
             </div>
-            <h3 className={classes.category__title}>Mobile phones</h3>
-            <p className={classes.category_amount}>95 models</p>
+            <h3 className={classes.category__title}>
+              {t('categories.mobile')}
+            </h3>
+            <p className={classes.category_amount}>
+              95 {t('categories.models')}
+            </p>
           </Link>
           <Link
             to="/tablets"
@@ -92,8 +96,12 @@ export const HomePage: React.FC = () => {
                 className={classes.picture}
               />
             </div>
-            <h3 className={classes.category__title}>Tablets</h3>
-            <p className={classes.category_amount}>24 models</p>
+            <h3 className={classes.category__title}>
+              {t('categories.tablets')}
+            </h3>
+            <p className={classes.category_amount}>
+              25 {t('categories.models')}
+            </p>
           </Link>
           <Link
             to="/accessories"
@@ -111,8 +119,12 @@ export const HomePage: React.FC = () => {
                 className={classes.picture}
               />
             </div>
-            <h3 className={classes.category__title}>Accessories</h3>
-            <p className={classes.category_amount}>100 models</p>
+            <h3 className={classes.category__title}>
+              {t('categories.accessories')}
+            </h3>
+            <p className={classes.category_amount}>
+              110 {t('categories.models')}
+            </p>
           </Link>
         </div>
       </section>

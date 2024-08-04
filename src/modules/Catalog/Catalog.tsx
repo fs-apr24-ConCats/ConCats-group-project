@@ -48,7 +48,7 @@ export const Catalog: React.FC = () => {
   const itemsPerPage = +(
     searchParams.get('itemsPerPage') || DEFAULT_ITEM_PER_PAGE
   );
-  const ALL_OPTIONS = { 4: 4, 8: 8, 16: 16, all: products.length };
+  const ALL_OPTIONS = { 4: 4, 8: 8, 16: 16, All: products.length };
 
   const { pathname } = useLocation();
 
@@ -68,7 +68,6 @@ export const Catalog: React.FC = () => {
   };
 
   const category = pathname.split('/')[1];
-  console.log(category);
 
   const filteredProducts = products.filter(
     product => product.category === category,
@@ -116,7 +115,7 @@ export const Catalog: React.FC = () => {
           >
             {Object.entries(SortOptions).map(([key, value]) => (
               <option key={value} value={value}>
-                {key}
+                {t(`sortBy.${key}`)}
               </option>
             ))}
           </select>
@@ -131,7 +130,7 @@ export const Catalog: React.FC = () => {
           >
             {Object.entries(ALL_OPTIONS).map(([key, value]) => (
               <option key={value} value={value}>
-                {key}
+                {t(`sortBy.${key}`)}
               </option>
             ))}
           </select>

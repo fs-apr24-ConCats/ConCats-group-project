@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import classes from './CartPage.module.scss';
 import { NoResults } from '../../components/NoResults';
 import { CartItem } from './components/CartItem';
@@ -15,14 +16,24 @@ export const CartPage: React.FC = () => {
   const [amount, setAmount] = useState(0);
   const [modalVisibility, setModalVisibility] = useState(false);
 
+  const { t } = useTranslation();
+
   useEffect(() => {
-    const validCart = cart.filter(item => item.price !== undefined && item.amount !== undefined && item.amount > 0);
+    const validCart = cart.filter(
+      item =>
+        item.price !== undefined &&
+        item.amount !== undefined &&
+        item.amount > 0,
+    );
 
     if (validCart.length !== cart.length) {
       setCart(validCart);
     }
 
-    const total = validCart.reduce((p, item) => p + item.price * item.amount, 0);
+    const total = validCart.reduce(
+      (p, item) => p + item.price * item.amount,
+      0,
+    );
     const quantity = validCart.reduce((p, item) => p + item.amount, 0);
 
     setSum(total);
@@ -30,19 +41,19 @@ export const CartPage: React.FC = () => {
   }, [cart, setCart]);
 
   const increaseAmount = (id: number) => {
-    const updatedCart = cart.map(item => 
-      item.id === id && item.amount < 10 
-        ? { ...item, amount: item.amount + 1 } 
-        : item
+    const updatedCart = cart.map(item =>
+      item.id === id && item.amount < 10
+        ? { ...item, amount: item.amount + 1 }
+        : item,
     );
     setCart(updatedCart);
   };
 
   const decreaseAmount = (id: number) => {
-    const updatedCart = cart.map(item => 
-      item.id === id && item.amount > 1 
-        ? { ...item, amount: item.amount - 1 } 
-        : item
+    const updatedCart = cart.map(item =>
+      item.id === id && item.amount > 1
+        ? { ...item, amount: item.amount - 1 }
+        : item,
     );
     setCart(updatedCart);
   };
@@ -57,9 +68,9 @@ export const CartPage: React.FC = () => {
       <Breadcrumbs />
 
       {!cart.length && (
-        <NoResults title="Your cart is empty" imgUrl="img/cart-is-empty.png" />
+        <NoResults title={t('empty.cart')} imgUrl="img/cart-is-empty.png" />
       )}
-        
+
       {cart.length > 0 && (
         <div className={classes.CartPage__container}>
           <h2>Cart</h2>
