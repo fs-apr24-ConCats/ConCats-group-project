@@ -1,0 +1,144 @@
+@import '../../styles/main.scss';
+
+.catalog {
+  font-family: Mont, sans-serif;
+  padding-top: 24px;
+  @include content-padding-inline;
+}
+
+.breadCrumbs {
+  margin-bottom: 40px;
+}
+
+.catalog_title {
+  @extend %h1;
+  margin-bottom: 8px;
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
+}
+
+.amount {
+  margin-bottom: 40px;
+  @extend %text-body;
+  color: $secondary-color;
+}
+
+.allfilters{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+.filters {
+  display: flex;
+  gap: 16px;
+  height: 59px;
+  margin-bottom: 24px;
+}
+
+.sort {
+  width: 176px;
+  @extend %text-small;
+  color: $secondary-color;
+  margin-bottom: 4px;
+}
+
+.items_per_page {
+  background-color: aquamarine;
+  width: 128px;
+}
+
+.card_holder {
+  @include catalog-grid;
+}
+
+.card_holder_justify {
+  justify-content: center;
+}
+
+.card {
+  background-color: bisque;
+  height: 506px;
+}
+
+.loader {
+  @include loader;
+}
+
+.sortFormControl,
+.pageFormControl {
+  height: 40px;
+  background-color: #323542;
+  border: none;
+  padding: 10px 12px;
+  text-indent: 4px;
+
+  @extend %text-buttons;
+  color: $white-color;
+}
+
+.sortFormControl {
+  width: 176px;
+}
+
+.pageFormControl {
+  width: 128px;
+}
+
+.search{
+  display: flex;
+  padding-bottom: 3px;
+}
+
+.searchForm {
+  font-family: 'Montserrat', sans-serif;
+  display: none;
+  position: relative;
+  height: 103px;
+
+  @include on-desktop {
+    display: flex;
+  }
+
+  @include on-tablet{
+    display: flex;
+  }
+
+  align-items: center;
+
+  &__input {
+    background-color: $black-color;
+    color: $white-color;
+    height: 40px;
+    width: 100%;
+    border-radius: 10px;
+    border: 2px solid $surface-2-color;
+    padding-inline: 20px;
+    padding-right: 50px;
+
+    &::placeholder {
+      color: $surface-2-color;
+    }
+
+    &:focus {
+      outline: none;
+      border: 1px solid $white-color;
+    }
+  }
+
+  .clearButton {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform : translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: $icons-color;
+    z-index: 1;
+  }
+}

@@ -1,0 +1,109 @@
+@import '../../styles//main.scss';
+
+.footer {
+    padding: 20px 0;
+    font-family: 'Montserrat', sans-serif;
+    border-top: 1px #3B3E4A  solid;
+  
+    &__links {
+      display: flex;
+      justify-content: center;
+      flex: 1;
+      gap: 107px;
+      text-transform: uppercase;
+  
+      @media (max-width: 639px) {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      @media (max-width: 1200px) {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        text-align: left;
+      }
+    }
+  
+    &__backToTop {
+      display: flex;
+      align-items: center;  
+      cursor: pointer;
+      @media (max-width: 639px) {
+        flex-direction: row;
+        justify-content: center;
+        gap: 10px;
+  
+        .footer__textInfo {
+          margin-right: -2px;
+        }
+  
+        
+      }
+    }
+  }
+
+  .footer__textInfo {
+    color: gray;
+    text-decoration: none;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-right: 10px;
+  }
+  
+  .arrow {
+    width: 32px;
+    height: 32px;
+    background-color: #555;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    margin-left: 0;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-right: 2px solid white;
+      border-top: 2px solid white;
+      transform: rotate(-45deg);
+    }
+  }
+
+  .container {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 50px;
+    padding: 20px;
+    @include content-padding-inline();
+    
+    @media (max-width: 639px) {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      text-align: left;
+    }
+
+    @media (max-width: 715px) {
+      gap: 12px;
+    }
+  }
+
+  .link {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    @extend %text-uppercase;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .footer__textInfo{
+    padding: 10px 10px 10px 0;
+    color: gray;
+    @extend %text-small;
+    text-decoration: none;
+  }
