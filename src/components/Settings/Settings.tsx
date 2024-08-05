@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import styles from './Settings.module.scss';
+
+import { CursorSettings } from "../CursorSettings";
+import { useTranslation } from 'react-i18next';
+
 import { ThemeToggleButton } from "../../contexts/ThemeToggleButton";
 import { useTheme } from "../../contexts/ThemeContext";
 import classNames from "classnames";
+
 
 interface SettingsProps {
   isOpen: boolean;
@@ -10,14 +15,28 @@ interface SettingsProps {
 }
 
 export const Settings: React.FC<SettingsProps> = ({ onToggle, isOpen }) => {
-  const [isDarkMode, setIsDarkMode] = useState(true);
-  const { theme } = useTheme();
-  
-  const handleThemeToggle = () => {
-    setIsDarkMode(!isDarkMode);
+
+  const { i18n } = useTranslation();
+
+  const changeLanguage = () => {
+    const newLanguage = i18n.language === 'en' ? 'ua' : 'en';
+    i18n.changeLanguage(newLanguage);
+    localStorage.setItem('language', newLanguage);
   };
 
+  const { theme } = useTheme();
+  const [isRotating, setIsRotating] = useState(false);
+
   const suffixForImg = theme === 'dark' ? '' : '-light';
+
+  const handleClick = () => {
+    setIsRotating(true);
+    setTimeout(() => {
+      setIsRotating(false);
+    }, 500);
+
+    onToggle();
+  };
 
   return (
     <div className={classNames(styles.settings, {
@@ -27,35 +46,30 @@ export const Settings: React.FC<SettingsProps> = ({ onToggle, isOpen }) => {
     >
       <button
         type="button"
-        onClick={onToggle}
+        onClick={handleClick}
         aria-label="Toggle settings"
-        className={`${styles.iconButton} ${isOpen ? 'active' : ''}`}
-      > 
+        className={classNames(styles.iconButton, { [styles.rotate]: isRotating })}
+      >
         <img src={`/img/icons/settings${suffixForImg}.svg`} alt="Settings" />
       </button>
-      {isOpen && (
-        <div className={styles.menu}>
-          <div className={styles.menuItem}>
-            <button
-              type="button"
-              className={styles.menuItem__language}
-            >
-              <img src={`/img/icons/Globe${suffixForImg}.png`} alt="Language" />
-            </button>
-          </div>
-          <div className={styles.menuItem}>
-          <ThemeToggleButton />
-          </div>
-          <div className={styles.menuItem}>
+      <div className={classNames(styles.menu, { [styles.open]: isOpen })}>
+        <div className={styles.menuItem}>
           <button
-              type="button"
-              className={styles.menuItem__cursor}
-            >
-              <img src={`/img/icons/Globe${suffixForImg}.png`} alt="Language" />
-            </button>
-          </div>
+            type="button"
+            className={styles.menuItem__language}
+            onClick={changeLanguage}
+          >
+            <img src={`/img/icons/Globe${suffixForImg}.png`} alt="Language" />
+          </button>
         </div>
-      )}
+        <div className={styles.menuItem}>
+          <ThemeToggleButton />
+        </div>
+        <div className={styles.menuItem}>
+
+          <CursorSettings />
+        </div>
+      </div>
     </div>
   );
 };
