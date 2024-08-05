@@ -1,25 +1,24 @@
-import React from "react";
+import React from 'react';
+import { useTranslation } from 'react-i18next';
 import classes from './ModalContent.module.scss';
 
 type Props = {
-    closeModal: () => void;
+  closeModal: () => void;
 };
 
 export const ModalContent: React.FC<Props> = ({ closeModal }) => {
+  const { t } = useTranslation();
   return (
     <div className={classes.ModalContent}>
-        <h2>
-        Checkout is not implemented yet.
+      <h2>
+        {t('cart.checkoutNot')}
         <br />
-        See you soon :)
-        </h2>
+        {t('cart.seeYou')}
+      </h2>
 
-        <button
-        className={classes.ModalContent__button}
-        onClick={closeModal}
-        >
+      <button className={classes.ModalContent__button} onClick={closeModal}>
         Ok
-        </button>
+      </button>
     </div>
   );
 };

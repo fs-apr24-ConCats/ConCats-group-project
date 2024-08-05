@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import classes from './NoResults.module.scss';
 import { Link } from 'react-router-dom';
 
@@ -12,16 +13,20 @@ export const NoResults: React.FC<Props> = ({
   title,
   imgUrl = 'img/product-not-found.png',
   withoutLink,
-}) => (
-  <div className={classes.NoResults}>
-    <h2 className={classes.NoResults__title}>{title}</h2>
+}) => {
+  const { t } = useTranslation();
 
-    <img src={imgUrl} className={classes.NoResults__img} alt="404" />
+  return (
+    <div className={classes.NoResults}>
+      <h2 className={classes.NoResults__title}>{title}</h2>
 
-    {!withoutLink && (
-      <Link to="/" className={classes.NoResults__button}>
-        GO HOME
-      </Link>
-    )}
-  </div>
-);
+      <img src={imgUrl} className={classes.NoResults__img} alt="404" />
+
+      {!withoutLink && (
+        <Link to="/" className={classes.NoResults__button}>
+          {t('buttons.goHome')}
+        </Link>
+      )}
+    </div>
+  );
+};
