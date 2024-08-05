@@ -58,7 +58,7 @@ export const Header: React.FC = () => {
             aria-label="Toggle menu"
           >
             <img
-              src={isMenuOpen ? 'img/icons/Close.svg' : 'img/icons/Menu.svg'}
+              src={isMenuOpen ? '/img/icons/Close.svg' : '/img/icons/Menu.svg'}
               alt={isMenuOpen ? 'close-menu' : 'burger-menu'}
             />
           </button>
