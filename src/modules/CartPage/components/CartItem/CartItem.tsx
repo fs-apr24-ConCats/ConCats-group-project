@@ -38,7 +38,7 @@ export const CartItem: React.FC<Props> = ({ product, increaseAmount, decreaseAmo
 
         <Link
           className={classes.CartItem__link}
-          to={`/${product.category}/${product.id}`}
+          to={`/${product.category}/${product.itemId}`}
           title="More details"
         >
           <div className={classes['CartItem__img-wrapper']}>

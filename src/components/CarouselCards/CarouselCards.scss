@@ -97,23 +97,26 @@
 
 .light-theme {
   .carousel-arrow {
-    color: $white-theme-green;
-    border: 1px solid #333;
+    border: 1px solid $white-theme-icons;
   }
 
   .carousel-arrow--next {
-    background-color: $white-theme-primary;
+    background-color: $white-theme-white;
   }
 
   .carousel-arrow--prev {
-    background-color: $white-theme-primary;
+    background-color: $white-theme-white;
   }
 
   .carousel-arrow:hover {
-    background-color: $white-theme-elements;
+    background-color: $white-theme-white;
   }
 
-  .carousel-arrow:before {
-    display: none;
+  .icon {
+    filter: invert(15%) sepia(7%) saturate(300%) hue-rotate(190deg) brightness(85%) contrast(85%);
+  
+    &:hover {
+      filter: invert(58%) sepia(88%) saturate(512%) hue-rotate(94deg) brightness(62%) contrast(85%);
+    }
   }
 }
