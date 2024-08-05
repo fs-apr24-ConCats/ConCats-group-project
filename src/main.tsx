@@ -8,6 +8,7 @@ import { NotFoundPage } from './pages/notFoundPage/NotFoundPage';
 import { Catalog } from './modules/Catalog';
 import { CartAndFavouritsContextProvider } from './components/controllers/CartAndFavourits/CartAndFavouritsContextProvider';
 import { FavouritePage } from './modules/FavoritesPage/FavoritesPage';
+import { Contacts } from './components/Contacts/Contacts';
 
 createRoot(document.getElementById('root') as HTMLElement).render(
   <Router>
@@ -29,6 +30,7 @@ createRoot(document.getElementById('root') as HTMLElement).render(
           <Route path="favorites" element={<FavouritePage />} />
           <Route path="cart" element={<CartPage />} />
           <Route path="*" element={<NotFoundPage />} />
+          <Route path="contacts" element={<Contacts />} />
         </Route>
       </Routes>
     </CartAndFavouritsContextProvider>
