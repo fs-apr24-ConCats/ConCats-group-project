@@ -5,12 +5,18 @@ import { Nav } from '../Nav';
 import { Favorites } from '../Favorites';
 import { Cart } from '../Cart';
 import { Menu } from '../../modules/Menu'
+import { Settings } from '../Settings';
 
 export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [isSettingsOpen, setIsSettingsOpen] = useState<boolean>(false);
 
   const handleToggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const toggleSettings = () => {
+    setIsSettingsOpen(prevState => !prevState);
   };
 
 
@@ -27,6 +33,9 @@ export const Header: React.FC = () => {
       </div>
 
       <div className={classes.Header__right}>
+      <div className={classes.Header__settings}>
+        <Settings isOpen={isSettingsOpen} onToggle={toggleSettings} />
+      </div>
         <div className={classes.Header__favorites}>
           <Favorites />
         </div>
