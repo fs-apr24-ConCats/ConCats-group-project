@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from './Settings.module.scss';
 import { CursorSettings } from "../CursorSettings";
+import { useTranslation } from 'react-i18next';
 
 interface SettingsProps {
   isOpen: boolean;
@@ -9,6 +10,13 @@ interface SettingsProps {
 
 export const Settings: React.FC<SettingsProps> = ({ onToggle, isOpen }) => {
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const { i18n } = useTranslation();
+
+  const changeLanguage = () => {
+    const newLanguage = i18n.language === 'en' ? 'ua' : 'en';
+    i18n.changeLanguage(newLanguage);
+    localStorage.setItem('language', newLanguage);
+  };
   
   const handleThemeToggle = () => {
     setIsDarkMode(!isDarkMode);
@@ -30,6 +38,7 @@ export const Settings: React.FC<SettingsProps> = ({ onToggle, isOpen }) => {
             <button
               type="button"
               className={styles.menuItem__language}
+              onClick={changeLanguage}
             >
               <img src="/img/icons/Globe.png" alt="Language" />
             </button>
