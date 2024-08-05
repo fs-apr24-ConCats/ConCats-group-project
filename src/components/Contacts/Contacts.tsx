@@ -11,7 +11,7 @@ const cardData = [
   {
     photo: IgorPhoto,
     name: 'Igor Omelianenko',
-    quote: '(c)Прогрес не зупинити.',
+    quote: '(c) Запорука успіху, це саморегуляція, дисципліна та віра в себе.',
     links: [
       {
         href: 'https://www.linkedin.com/in/igor-omelianenko-a959b124a/',
