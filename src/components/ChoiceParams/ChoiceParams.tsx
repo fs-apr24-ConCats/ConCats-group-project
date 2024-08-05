@@ -8,6 +8,7 @@ import { Buttons } from '../../modules/Buttons';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTheme } from '../../contexts/ThemeContext';
 import classNames from 'classnames';
+import { colorNameToRgb } from './availableColors';
 
 interface Props {
   item: Item;
@@ -62,126 +63,131 @@ export const ChoiceParams: React.FC<Props> = ({ item, product }) => {
 
   return (
     <>
-         <div className={classNames(styles.section_params, {
-              [styles.lightTheme]: theme === 'light',
-              [styles.darkTheme]: theme === 'dark',
-              })}
-            >
-              <p className={styles.colors_text}>{t('productCard.color')}</p>
-              <form className={styles.colors}>
-                {item?.colorsAvailable.map(color => {
-                  return (
-                    <input
-                      key={uuidv4()}
-                      type="radio"
-                      id="option1"
-                      name="color"
-                      className={cn(styles.radio_color, {
-                        [styles.isActiveCol]: colorFromUrl === color,
-                      })}
-                      style={{ backgroundColor: color }}
-                      value={color}
-                      onChange={() => handleChangeColor(color)}
-                    />
-                  );
+      <div
+        className={classNames(styles.section_params, {
+          [styles.lightTheme]: theme === 'light',
+          [styles.darkTheme]: theme === 'dark',
+        })}
+      >
+        <p className={styles.colors_text}>{t('productCard.color')}</p>
+        <form className={styles.colors}>
+          {item?.colorsAvailable.map(color => {
+            const hexColor = colorNameToRgb(color)
+
+            return (
+              <input
+                key={uuidv4()}
+                type="radio"
+                id="option1"
+                name="color"
+                className={cn(styles.radio_color, {
+                  [styles.isActiveCol]: colorFromUrl === color,
                 })}
-              </form>
-            </div>
+                style={{ backgroundColor: hexColor  }}
+                value={color}
+                onChange={() => handleChangeColor(color)}
+              />
+            );
+          })}
+        </form>
+      </div>
 
-            <div className={classNames(styles.section_params, {
-              [styles.lightTheme]: theme === 'light',
-              [styles.darkTheme]: theme === 'dark',
-              })}
-            >
-               <p className={styles.capacity_text}>
-                  {t('productCard.selectCapacity')}
-               </p>
+      <div
+        className={classNames(styles.section_params, {
+          [styles.lightTheme]: theme === 'light',
+          [styles.darkTheme]: theme === 'dark',
+        })}
+      >
+        <p className={styles.capacity_text}>
+          {t('productCard.selectCapacity')}
+        </p>
 
-              <div>
-                {item?.capacityAvailable.map(capacity => {
-                  return (
-                    <button
-                      key={uuidv4()}
-                      className={cn(styles.capacity_button, {
-                        [styles.isActiveButton]:
-                          capacity.toLocaleLowerCase() === capacityFromUrl,
-                        [styles.notActive]:
-                          capacity.toLocaleLowerCase() !== capacityFromUrl,
-                      })}
-                      type="button"
-                      onClick={() => handleChangeCapacity(capacity)}
-                    >
-                      {capacity}
-                    </button>
-                  );
+        <div>
+          {item?.capacityAvailable.map(capacity => {
+            return (
+              <button
+                key={uuidv4()}
+                className={cn(styles.capacity_button, {
+                  [styles.isActiveButton]:
+                    capacity.toLocaleLowerCase() === capacityFromUrl,
+                  [styles.notActive]:
+                    capacity.toLocaleLowerCase() !== capacityFromUrl,
                 })}
-              </div>
-            </div>
+                type="button"
+                onClick={() => handleChangeCapacity(capacity)}
+              >
+                {capacity}
+              </button>
+            );
+          })}
+        </div>
+      </div>
 
-            <div className={classNames(styles.section_params_price, {
-              [styles.lightTheme]: theme === 'light',
-              [styles.darkTheme]: theme === 'dark',
-              })}
-            >
-              {discount ? (
-                <div className={styles.product__prices}>
-                  <p className={cn(styles.product__price)}>
-                    ${product.price}
-                  </p>
-                  <p
-                    className={cn(
-                      styles.product__price,
-                      styles['product__price-discount'],
-                    )}
-                  >
-                    ${product.fullPrice}
-                  </p>
-                </div>
-              ) : (
-                <p className={styles.product__price}>${product.fullPrice}</p>
+      <div
+        className={classNames(styles.section_params_price, {
+          [styles.lightTheme]: theme === 'light',
+          [styles.darkTheme]: theme === 'dark',
+        })}
+      >
+        {discount ? (
+          <div className={styles.product__prices}>
+            <p className={cn(styles.product__price)}>${product.price}</p>
+            <p
+              className={cn(
+                styles.product__price,
+                styles['product__price-discount'],
               )}
-            </div>
-
-            <div className={classNames(styles.buttons, {
-              [styles.lightTheme]: theme === 'light',
-              [styles.darkTheme]: theme === 'dark',
-              })}
             >
-              {product && (
-                <Buttons
-                  id={itemId}
-                  category={category}
-                  product={product}
-                  biggerButtons={true}
-                />
-              )}
-            </div>
+              ${product.fullPrice}
+            </p>
+          </div>
+        ) : (
+          <p className={styles.product__price}>${product.fullPrice}</p>
+        )}
+      </div>
 
-            <div className={classNames(styles.product__info, {
-              [styles.lightTheme]: theme === 'light',
-              [styles.darkTheme]: theme === 'dark',
-              })}
-            >
-              <div className={styles.info__row}>
-                <p className={styles['info-key']}>{t('productCard.screen')}</p>
-                <p className={styles['info-value']}>{item?.screen}</p>
-              </div>
+      <div
+        className={classNames(styles.buttons, {
+          [styles.lightTheme]: theme === 'light',
+          [styles.darkTheme]: theme === 'dark',
+        })}
+      >
+        {product && (
+          <Buttons
+            id={itemId}
+            category={category}
+            product={product}
+            biggerButtons={true}
+          />
+        )}
+      </div>
 
-              <div className={styles.info__row}>
-                 <p className={styles['info-key']}>{t('productCard.resolution')}</p>
-                <p className={styles['info-value']}>{item?.resolution}</p>
-              </div>
+      <div
+        className={classNames(styles.product__info, {
+          [styles.lightTheme]: theme === 'light',
+          [styles.darkTheme]: theme === 'dark',
+        })}
+      >
+        <div className={styles.info__row}>
+          <p className={styles['info-key']}>{t('productCard.screen')}</p>
+          <p className={styles['info-value']}>{item?.screen}</p>
+        </div>
 
-              <div className={styles.info__row}>
-               <p className={styles['info-key']}>{t('productCard.processor')}</p>
-                <p className={styles['info-value']}>{item?.processor}</p>
-              </div>
+        <div className={styles.info__row}>
+          <p className={styles['info-key']}>{t('productCard.resolution')}</p>
+          <p className={styles['info-value']}>{item?.resolution}</p>
+        </div>
 
-              <div className={styles.info__row}>
-                <p className={styles['info-key']}>{t('productCard.ram')}</p>
-                <p className={styles['info-value']}>{item?.ram}</p>
-              </div>
-            </div>
+        <div className={styles.info__row}>
+          <p className={styles['info-key']}>{t('productCard.processor')}</p>
+          <p className={styles['info-value']}>{item?.processor}</p>
+        </div>
+
+        <div className={styles.info__row}>
+          <p className={styles['info-key']}>{t('productCard.ram')}</p>
+          <p className={styles['info-value']}>{item?.ram}</p>
+        </div>
+      </div>
     </>
   );
 };
