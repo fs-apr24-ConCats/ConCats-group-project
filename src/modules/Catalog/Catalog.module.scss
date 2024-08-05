@@ -144,3 +144,35 @@
     z-index: 1;
   }
 }
+
+.lightTheme {
+  .catalog_title {
+    color: $white-theme-primary;
+  }
+
+  .amount {
+    color: $white-theme-secondary;
+  }
+
+  .sort {
+    color: $white-theme-secondary;
+  }
+
+  .searchForm {
+    .searchForm__input {
+      background-color: $white-theme-white;
+      color: $white-theme-primary;
+    }
+
+    .searchForm__input:focus {
+      border: 1px solid $white-theme-secondary;
+    }
+  }
+
+  .sortFormControl,
+  .pageFormControl {
+    background-color: $white-theme-white;
+
+    color: $white-theme-primary;
+  }
+}

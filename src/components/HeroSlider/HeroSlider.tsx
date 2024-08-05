@@ -5,6 +5,8 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './HeroSlider.scss';
 import { picturesPath } from './picturesPath';
+import { useTheme } from '../../contexts/ThemeContext';
+import classNames from 'classnames';
 
 interface Props {
   className?: string;
@@ -48,9 +50,13 @@ export const HeroSlider: React.FC = () => {
     nextArrow: <CustomNextArrow />,
     prevArrow: <CustomPrevArrow />,
   };
+  const { theme } = useTheme();
 
   return (
-    <Slider {...settings} className="hero-slider">
+      <Slider {...settings} className={classNames("hero-slider", {
+      ["lightTheme"]: theme === 'light',
+      ["darkTheme"]: theme === 'dark',
+    })}>
       {picturesPath.map(picture => (
         <div className="hero-slider__wrap" key={picture.id}>
           <picture>

@@ -4,7 +4,10 @@ import { useSearchParams } from 'react-router-dom';
 import { getSearchWith } from '../../utils/searchHelper';
 import { useCallback, useState } from 'react';
 import debounce from 'lodash.debounce';
+import { useTheme } from '../../contexts/ThemeContext';
+import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
+
 
 export const Search: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -36,9 +39,13 @@ export const Search: React.FC = () => {
     setValue('');
     setSearchWith({ query: null });
   };
+  const { theme } = useTheme();
 
   return (
-    <form className={styles.searchForm}>
+    <form className={classNames(styles.searchForm, {
+      [styles.lightTheme]: theme === 'light',
+      [styles.darkTheme]: theme === 'dark',
+    })}>
       <input
         value={searchQuery}
         type="text"

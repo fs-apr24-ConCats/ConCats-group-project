@@ -5,13 +5,22 @@ import { ProductCard } from '../../components/ProductCard';
 import { useCartAndFavouritsContextContext } from '../../components/controllers/CartAndFavourits/useCartAndFavouritsContext';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
 import { NoResults } from '../../components/NoResults';
+import { useTheme } from '../../contexts/ThemeContext';
+import classNames from 'classnames';
 
 export const FavouritePage: React.FC = () => {
   const { favourites } = useCartAndFavouritsContextContext();
+
+  const { theme } = useTheme();
+
   const { t } = useTranslation();
 
+
   return (
-    <div className={classes.Favourites}>
+    <div className={classNames(classes.Favourites, {
+      [classes.lightTheme]: theme === 'light',
+      [classes.darkTheme]: theme === 'dark',
+    })}>
       <Breadcrumbs />
 
       {!favourites.length && (

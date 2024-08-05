@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { Product } from '../../types/Product';
 import { Link } from 'react-router-dom';
 import { Buttons } from '../../modules/Buttons';
+import { useTheme } from '../../contexts/ThemeContext';
 
 type Props = {
   product: Product;
@@ -24,6 +25,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
     itemId,
     category,
   } = product;
+  const { theme } = useTheme();
 
   const discount = product.id % 3 === 0;
 
@@ -48,7 +50,10 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
   );
 
   return (
-    <div className={styles.product}>
+    <div className={classNames(styles.product, {
+      [styles.lightTheme]: theme === 'light',
+      [styles.darkTheme]: theme === 'dark',
+    })}>
       <Link
         to={`../../${category}/${itemId}`}
         className={styles.product__image}

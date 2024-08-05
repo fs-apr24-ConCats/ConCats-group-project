@@ -54,7 +54,7 @@
       &__language:active{
         img {
           transform: rotateY(3.142rad);
-          transition: transform 0.5s ease-in-out;
+          transition: transform 0.20s ease-in-out;
         }
       }
 
@@ -81,5 +81,13 @@
         cursor: pointer;
       }
     }
+  }
+}
+
+.lightTheme {
+  .menu {
+    background-color: $white-theme-white;
+    border: 1px solid $white-theme-elements;
+    box-shadow: 0 0 0;
   }
 }
