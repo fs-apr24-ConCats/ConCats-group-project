@@ -16,15 +16,7 @@
 
   @include on-desktop {
     margin-bottom: 80px;
-  }
-
-  @include on-tablet {
-    margin-bottom: 64px;
-  }
-
-  @include on-desktop {
-    margin-bottom: 80px;
-  }
+  }  
 }
 
 .contactsTitle {
@@ -38,36 +30,29 @@
 }
 
 .contacts__container {
-  margin: 40px 0 40px;
+  margin-block: 40px;
   display: flex;
   gap: 25px;
   justify-content: center;
   flex-wrap: wrap;
-
-  @media (max-width: 639px) {
-    grid-template-columns: 1fr;
-  }
-
-  @media (min-width: 640px) and (max-width: 1199px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (min-width: 1200px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
 }
 
 .personalCard {
-  width: 60%;
+  width: 100%;
   height: 250px;
   box-sizing: border-box;
   background-color: #161827;
   border: $accent-color 1px solid;
   padding: 10px;
-  border-radius: 5%;
+  border-radius: 30px;
   transition: transform 0.5s;
   display: flex;
   overflow: hidden;
+  transition: height 0.3s ease;
+
+  @media (min-width: 800px) {
+    width: 60%;
+  }
 }
 
 .blockImage {
@@ -85,34 +70,34 @@
   border: rgb(20, 113, 113) 5px solid;
 }
 
+.standart {
+  animation: 2s linear movingCard;
+}
+
 .reverse {
   flex-direction: row-reverse;
-}
-
-@media (max-width: 1199px) {
-  .personalImage {
-    max-width: 90%;
-    max-height: 90%;
+  animation: 2s linear movingCardReverse;
+  
+  @include on-desktop {
+    transform: translateX(5);
   }
 }
 
-@media (max-width: 639px) {
-  .personalCard {
-    width: 80%;
+@keyframes movingCardReverse {
+  from{
+    transform: translateX(55px);
   }
-
-  .blockImage {
-    width: 50%;
+  to{
+    transform: translateX(0px);
   }
+}
 
-  .personalImage {
-    max-width: 100%;
-    max-height: 100%;
+@keyframes movingCard {
+  from{
+    transform: translateX(-55px);
   }
-
-  .personalInfo {
-    width: 50%;
-    font-size: 18px;
+  to{
+    transform: translateX(0px);
   }
 }
 
@@ -125,6 +110,8 @@
   justify-content: center;
   background-color: #1b1d31;
   border-radius: 5%;
+  transform: translateY(100%); 
+  transition: transform 0.3s ease;
 }
 
 .textAlignLeft {
@@ -154,21 +141,89 @@ h2{
 }
 
 .personalQuote {
-  margin-top: 25px;
+  // margin-top: 25px;
   font-size: 16px;
-  color: rgb(162, 154, 154);
+  color: $color-icons;
   height: 45px;
 }
 
-.personalLink {
-  font-family: "Roboto", sans-serif;
-  color: white;
-  font-size: 16px;
-  font-weight: 600;
-  margin-top: 25px;
+.blockPersonalLink {
+  margin-top: 30px;
+  display: flex;
+  gap: 16px;
+}
+
+.standartLinks{
+  flex-direction: row-reverse;
 }
 
 a:hover {
   color: $accent-color;
   transition-duration: 0.3s;
+}
+
+.img_links {
+  width: 32px;
+  height: 32px;
+}
+
+@media (min-width: 501px) {
+  .personalInfo {
+      transform: translateY(0); /* Текст завжди видимий */
+  }
+}
+
+@media (max-width: 500px) {
+  .personalCard {
+    flex-direction: column;
+  }
+
+  .blockImage {
+    width: 100%;
+  }
+
+  .personalCard:hover .personalInfo{
+    transform: translateY(0);
+    width: 100%;
+    margin-top: 15px;
+    margin-inline: 0;
+    padding: 5px;
+    text-align: center;
+  }
+
+  .personalCard:hover .blockPersonalLink{
+    justify-content: center;
+  }
+
+  .personalCard:hover {
+    height: 100%;
+  }
+}
+
+.lightTheme {
+  .personalCard {
+    background-color: $white-theme-primary;
+    border: $white-theme-green 1px solid;
+  }
+
+  .contactsTitle, .contactsTitleH {
+    color: $white-theme-primary
+  }
+
+  .personalInfo {
+    background-color: $white-theme-white;
+    border: 1px solid $white-theme-primary;
+  }
+
+  .personalNameBlock {
+    color: $white-theme-primary;
+  }
+
+  .personalQuote {
+    color: $white-theme-primary;
+  }
+
+  .personalImage {
+    border: rgb(255, 255, 255) 5px solid;
+  }
 }
