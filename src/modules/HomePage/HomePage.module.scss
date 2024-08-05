@@ -14,7 +14,7 @@
 
   &__title{
     @extend %h1;
-
+    margin-bottom: 24px;
     @include content-padding-inline;
 
     @include on-tablet {

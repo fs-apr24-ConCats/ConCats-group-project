@@ -44,7 +44,7 @@ export const HeroSlider: React.FC = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 2000,
     nextArrow: <CustomNextArrow />,
     prevArrow: <CustomPrevArrow />,
   };

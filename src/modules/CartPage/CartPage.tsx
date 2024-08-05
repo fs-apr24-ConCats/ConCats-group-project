@@ -10,7 +10,7 @@ import { useCartAndFavouritsContextContext } from '../../components/controllers/
 import { CartActions } from '../../types';
 
 export const CartPage: React.FC = () => {
-  const {cart, onUpdateCart } = useCartAndFavouritsContextContext();
+  const {cart, onUpdateCart, onCheckout } = useCartAndFavouritsContextContext();
   const [sum, setSum] = useState(0);
   const [amount, setAmount] = useState(0);
   const [modalVisibility, setModalVisibility] = useState(false);
@@ -24,6 +24,11 @@ export const CartPage: React.FC = () => {
     setSum(total);
     setAmount(quantity);
   }, [cart]);
+
+  const handleCheckout = () => {
+    setModalVisibility(false);
+    onCheckout();
+  }
 
   return (
     <div className={classes.CartPage}>
@@ -64,7 +69,7 @@ export const CartPage: React.FC = () => {
               </button>
 
               <Modal isOpen={modalVisibility}>
-                <ModalContent closeModal={() => setModalVisibility(false)} />
+                <ModalContent closeModal={handleCheckout} />
               </Modal>
             </div>
           </div>
