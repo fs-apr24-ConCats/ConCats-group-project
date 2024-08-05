@@ -43,7 +43,7 @@ export const HomePage: React.FC = () => {
       [classes.lightTheme]: theme === 'light',
       [classes.darkTheme]: theme === 'dark',
     })}>
-       <h1 className={classes.home__title}>{t('welcome')}</h1>
+      <h1 className={classes.home__title}>{t('welcome')}</h1>
       
       <div className={classes.slider}>
         <HeroSlider />

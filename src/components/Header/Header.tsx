@@ -52,11 +52,6 @@ export const Header: React.FC = () => {
 
       <div className={classes.Header__right}>
 
-        <div className={classes.Header__settings}>
-          <Settings isOpen={isSettingsOpen} onToggle={toggleSettings} />
-        </div>
-
-
         <div className={classes.nav_LngWrap}>
           <button onClick={changeLanguage} className={classes.nav_LngBtn}>
             {i18n.language === 'en' ? 'UA' : 'EN'}
