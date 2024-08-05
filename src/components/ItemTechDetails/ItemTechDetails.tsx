@@ -3,19 +3,26 @@ import { useTranslation } from 'react-i18next';
 import cn from 'classnames';
 import { Item } from '../../types';
 import styles from './ItemTechDetails.module.scss';
+import { useTheme } from '../../contexts/ThemeContext';
+import classNames from 'classnames';
 
 interface Props {
   item: Item;
 }
 
 export const ItemTechDetails: React.FC<Props> = ({ item }) => {
+
+  const { theme } = useTheme();
   const { t } = useTranslation();
 
   return (
     <>
       <h3 className={styles.title_tech}>{t('productCard.tech')}</h3>
 
-      <div className={cn(styles.product__info, styles.info)}>
+      <div className={classNames(styles.product__info, styles.info, {
+        [styles.lightTheme]: theme === 'light',
+        [styles.darkTheme]: theme === 'dark',
+        })}>
         <div className={styles.info__row}>
           <p className={styles['info-key']}>{t('productCard.screen')}</p>
           <p className={styles['info-value']}>{item?.screen}</p>
@@ -57,5 +64,5 @@ export const ItemTechDetails: React.FC<Props> = ({ item }) => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
