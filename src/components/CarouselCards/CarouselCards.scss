@@ -94,3 +94,26 @@
     filter: invert(190%) sepia(10%) saturate(500%) hue-rotate(900deg) brightness(100%) contrast(95%)
   }
 }
+
+.light-theme {
+  .carousel-arrow {
+    color: $white-theme-green;
+    border: 1px solid #333;
+  }
+
+  .carousel-arrow--next {
+    background-color: $white-theme-primary;
+  }
+
+  .carousel-arrow--prev {
+    background-color: $white-theme-primary;
+  }
+
+  .carousel-arrow:hover {
+    background-color: $white-theme-elements;
+  }
+
+  .carousel-arrow:before {
+    display: none;
+  }
+}

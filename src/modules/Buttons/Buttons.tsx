@@ -5,6 +5,7 @@ import { Product } from '../../types/Product';
 import { getId } from '../../utils/getId';
 import { useCartAndFavouritsContextContext } from '../../components/controllers/CartAndFavourits/useCartAndFavouritsContext';
 import { getQuickProducts } from '../../api/dataFromServer';
+import { useTheme } from '../../contexts/ThemeContext';
 
 type Props = {
   id: string;
@@ -22,6 +23,7 @@ export const Buttons: React.FC<Props> = ({
   const [products, setProducts] = useState<Product[]>([]);
   const { cart, onAddToCart } = useCartAndFavouritsContextContext();
   const { favourites, onUpdateFavorites } = useCartAndFavouritsContextContext();
+  const { theme } = useTheme();
 
   useEffect(() => {
     getQuickProducts().then(setProducts);
@@ -38,7 +40,15 @@ export const Buttons: React.FC<Props> = ({
   };
 
   return (
-    <div className={classNames(styles.buttons)}>
+    <div
+      className={classNames(
+        styles.buttons,
+        {
+          [styles.lightTheme]: theme === 'light',
+          [styles.darkTheme]: theme === 'dark',
+        }
+      )}
+    >
       {hasInCart ? (
         <button
           className={classNames(

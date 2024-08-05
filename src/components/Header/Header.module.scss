@@ -7,6 +7,7 @@
 
   background-color: $black-color;
   border: 1px solid $surface-2-color;
+  transition: color 0.3s, background-color 0.3s, border-color 0.3s;
 
   &__left {
     display: flex;
@@ -67,7 +68,7 @@
 
 }
 
-// Header burger-menu, change this code if u need it :) //
+// Header burger-menu //
 
 .Header__menu {
   width: 48px;
@@ -96,3 +97,25 @@
 }
 
 // Header burger-menu, end //
+
+.lightTheme {
+  background-color: $white-theme-white;
+  color: $black-color;
+  border: 1px solid $white-theme-elements;
+  transition: color 0.3s, background-color 0.3s, border-color 0.3s;
+
+  .Header__favorites::before, .Header__cart::before, .Header__settings::before  {
+    content: '';
+    width: 1px;
+    height: 100%;
+    background-color: $white-theme-elements;
+  }
+
+  .Header__menu > button {
+    border-left: 0.5px solid $white-theme-elements;
+  }
+}
+
+.lightTheme > * {
+  transition: color 0.3s, background-color 0.3s, border-color 0.3s;
+}

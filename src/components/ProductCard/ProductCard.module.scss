@@ -7,9 +7,9 @@
   flex-direction: column;
   justify-content: space-between;
   background-color: inherit;
-  border: 1px solid $surface-1-color;
   padding: 31px;
   overflow: hidden;
+  border: 1px solid $surface-1-color;
   position: relative;
 
 
@@ -132,8 +132,8 @@
   &__line {
     margin-block: 8px;
     display: block;
-    height: 1px;
     background-color: $elements-color;
+    height: 1px;
   }
 }
 
@@ -178,3 +178,47 @@
   }
 }
 
+.lightTheme {
+  border: 1px solid $white-theme-elements;
+  background-color: $white-theme-white;
+
+  .lightTheme:hover {
+    border-color: $white-theme-elements;
+    box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.5); 
+  }
+
+  .lightTheme:hover::before {
+    background-color: $primary-color;
+    animation: animate2 2s linear infinite;
+  }
+
+  .product__title{
+    color: $white-theme-primary;
+  }
+
+  .product__title:hover{
+    color: $white-theme-secondary;
+  }
+
+  .product__line {
+    background-color: $white-theme-elements;
+  }
+
+  .product__price {
+    color: $white-theme-primary;
+  }
+
+  .product__price-discount {
+    color: $white-theme-secondary;
+  }
+
+  .info__screen,
+  .info__capacity,
+  .info__ram {
+    color: $white-theme-secondary;
+  }
+  
+  .info-value {
+    color: $white-theme-primary;
+  }
+}

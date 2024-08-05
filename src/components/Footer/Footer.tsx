@@ -2,15 +2,23 @@ import React from 'react';
 import styles from './Footer.module.scss';
 import { Link } from 'react-router-dom';
 import { Logo } from '../Logo';
+import classNames from 'classnames';
+import { useTheme } from '../../contexts/ThemeContext';
+
 
 export const Footer: React.FC = () => {
   function scrollToTop() {
     window.scrollTo(0, 0);
   }
+  const { theme } = useTheme();
 
   return (
     <>
-      <footer className={styles.footer}>
+      <footer className={classNames(styles.footer, {
+        [styles.lightTheme]: theme === 'light',
+        [styles.darkTheme]: theme === 'dark',
+        })}
+      >
         <div className={styles.container}>
           <Logo />
           <div className={styles.footer__links}>

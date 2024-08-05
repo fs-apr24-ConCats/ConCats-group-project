@@ -11,6 +11,8 @@ import { ImageSelection } from '../../components/ImageSelection';
 import { ChoiceParams } from '../../components/ChoiceParams/ChoiceParams';
 import { ItemTechDetails } from '../../components/ItemTechDetails/ItemTechDetails';
 import { CarouselCards } from '../../components/CarouselCards';
+import classNames from 'classnames';
+import { useTheme } from '../../contexts/ThemeContext';
 
 export const About: React.FC = () => {
   // const navigate = useNavigate();
@@ -70,8 +72,13 @@ export const About: React.FC = () => {
     newModels.push(...firstTen);
   }
 
+  const { theme } = useTheme();
+
   return (
-    <div className={styles.about}>
+    <div className={classNames(styles.about, {
+      [styles.lightTheme]: theme === 'light',
+      [styles.darkTheme]: theme === 'dark',
+    })}>
       <div className={styles.breadCrumbs}>
         <Breadcrumbs />
       </div>

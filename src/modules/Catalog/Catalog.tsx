@@ -11,6 +11,8 @@ import { ProductCard } from '../../components/ProductCard';
 import { SortOptions } from '../../types/SortOptions';
 import { getSearchWith, SearchParams, sortProducts } from '../../utils';
 import { NoResults } from '../../components/NoResults';
+import classNames from 'classnames';
+import { useTheme } from '../../contexts/ThemeContext';
 
 const DEFAULT_ITEM_PER_PAGE = 16;
 
@@ -87,8 +89,13 @@ export const Catalog: React.FC = () => {
     currentPage * itemsPerPage,
   );
 
+  const { theme } = useTheme();
+
   return (
-    <div className={styles.catalog}>
+    <div className={classNames(styles.catalog, {
+      [styles.lightTheme]: theme === 'light',
+      [styles.darkTheme]: theme === 'dark',
+    })}>
       <div className={styles.breadCrumbs}>
         <Breadcrumbs />
       </div>

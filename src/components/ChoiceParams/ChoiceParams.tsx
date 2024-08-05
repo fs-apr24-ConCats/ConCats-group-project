@@ -5,6 +5,8 @@ import styles from './ChoiceParams.module.scss';
 import { Item, Product } from '../../types';
 import { Buttons } from '../../modules/Buttons';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useTheme } from '../../contexts/ThemeContext';
+import classNames from 'classnames';
 
 
 interface Props {
@@ -15,6 +17,7 @@ interface Props {
 export const ChoiceParams: React.FC<Props> = ({ item, product }) => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
+  const { theme } = useTheme();
 
   const urlArr = pathname.split('-');
 
@@ -59,7 +62,11 @@ export const ChoiceParams: React.FC<Props> = ({ item, product }) => {
 
   return (
     <>
-      <div className={styles.section_params}>
+            <div className={classNames(styles.section_params, {
+              [styles.lightTheme]: theme === 'light',
+              [styles.darkTheme]: theme === 'dark',
+              })}
+            >
               <p className={styles.colors_text}>Available colors</p>
               <form className={styles.colors}>
                 {item?.colorsAvailable.map(color => {
@@ -81,7 +88,11 @@ export const ChoiceParams: React.FC<Props> = ({ item, product }) => {
               </form>
             </div>
 
-            <div className={styles.section_params}>
+            <div className={classNames(styles.section_params, {
+              [styles.lightTheme]: theme === 'light',
+              [styles.darkTheme]: theme === 'dark',
+              })}
+            >
               <p className={styles.capacity_text}>Select capacity</p>
 
               <div>
@@ -105,7 +116,11 @@ export const ChoiceParams: React.FC<Props> = ({ item, product }) => {
               </div>
             </div>
 
-            <div className={styles.section_params_price}>
+            <div className={classNames(styles.section_params_price, {
+              [styles.lightTheme]: theme === 'light',
+              [styles.darkTheme]: theme === 'dark',
+              })}
+            >
               {discount ? (
                 <div className={styles.product__prices}>
                   <p className={cn(styles.product__price)}>
@@ -125,7 +140,11 @@ export const ChoiceParams: React.FC<Props> = ({ item, product }) => {
               )}
             </div>
 
-            <div className={styles.buttons}>
+            <div className={classNames(styles.buttons, {
+              [styles.lightTheme]: theme === 'light',
+              [styles.darkTheme]: theme === 'dark',
+              })}
+            >
               {product && (
                 <Buttons
                   id={itemId}
@@ -136,7 +155,11 @@ export const ChoiceParams: React.FC<Props> = ({ item, product }) => {
               )}
             </div>
 
-            <div className={cn(styles.product__info, styles.info)}>
+            <div className={classNames(styles.product__info, {
+              [styles.lightTheme]: theme === 'light',
+              [styles.darkTheme]: theme === 'dark',
+              })}
+            >
               <div className={styles.info__row}>
                 <p className={styles['info-key']}>Screen</p>
                 <p className={styles['info-value']}>{item?.screen}</p>
