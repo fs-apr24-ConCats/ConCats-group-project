@@ -4,36 +4,41 @@ $tablet-height-img: 189px;
 $desktop-height-img: 400px;
 
 .hero-slider {
-  min-height: 352px;
+  height: 352px;
 
   @include on-tablet {
-    min-height: 221px;
+    height: 221px;
   }
   @include on-desktop {
-    min-height: 432px;
+    height: 432px;
   }
 
   &__wrap {
-    min-height: 320px;
+    height: 320px;
 
     @include on-tablet {
-      min-height: $tablet-height-img;
+      height: $tablet-height-img;
     }
     @include on-desktop {
-      min-height: $desktop-height-img;
+      height: $desktop-height-img;
     }
   }
 
   &__image {
     height: 100%;
-    width: 90%;
+    width: 100%;
     margin: auto;
-    object-fit: contain;
+    object-fit: cover;
 
     @include on-tablet {
       object-fit: contain;
+      width: 90%;
     }
   }
+}
+
+.slick-track {
+  gap: 0px !important;
 }
 
 .slick-dots {
