@@ -99,6 +99,7 @@ export const Catalog: React.FC = () => {
       <p
         className={styles.amount}
       >{`${sortedProducts.length} ${t('categories.models')}`}</p>
+      <div className={styles.allfilters}>
       <div className={styles.filters}>
         <div className={styles.sort_wrap}>
           <p className={styles.sort}>{t('catalog.sortBy')}</p>
@@ -151,6 +152,7 @@ export const Catalog: React.FC = () => {
           )}
         </form>
       </div>
+    </div>
 
       {isLoading && (
         <ThreeCircles
