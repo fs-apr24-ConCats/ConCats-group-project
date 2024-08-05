@@ -6,8 +6,20 @@ import ArtemPhoto from './ImagePersonalCard/PhotoArtem.jpg';
 import FaizaPhoto from './ImagePersonalCard/PhotoFaiza.jpg';
 import OleksiiPhoto from './ImagePersonalCard/PhotoOleksii.jpg';
 import SofiiaPhoto from './ImagePersonalCard/PhotoSofiia.jpg';
+import { useTheme } from '../../contexts/ThemeContext';
+import classNames from 'classnames';
 
 const cardData = [
+  {
+    photo: FaizaPhoto,
+    name: 'Faiza Hamid',
+    quote: '(c)Талант — це наполеглива праця',
+    links: [
+      { href: 'https://www.linkedin.com/in/faiza-hamid-8d/', text: 'Linkedin' },
+      { href: 'mailto:hamid.faiza811@gmail.com', text: 'Gmail' },
+      { href: 'https://t.me/fai_ham', text: 'Telegram' },
+    ],
+  },
   {
     photo: IgorPhoto,
     name: 'Igor Omelianenko',
@@ -19,6 +31,19 @@ const cardData = [
       },
       { href: 'mailto:omelianenko.igor.work@gmail.com', text: 'Gmail' },
       { href: 'https://t.me/Om1gSe', text: 'Telegram' },
+    ],
+  },
+  {
+    photo: SofiiaPhoto,
+    name: 'Sofiia Priyemska',
+    quote: '(c)Навчання - це не про час. Навчання це про зусилля',
+    links: [
+      {
+        href: 'https://www.linkedin.com/in/%D1%81%D0%BE%D1%84%D1%96%D1%8F-%D0%BF%D1%80%D0%B8%D1%94%D0%BC%D1%81%D1%8C%D0%BA%D0%B0-5263902bb/?originalSubdomain=ua',
+        text: 'Linkedin',
+      },
+      { href: 'mailto:sofiia.priyemska.work@gmail.com', text: 'Gmail' },
+      { href: 'https://t.me/priemssonia', text: 'Telegram' },
     ],
   },
   {
@@ -35,16 +60,6 @@ const cardData = [
     ],
   },
   {
-    photo: FaizaPhoto,
-    name: 'Faiza Hamid',
-    quote: '(c)Талант — це наполеглива праця',
-    links: [
-      { href: 'https://www.linkedin.com/in/faiza-hamid-8d/', text: 'Linkedin' },
-      { href: 'mailto:hamid.faiza811@gmail.com', text: 'Gmail' },
-      { href: 'https://t.me/fai_ham', text: 'Telegram' },
-    ],
-  },
-  {
     photo: OleksiiPhoto,
     name: 'Oleksii Knihin',
     quote: '(c)Поводься з людьми так, як хочеш, щоб вони чинили з тобою',
@@ -54,24 +69,17 @@ const cardData = [
       { href: 'https://t.me/OleksiiKnihin', text: 'Telegram' },
     ],
   },
-  {
-    photo: SofiiaPhoto,
-    name: 'Sofiia Priyemska',
-    quote: '(c)Навчання - це не про час. Навчання це про зусилля',
-    links: [
-      {
-        href: 'https://www.linkedin.com/in/%D1%81%D0%BE%D1%84%D1%96%D1%8F-%D0%BF%D1%80%D0%B8%D1%94%D0%BC%D1%81%D1%8C%D0%BA%D0%B0-5263902bb/?originalSubdomain=ua',
-        text: 'Linkedin',
-      },
-      { href: 'mailto:sofiia.priyemska.work@gmail.com', text: 'Gmail' },
-      { href: 'https://t.me/priemssonia', text: 'Telegram' },
-    ],
-  },
 ];
 
 export const Contacts: React.FC = () => {
+  const { theme } = useTheme();
+  
   return (
-    <div className={classes.Contacts}>
+    <div className={classNames(classes.Contacts, {
+        [classes.lightTheme]: theme === 'light',
+        [classes.darkTheme]: theme === 'dark',
+        })}
+    >
       <Breadcrumbs />
       <>
         <div>
