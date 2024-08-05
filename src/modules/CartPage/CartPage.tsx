@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import classes from './CartPage.module.scss';
 import { NoResults } from '../../components/NoResults';
 import { CartItem } from './components/CartItem';
@@ -12,16 +13,27 @@ import classNames from 'classnames';
 import { useTheme } from '../../contexts/ThemeContext';
 
 export const CartPage: React.FC = () => {
-  const {cart, onUpdateCart, onCheckout } = useCartAndFavouritsContextContext();
+  const { cart, onUpdateCart, onCheckout } =
+    useCartAndFavouritsContextContext();
   const [sum, setSum] = useState(0);
   const [amount, setAmount] = useState(0);
   const [modalVisibility, setModalVisibility] = useState(false);
   const { theme } = useTheme();
 
-  useEffect(() => {
-    const validCart = cart.filter(item => item.price !== undefined && item.amount !== undefined && item.amount > 0);
+  const { t } = useTranslation();
 
-    const total = validCart.reduce((p, item) => p + item.price * item.amount, 0);
+  useEffect(() => {
+    const validCart = cart.filter(
+      item =>
+        item.price !== undefined &&
+        item.amount !== undefined &&
+        item.amount > 0,
+    );
+
+    const total = validCart.reduce(
+      (p, item) => p + item.price * item.amount,
+      0,
+    );
     const quantity = validCart.reduce((p, item) => p + item.amount, 0);
 
     setSum(total);
@@ -31,31 +43,35 @@ export const CartPage: React.FC = () => {
   const handleCheckout = () => {
     setModalVisibility(false);
     onCheckout();
-  }
+  };
 
   return (
     <div className={classes.CartPage}>
       <Breadcrumbs />
 
       {!cart.length && (
-        <NoResults title="Your cart is empty" imgUrl="img/cart-is-empty.png" />
+        <NoResults title={t('empty.cart')} imgUrl="img/cart-is-empty.png" />
       )}
-        
+
       {cart.length > 0 && (
         <div className={classNames(classes.CartPage__container, {
       [classes.lightTheme]: theme === 'light',
       [classes.darkTheme]: theme === 'dark',
     })}>
-          <h2>Cart</h2>
-
+         <h2>{t('nav.cart')}</h2>
+          
           <div className={classes.CartPage__content}>
             <div className={classes.CartPage__list}>
               {cart.map(item => (
                 <CartItem
                   key={uuidv4()}
                   product={item}
-                  increaseAmount={() => onUpdateCart(item, CartActions.Increase)}
-                  decreaseAmount={() => onUpdateCart(item, CartActions.Decrease)}
+                  increaseAmount={() =>
+                    onUpdateCart(item, CartActions.Increase)
+                  }
+                  decreaseAmount={() =>
+                    onUpdateCart(item, CartActions.Decrease)
+                  }
                 />
               ))}
             </div>
@@ -63,7 +79,7 @@ export const CartPage: React.FC = () => {
             <div className={classes.CartPage__total}>
               <div className={classes.CartPage__sum}>{`$${sum}`}</div>
               <div className={classes.CartPage__number}>
-                {`Total for ${amount} item${amount === 1 ? '' : 's'}`}
+                {`${t('cart.total')} ${amount} ${amount === 1 ? t('cart.item') : t('cart.items')}`}
               </div>
               <div className={classes.CartPage__line} />
               <button
@@ -71,7 +87,7 @@ export const CartPage: React.FC = () => {
                 className={classes.CartPage__button}
                 onClick={() => setModalVisibility(true)}
               >
-                Checkout
+                {t('cart.checkout')}
               </button>
 
               <Modal isOpen={modalVisibility}>

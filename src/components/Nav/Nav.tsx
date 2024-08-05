@@ -5,7 +5,11 @@ import { NavLink } from 'react-router-dom';
 import { PAGES } from '../../pages/pages';
 import { useTheme } from '../../contexts/ThemeContext';
 
+import { useTranslation } from 'react-i18next';
+
 export const Nav: React.FC = () => {
+  const { t } = useTranslation();
+
   const activeClass = ({ isActive }: { isActive: boolean }) => {
     return classNames([classes.Nav__item], { [classes.active]: isActive });
   };
@@ -23,7 +27,7 @@ export const Nav: React.FC = () => {
           className={activeClass}
           id={`/${page === 'home' ? '' : page}`}
         >
-          {page}
+          {t(`nav.${page}`)}
         </NavLink>
       ))}
     </nav>

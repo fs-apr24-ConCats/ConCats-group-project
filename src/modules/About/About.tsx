@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { v4 as uuidv4 } from 'uuid';
 import cn from 'classnames';
 import { Link, useLocation } from 'react-router-dom';
@@ -22,7 +23,9 @@ export const About: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [activeImage, setActiveImage] = useState('');
-  
+
+  const { t } = useTranslation();
+
   // const navigate = useNavigate();
 
   // const urlArr = pathname.split('-');
@@ -62,13 +65,20 @@ export const About: React.FC = () => {
   // function goBack() {
   //   navigate({ pathname })
   // }
-  const newModels = [...products].filter(device => (device.fullPrice === item?.priceRegular  
-    || device.price === item?.priceRegular 
-    || device.capacity === item?.capacity)
-    && device.category === category).slice(0, 10);
+  const newModels = [...products]
+    .filter(
+      device =>
+        (device.fullPrice === item?.priceRegular ||
+          device.price === item?.priceRegular ||
+          device.capacity === item?.capacity) &&
+        device.category === category,
+    )
+    .slice(0, 10);
 
   if (newModels.length < 10) {
-    const firstTen = [...products].filter(device => device.category === category).slice(0, 10);
+    const firstTen = [...products]
+      .filter(device => device.category === category)
+      .slice(0, 10);
     newModels.push(...firstTen);
   }
 
@@ -101,44 +111,49 @@ export const About: React.FC = () => {
         <>
           <h2 className={styles.title}>{item?.name}</h2>
 
-        {item &&  (
-          <>
-          <section className={styles.images_container}>
-            <ImageSelection
-              item={item}
-              activeImage={activeImage}
-              onChangeActiveImage={setActiveImage}
-            />
-          </section>
+          {item && (
+            <>
+              <section className={styles.images_container}>
+                <ImageSelection
+                  item={item}
+                  activeImage={activeImage}
+                  onChangeActiveImage={setActiveImage}
+                />
+              </section>
 
-          <section className={styles.choice_params}>
-            {product && <ChoiceParams item={item} product={product}/>}
-          </section>
+              <section className={styles.choice_params}>
+                {product && <ChoiceParams item={item} product={product} />}
+              </section>
 
-          <section className={styles.section_about}>
-            <h3 className={styles.title_about}>About</h3>
+              <section className={styles.section_about}>
+                <h3 className={styles.title_about}>About</h3>
 
-            <div className={styles.text_container}>
-              {item?.description.map(({ title, text }) => (
-                <React.Fragment key={uuidv4()}>
-                  <h4 className={styles.text_title}>{title}</h4>
-                  <p className={styles.text_about}>{text}</p>
-                </React.Fragment>
-              ))}
-            </div>
-          </section>
+                <div className={styles.text_container}>
+                  {item?.description.map(({ title, text }) => (
+                    <React.Fragment key={uuidv4()}>
+                      <h4 className={styles.text_title}>{title}</h4>
+                      <p className={styles.text_about}>{text}</p>
+                    </React.Fragment>
+                  ))}
+                </div>
+              </section>
 
-          <section className={styles.section_tech}>
-            <ItemTechDetails item={item} />
-          </section>
+              <section className={styles.section_tech}>
+                <ItemTechDetails item={item} />
+              </section>
 
-        <section className={styles.phones_slider}>
-          <div className={styles.section_top}>
-            <h2 className={cn(styles.section_top_title, styles.top_title)}>You may also like</h2>
-          </div>
-            <CarouselCards products={newModels} topPlus={true}/>
-        </section>
-          </>)}
+              <section className={styles.phones_slider}>
+                <div className={styles.section_top}>
+                  <h2
+                    className={cn(styles.section_top_title, styles.top_title)}
+                  >
+                    {t('sliders.also')}
+                  </h2>
+                </div>
+                <CarouselCards products={newModels} topPlus={true} />
+              </section>
+            </>
+          )}
         </>
       )}
     </div>

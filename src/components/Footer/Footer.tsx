@@ -2,11 +2,17 @@ import React from 'react';
 import styles from './Footer.module.scss';
 import { Link } from 'react-router-dom';
 import { Logo } from '../Logo';
+
 import classNames from 'classnames';
 import { useTheme } from '../../contexts/ThemeContext';
 
 
+import { useTranslation } from 'react-i18next';
+
+
 export const Footer: React.FC = () => {
+  const { t } = useTranslation();
+
   function scrollToTop() {
     window.scrollTo(0, 0);
   }
@@ -26,15 +32,15 @@ export const Footer: React.FC = () => {
               GitHub
             </a>
             <Link className={styles.link} to="/contacts">
-              Contacts
+              {t('footer.contacts')}
             </Link>
             <a className={styles.link} href="#">
-              Rights
+              {t('footer.rights')}
             </a>
           </div>
           <div className={styles.footer__backToTop}>
             <a onClick={scrollToTop} className={styles.footer__textInfo}>
-              Back to top
+              {t('footer.top')}
             </a>
             <a onClick={scrollToTop} className={styles.arrow}></a>
           </div>

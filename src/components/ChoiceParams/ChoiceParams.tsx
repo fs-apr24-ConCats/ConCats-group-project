@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { v4 as uuidv4 } from 'uuid';
 import cn from 'classnames';
 import styles from './ChoiceParams.module.scss';
@@ -7,7 +8,6 @@ import { Buttons } from '../../modules/Buttons';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTheme } from '../../contexts/ThemeContext';
 import classNames from 'classnames';
-
 
 interface Props {
   item: Item;
@@ -18,6 +18,8 @@ export const ChoiceParams: React.FC<Props> = ({ item, product }) => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const { theme } = useTheme();
+
+  const { t } = useTranslation();
 
   const urlArr = pathname.split('-');
 
@@ -31,8 +33,6 @@ export const ChoiceParams: React.FC<Props> = ({ item, product }) => {
 
   const category = pathname.split('/')[1];
   const itemId = pathname.split('/')[2];
-
-
 
   const handleChangeColor = (color: string) => {
     if (colorFromUrl.split(' ').length > 1) {
@@ -62,12 +62,12 @@ export const ChoiceParams: React.FC<Props> = ({ item, product }) => {
 
   return (
     <>
-            <div className={classNames(styles.section_params, {
+         <div className={classNames(styles.section_params, {
               [styles.lightTheme]: theme === 'light',
               [styles.darkTheme]: theme === 'dark',
               })}
             >
-              <p className={styles.colors_text}>Available colors</p>
+              <p className={styles.colors_text}>{t('productCard.color')}</p>
               <form className={styles.colors}>
                 {item?.colorsAvailable.map(color => {
                   return (
@@ -93,7 +93,9 @@ export const ChoiceParams: React.FC<Props> = ({ item, product }) => {
               [styles.darkTheme]: theme === 'dark',
               })}
             >
-              <p className={styles.capacity_text}>Select capacity</p>
+               <p className={styles.capacity_text}>
+                  {t('productCard.selectCapacity')}
+               </p>
 
               <div>
                 {item?.capacityAvailable.map(capacity => {
@@ -161,24 +163,25 @@ export const ChoiceParams: React.FC<Props> = ({ item, product }) => {
               })}
             >
               <div className={styles.info__row}>
-                <p className={styles['info-key']}>Screen</p>
+                <p className={styles['info-key']}>{t('productCard.screen')}</p>
                 <p className={styles['info-value']}>{item?.screen}</p>
               </div>
 
               <div className={styles.info__row}>
-                <p className={styles['info-key']}>Resolution</p>
+                 <p className={styles['info-key']}>{t('productCard.resolution')}</p>
                 <p className={styles['info-value']}>{item?.resolution}</p>
               </div>
 
               <div className={styles.info__row}>
-                <p className={styles['info-key']}>Processor</p>
+               <p className={styles['info-key']}>{t('productCard.processor')}</p>
                 <p className={styles['info-value']}>{item?.processor}</p>
               </div>
 
               <div className={styles.info__row}>
-                <p className={styles['info-key']}>RAM</p>
+                <p className={styles['info-key']}>{t('productCard.ram')}</p>
                 <p className={styles['info-value']}>{item?.ram}</p>
               </div>
             </div>
     </>
-)}
+  );
+};

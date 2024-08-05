@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import classes from './NoResults.module.scss';
 import { Link } from "react-router-dom";
 import { useTheme } from "../../contexts/ThemeContext";
@@ -16,6 +17,8 @@ export const NoResults: React.FC<Props> = ({
   withoutLink,
 }) => {
   const { theme } = useTheme();
+  const { t } = useTranslation();
+        
 return (
   <div className={classNames(classes.NoResults, {
     [classes.lightTheme]: theme === 'light',
@@ -24,13 +27,15 @@ return (
   >
     <h2 className={classes.NoResults__title}>{title}</h2>
 
-    <img src={imgUrl} className={classes.NoResults__img} alt="404" />
 
+    <img src={imgUrl} className={classes.NoResults__img} alt="404" />
+        
     {!withoutLink && (
       <Link to="/" className={classes.NoResults__button}>
-        GO HOME
+        {t('buttons.goHome')}
       </Link>
     )}
   </div>
   )
 };
+

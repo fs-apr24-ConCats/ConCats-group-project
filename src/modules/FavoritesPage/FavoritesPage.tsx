@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import classes from './FavoritesPage.module.scss';
 import { ProductCard } from '../../components/ProductCard';
 import { useCartAndFavouritsContextContext } from '../../components/controllers/CartAndFavourits/useCartAndFavouritsContext';
@@ -9,7 +10,11 @@ import classNames from 'classnames';
 
 export const FavouritePage: React.FC = () => {
   const { favourites } = useCartAndFavouritsContextContext();
+
   const { theme } = useTheme();
+
+  const { t } = useTranslation();
+
 
   return (
     <div className={classNames(classes.Favourites, {
@@ -19,14 +24,16 @@ export const FavouritePage: React.FC = () => {
       <Breadcrumbs />
 
       {!favourites.length && (
-        <NoResults title="Your favourites is empty" imgUrl="img/icons/png-transparent-empty-cart-illustration_white.png" />
+        <NoResults title={t('empty.fav')} imgUrl="img/cart-is-empty.png" />
       )}
 
       {favourites.length > 0 && (
         <>
           <div>
-            <h1 className={classes.titleFav}>Favourites</h1>
-            <span className={classes.items}>{favourites.length} Items</span>
+            <h1 className={classes.titleFav}>{t('pageTitles.fav')}</h1>
+            <span className={classes.items}>
+              {`${favourites.length} ${t('categories.models')}`}
+            </span>
           </div>
 
           <div className={classes.fav__container}>
