@@ -98,3 +98,34 @@ $desktop-height-img: 400px;
     }
   }
 }
+
+.lightTheme {
+  transition: color, 0.3s;
+
+  .slick-dots {
+    li {
+      button:before {
+        content: '';
+        background-color: $white-theme-elements;
+      }
+    }
+  
+    .slick-active {
+      button:before {
+        background-color: $white-theme-primary; /* Set the color of the active dot */
+      }
+    }
+  }
+
+  @include on-tablet {
+    .custom-arrow {
+      background-color: $white-theme-white;
+      border: 1px solid $white-theme-icons;
+      color: $white-color;
+    }
+    
+    .custom-arrow::before {
+        color: $white-theme-icons;
+    }
+  }
+}

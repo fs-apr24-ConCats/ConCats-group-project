@@ -9,6 +9,8 @@ import { ModalContent } from './components/ModalContent';
 import { v4 as uuidv4 } from 'uuid';
 import { useCartAndFavouritsContextContext } from '../../components/controllers/CartAndFavourits/useCartAndFavouritsContext';
 import { CartActions } from '../../types';
+import classNames from 'classnames';
+import { useTheme } from '../../contexts/ThemeContext';
 
 export const CartPage: React.FC = () => {
   const { cart, onUpdateCart, onCheckout } =
@@ -16,6 +18,7 @@ export const CartPage: React.FC = () => {
   const [sum, setSum] = useState(0);
   const [amount, setAmount] = useState(0);
   const [modalVisibility, setModalVisibility] = useState(false);
+  const { theme } = useTheme();
 
   const { t } = useTranslation();
 
@@ -51,9 +54,12 @@ export const CartPage: React.FC = () => {
       )}
 
       {cart.length > 0 && (
-        <div className={classes.CartPage__container}>
-          <h2>{t('nav.cart')}</h2>
-
+        <div className={classNames(classes.CartPage__container, {
+      [classes.lightTheme]: theme === 'light',
+      [classes.darkTheme]: theme === 'dark',
+    })}>
+         <h2>{t('nav.cart')}</h2>
+          
           <div className={classes.CartPage__content}>
             <div className={classes.CartPage__list}>
               {cart.map(item => (
