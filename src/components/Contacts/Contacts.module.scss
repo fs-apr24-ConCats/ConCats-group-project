@@ -68,8 +68,6 @@
   max-height: 80%;
   border-radius: 50%;
   border: rgb(20, 113, 113) 5px solid;
-
-
 }
 
 .standart {
@@ -199,5 +197,33 @@ a:hover {
 
   .personalCard:hover {
     height: 100%;
+  }
+}
+
+.lightTheme {
+  .personalCard {
+    background-color: $white-theme-primary;
+    border: $white-theme-green 1px solid;
+  }
+
+  .contactsTitle, .contactsTitleH {
+    color: $white-theme-primary
+  }
+
+  .personalInfo {
+    background-color: $white-theme-white;
+    border: 1px solid $white-theme-primary;
+  }
+
+  .personalNameBlock {
+    color: $white-theme-primary;
+  }
+
+  .personalQuote {
+    color: $white-theme-primary;
+  }
+
+  .personalImage {
+    border: rgb(255, 255, 255) 5px solid;
   }
 }

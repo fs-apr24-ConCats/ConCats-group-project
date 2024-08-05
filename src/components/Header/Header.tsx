@@ -6,22 +6,14 @@ import { Favorites } from '../Favorites';
 import { Cart } from '../Cart';
 import { Menu } from '../../modules/Menu';
 import { Settings } from '../Settings';
-
 import { useTheme } from '../../contexts/ThemeContext';
 import classNames from 'classnames';
-
-import { useTranslation } from 'react-i18next';
-
-
 
 export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState<boolean>(false);
 
   const { theme } = useTheme();
-
-  const { i18n } = useTranslation();
-
 
   const handleToggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -46,12 +38,6 @@ export const Header: React.FC = () => {
       </div>
 
       <div className={classes.Header__right}>
-
-        <div className={classes.nav_LngWrap}>
-          <button onClick={changeLanguage} className={classes.nav_LngBtn}>
-            {i18n.language === 'en' ? 'UA' : 'EN'}
-          </button>
-        </div>
 
         <div className={classes.Header__settings}>
           <Settings isOpen={isSettingsOpen} onToggle={toggleSettings} />
