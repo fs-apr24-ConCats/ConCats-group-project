@@ -77,5 +77,22 @@
     "checkout": "Checkout",
     "checkoutNot": "Checkout is not implemented yet.",
     "seeYou": "See you soon :)"
+  },
+  "contactsPage": {
+    "contacts": "Contacts",
+    "names": {
+      "faiza": "Faiza Hamid",
+      "igor": "Igor Omelianenko",
+      "sofiia": "Sofiia Priyemska",
+      "artem": "Artem Kasprukov",
+      "oleksii": "Oleksii Knihin"
+    },
+    "quotes": {
+      "faiza": "(c)Talent is persistent work",
+      "igor": "(c)The key to success is self-regulation, discipline, and belief in oneself.",
+      "sofiia": "(c)Learning is not about time. Learning is about effort.",
+      "artem": "(c)Programming: the art of turning coffee into code.",
+      "oleksii": "(c)Treat people the way you want them to treat you."
+    }
   }
 }
