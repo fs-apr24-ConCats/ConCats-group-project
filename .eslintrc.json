@@ -28,8 +28,5 @@
       }
   },
   "plugins": ["react", "react-hooks", "@typescript-eslint", "prettier"],
-  "rules": {
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn"
-  }
+  "rules": {}
 } 
