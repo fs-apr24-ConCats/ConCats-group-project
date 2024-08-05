@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from './Settings.module.scss';
 
 interface SettingsProps {
@@ -7,6 +7,12 @@ interface SettingsProps {
 }
 
 export const Settings: React.FC<SettingsProps> = ({ onToggle, isOpen }) => {
+  const [isDarkMode, setIsDarkMode] = useState(true);
+  
+  const handleThemeToggle = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
   return (
     <div className={styles.settings}>
       <button
@@ -14,17 +20,38 @@ export const Settings: React.FC<SettingsProps> = ({ onToggle, isOpen }) => {
         onClick={onToggle}
         aria-label="Toggle settings"
         className={`${styles.iconButton} ${isOpen ? 'active' : ''}`}
-      ></button>
+      >
+        <img src="/img/icons/settings.svg" alt="Language" />
+      </button>
       {isOpen && (
         <div className={styles.menu}>
           <div className={styles.menuItem}>
-            <img src="/path/to/icon1.svg" alt="Option 1" />
+            <button
+              type="button"
+              className={styles.menuItem__language}
+            >
+              <img src="/img/icons/Globe.png" alt="Language" />
+            </button>
           </div>
           <div className={styles.menuItem}>
-            <img src="/path/to/icon2.svg" alt="Option 2" />
+          <button
+              type="button"
+              className={styles.menuItem__theme}
+              onClick={handleThemeToggle}
+            >
+                <img
+                  src={`/img/icons/${isDarkMode ? 'Moon' : 'Sun'}.png`}
+                  alt="Light/Dark theme"
+                />
+            </button>
           </div>
           <div className={styles.menuItem}>
-            <img src="/path/to/icon3.svg" alt="Option 3" />
+          <button
+              type="button"
+              className={styles.menuItem__cursor}
+            >
+              <img src="/img/icons/Globe.png" alt="Language" />
+            </button>
           </div>
         </div>
       )}

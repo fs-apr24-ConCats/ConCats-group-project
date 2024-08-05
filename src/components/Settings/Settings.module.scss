@@ -3,42 +3,41 @@
 .settings {
   position: relative;
   display: flex;
-  width: 48px; // Змінено розмір на 48px для відповідності іншим кнопкам
-  height: 48px; // Додаємо висоту
+
+  justify-content: center;
+  align-items: center;
 
   @include on-desktop {
-    width: 64px; // Змінено розмір на 64px для відповідності іншим кнопкам
-    height: 64px; // Додаємо висоту
+    width: 64px;
+    height: 64px;
   }
 
   .iconButton {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    background: none;
     border: none;
     cursor: pointer;
     padding: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('/img/icon/settings.png'); // Підключення іконки через background-image
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
 
-    &.active {
+    img{
+      width: 24px;
+      height: 24px;
+    }
+
+
+    &:active {
       img {
-        transform: rotate(180deg);
-        transition: transform 0.3s ease-in-out;
+        transform: rotate(360deg);
+        transition: transform 0.5s ease-in-out;
       }
     }
   }
 
   .menu {
     position: absolute;
+    cursor: pointer;
     top: 100%;
     left: 50%;
-    width: 120px;
+    width: 64px;
     transform: translateX(-50%);
     background-color: $black-color;
     border: 1px solid $elements-color;
@@ -51,10 +50,35 @@
 
     .menuItem {
       margin: 8px 0;
+      
+      &__language:active{
+        img {
+          transform: rotateY(3.142rad);
+          transition: transform 0.5s ease-in-out;
+        }
+      }
 
+      &__theme{
+        position: relative;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+          img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+          }
+      }
+
+  
       img {
         width: 24px;
         height: 24px;
+        cursor: pointer;
       }
     }
   }
