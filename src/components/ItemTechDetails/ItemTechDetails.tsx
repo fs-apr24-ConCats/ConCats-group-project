@@ -1,6 +1,5 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import cn from 'classnames';
 import { Item } from '../../types';
 import styles from './ItemTechDetails.module.scss';
 import { useTheme } from '../../contexts/ThemeContext';
