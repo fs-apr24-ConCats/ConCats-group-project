@@ -11,6 +11,9 @@ import { ProductCard } from '../../components/ProductCard';
 import { SortOptions } from '../../types/SortOptions';
 import { getSearchWith, SearchParams, sortProducts } from '../../utils';
 import { NoResults } from '../../components/NoResults';
+import classNames from 'classnames';
+import { useTheme } from '../../contexts/ThemeContext';
+import { useTranslation } from 'react-i18next';
 
 const DEFAULT_ITEM_PER_PAGE = 16;
 
@@ -18,6 +21,8 @@ export const Catalog: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchParams, setSearchParams] = useSearchParams();
+
+  const { t } = useTranslation();
 
   const sortBy = searchParams.get('sortBy') || SortOptions.Newest;
   const currentPage = +(searchParams.get('currentPage') || 1);
@@ -62,7 +67,7 @@ export const Catalog: React.FC = () => {
     4: 4,
     8: 8,
     16: 16,
-    all: products.filter(item => item.category === category).length,
+    All: products.filter(item => item.category === category).length,
   };
 
   const filteredProducts = products
@@ -87,68 +92,74 @@ export const Catalog: React.FC = () => {
     currentPage * itemsPerPage,
   );
 
+  const { theme } = useTheme();
+
   return (
-    <div className={styles.catalog}>
+    <div className={classNames(styles.catalog, {
+      [styles.lightTheme]: theme === 'light',
+      [styles.darkTheme]: theme === 'dark',
+    })}>
       <div className={styles.breadCrumbs}>
         <Breadcrumbs />
       </div>
-
-      <h1 className={styles.catalog_title}>{category}</h1>
-      <p className={styles.amount}>{`${sortedProducts.length} models`}</p>
+      <h1 className={styles.catalog_title}>{t(`pageTitles.${category}`)}</h1>
+      <p
+        className={styles.amount}
+      >{`${sortedProducts.length} ${t('categories.models')}`}</p>
       <div className={styles.allfilters}>
-        <div className={styles.filters}>
-          <div className={styles.sort_wrap}>
-            <p className={styles.sort}>Sort by</p>
-            <select
-              id="sortBy"
-              className={styles.sortFormControl}
-              value={sortBy}
-              onChange={event => handleSortBy(event.target.value)}
-            >
-              {Object.entries(SortOptions).map(([key, value]) => (
-                <option key={value} value={value}>
-                  {key}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className={styles.sort_wrap}>
-            <p className={styles.sort}>Items on page</p>
-            <select
-              id="perPageSelector"
-              className={styles.pageFormControl}
-              value={itemsPerPage}
-              onChange={event => changeItemsPerPage(event.target.value)}
-            >
-              {Object.entries(ALL_OPTIONS).map(([key, value]) => (
-                <option key={value} value={value}>
-                  {key}
-                </option>
-              ))}
-            </select>
-          </div>
+      <div className={styles.filters}>
+        <div className={styles.sort_wrap}>
+          <p className={styles.sort}>{t('catalog.sortBy')}</p>
+          <select
+            id="sortBy"
+            className={styles.sortFormControl}
+            value={sortBy}
+            onChange={event => handleSortBy(event.target.value)}
+          >
+            {Object.entries(SortOptions).map(([key, value]) => (
+              <option key={value} value={value}>
+                {t(`sortBy.${key}`)}
+              </option>
+            ))}
+          </select>
         </div>
-        <div className={styles.search}>
-          <form className={styles.searchForm}>
-            <input
-              value={searchQuery}
-              type="text"
-              className={styles.searchForm__input}
-              placeholder="Search"
-              onChange={handleQueryChange}
-            />
-            {searchQuery && (
-              <button
-                type="button"
-                className={styles.clearButton}
-                onClick={clearSearch}
-              >
-                &times;
-              </button>
-            )}
-          </form>
+        <div className={styles.sort_wrap}>
+          <p className={styles.sort}>{t('catalog.itemsOnPage')}</p>
+          <select
+            id="perPageSelector"
+            className={styles.pageFormControl}
+            value={itemsPerPage}
+            onChange={event => changeItemsPerPage(event.target.value)}
+          >
+            {Object.entries(ALL_OPTIONS).map(([key, value]) => (
+              <option key={value} value={value}>
+                {t(`sortBy.${key}`)}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
+      <div className={styles.search}>
+        <form className={styles.searchForm}>
+          <input
+            value={searchQuery}
+            type="text"
+            className={styles.searchForm__input}
+            placeholder="Search"
+            onChange={handleQueryChange}
+          />
+          {searchQuery && (
+            <button
+              type="button"
+              className={styles.clearButton}
+              onClick={clearSearch}
+            >
+              &times;
+            </button>
+          )}
+        </form>
+      </div>
+    </div>
 
       {isLoading && (
         <ThreeCircles
@@ -183,9 +194,13 @@ export const Catalog: React.FC = () => {
         </>
       )}
 
-    {!isLoading && currentItems.length === 0 && (
-      <NoResults title="We couldn't find any results" imgUrl="img/icons/not_found.png" withoutLink={true}/>
-    )}
+      {!isLoading && currentItems.length === 0 && (
+        <NoResults
+          title="We couldn't find any results"
+          imgUrl="img/icons/not_found.png"
+          withoutLink={true}
+        />
+      )}
     </div>
   );
 };

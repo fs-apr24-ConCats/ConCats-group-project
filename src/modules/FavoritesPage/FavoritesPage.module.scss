@@ -50,6 +50,8 @@
   color: #89939a;
   font-size: 14px;
   line-height: 21px;
+
+  @extend %text-small;
 }
 
 .fav__container {
@@ -81,4 +83,10 @@
 .spanNav {
   display: block;
   margin-top: 24px;
+}
+
+.lightTheme {
+  .titleFav {
+    color: $white-theme-primary;
+  }
 }
