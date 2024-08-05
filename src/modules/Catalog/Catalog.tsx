@@ -197,7 +197,9 @@ export const Catalog: React.FC = () => {
       {!isLoading && currentItems.length === 0 && (
         <NoResults
           title="We couldn't find any results"
-          imgUrl="img/icons/not_found.png"
+          imgUrl={`${theme === 'light' ? 
+            "/img/icons/pngwing.png" 
+            : "/img/icons/pngwing_white.png"}`}
           withoutLink={true}
         />
       )}

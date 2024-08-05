@@ -24,7 +24,9 @@ export const FavouritePage: React.FC = () => {
       <Breadcrumbs />
 
       {!favourites.length && (
-        <NoResults title={t('empty.fav')} imgUrl="img/cart-is-empty.png" />
+        <NoResults title={t('empty.fav')} imgUrl={`${theme === 'light' ? 
+          "/img/icons/png-transparent-empty-cart-illustration.png" 
+          : "/img/icons/png-transparent-empty-cart-illustration_white.png"}`} />
       )}
 
       {favourites.length > 0 && (
