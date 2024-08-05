@@ -13,7 +13,7 @@ export const FavouritePage: React.FC = () => {
       <Breadcrumbs />
 
       {!favourites.length && (
-        <NoResults title="Your favourites is empty" imgUrl="img/cart-is-empty.png" />
+        <NoResults title="Your favourites is empty" imgUrl="img/icons/png-transparent-empty-cart-illustration_white.png" />
       )}
 
       {favourites.length > 0 && (

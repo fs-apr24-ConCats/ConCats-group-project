@@ -10,6 +10,7 @@ import { getProducts } from '../../api/dataFromServer';
 import { ProductCard } from '../../components/ProductCard';
 import { SortOptions } from '../../types/SortOptions';
 import { getSearchWith, SearchParams, sortProducts } from '../../utils';
+import { NoResults } from '../../components/NoResults';
 
 const DEFAULT_ITEM_PER_PAGE = 16;
 
@@ -36,20 +37,19 @@ export const Catalog: React.FC = () => {
       .finally(() => setIsLoading(false));
   }, [pathname]);
 
-  
   function setSearchWith(params: SearchParams) {
     const search = getSearchWith(searchParams, params);
     setSearchParams(search);
   }
-  
+
   const handlePageChange = (page: number) => {
     const params = new URLSearchParams(searchParams);
     params.set('currentPage', `${page}`);
-    setSearchWith({ 'currentPage': `${page}` });
+    setSearchWith({ currentPage: `${page}` });
   };
   const handleQueryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
-    setSearchWith({ 'query': newValue })
+    setSearchWith({ query: newValue });
   };
 
   const clearSearch = () => {
@@ -58,10 +58,12 @@ export const Catalog: React.FC = () => {
 
   const category = pathname.split('/')[1];
 
-  
-  const ALL_OPTIONS = { 4: 4, 8: 8, 16: 16, all: products
-    .filter(item => item.category === category)
-    .length };
+  const ALL_OPTIONS = {
+    4: 4,
+    8: 8,
+    16: 16,
+    all: products.filter(item => item.category === category).length,
+  };
 
   const filteredProducts = products
     .filter(product => product.category === category)
@@ -72,11 +74,11 @@ export const Catalog: React.FC = () => {
   const sortedProducts = sortProducts(filteredProducts, sortBy);
 
   const changeItemsPerPage = (value: string) => {
-    setSearchWith({'itemsPerPage': value, 'currentPage': '1'});
+    setSearchWith({ itemsPerPage: value, currentPage: '1' });
   };
 
   const handleSortBy = (value: string) => {
-    setSearchWith({ 'sortBy': value });
+    setSearchWith({ sortBy: value });
   };
 
   const totalItems = sortedProducts.length;
@@ -148,7 +150,7 @@ export const Catalog: React.FC = () => {
         </div>
       </div>
 
-      {isLoading ? (
+      {isLoading && (
         <ThreeCircles
           visible={true}
           height="200"
@@ -158,9 +160,11 @@ export const Catalog: React.FC = () => {
           wrapperStyle={{}}
           wrapperClass={styles.loader}
         />
-      ) : (
+      )}
+
+      {!isLoading && currentItems.length > 0 && (
         <>
-          <ul
+          <div
             className={cn(styles.card_holder, {
               [styles.card_holder_justify]: currentItems.length > 3,
             })}
@@ -168,7 +172,7 @@ export const Catalog: React.FC = () => {
             {currentItems.map(product => (
               <ProductCard key={product.id} product={product} />
             ))}
-          </ul>
+          </div>
 
           <Pagination
             total={totalItems}
@@ -178,6 +182,10 @@ export const Catalog: React.FC = () => {
           />
         </>
       )}
+
+    {!isLoading && currentItems.length === 0 && (
+      <NoResults title="We couldn't find any results" imgUrl="img/icons/not_found.png" withoutLink={true}/>
+    )}
     </div>
   );
 };
