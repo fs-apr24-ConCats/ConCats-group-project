@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from './Settings.module.scss';
+import { CursorSettings } from "../CursorSettings";
 
 interface SettingsProps {
   isOpen: boolean;
@@ -46,12 +47,7 @@ export const Settings: React.FC<SettingsProps> = ({ onToggle, isOpen }) => {
             </button>
           </div>
           <div className={styles.menuItem}>
-          <button
-              type="button"
-              className={styles.menuItem__cursor}
-            >
-              <img src="/img/icons/Globe.png" alt="Language" />
-            </button>
+          <CursorSettings />
           </div>
         </div>
       )}
