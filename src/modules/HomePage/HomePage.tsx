@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import cn from 'classnames';
 import classes from './HomePage.module.scss';
-import { ProductCard } from '../../components/ProductCard';
 import { HeroSlider } from '../../components/HeroSlider';
 import { Link } from 'react-router-dom';
 import { ThreeCircles } from 'react-loader-spinner';
 import { Product } from '../../types';
 import { getProducts } from '../../api/dataFromServer';
+import { CarouselCards } from '../../components/CarouselCards';
 
 export const HomePage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -21,6 +21,12 @@ export const HomePage: React.FC = () => {
       .finally(() => setIsLoading(false));
   }, []);
 
+  const newModels = [...products].filter(item => item.id % 3 !== 0 ).sort((a, b) => b.price - a.price).slice(0, 10);
+  const hotPriceModels = [...products]
+    .filter(item => item.id % 3 === 0 )
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 10);
+
   return (
     <div className={classes.home}>
       <h1 className={classes.home__title}>Welcome to Nice Gadgets store!</h1>
@@ -29,7 +35,7 @@ export const HomePage: React.FC = () => {
       </div>
       <section className={classes.phones_slider}>
         <div className={classes.section_top}>
-          <h2 className={classes.section_top_title}>Brand new models</h2>
+          <h2 className={cn(classes.section_top_title, classes.top_title)}>Brand new models</h2>
         </div>
         {isLoading ? (
           <ThreeCircles
@@ -42,21 +48,7 @@ export const HomePage: React.FC = () => {
             wrapperClass={classes.loader}
           />
         ) : (
-          <div className={classes.phones_slider_bottom}>
-            {/* {products.map(product => )} */}
-            <ProductCard
-              product={products[0]}
-            />
-            <ProductCard
-              product={products[1]}
-            />
-            <ProductCard
-              product={products[2]}
-            />
-            <ProductCard
-              product={products[3]}
-            />
-          </div>
+          <CarouselCards products={newModels} topPlus={true}/>
         )}
       </section>
 
@@ -142,20 +134,7 @@ export const HomePage: React.FC = () => {
             wrapperClass={classes.loader}
           />
         ) : (
-          <div className={classes.phones_slider_bottom}>
-            <ProductCard
-              product={products[0]}
-            />
-            <ProductCard
-              product={products[1]}
-            />
-            <ProductCard
-              product={products[2]}
-            />
-            <ProductCard
-              product={products[3]}
-            />
-          </div>
+          <CarouselCards products={hotPriceModels} />
         )}
       </section>
     </div>
