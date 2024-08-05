@@ -13,6 +13,7 @@ import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 
 
+
 export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState<boolean>(false);
@@ -27,12 +28,6 @@ export const Header: React.FC = () => {
   };
   const toggleSettings = () => {
     setIsSettingsOpen(prevState => !prevState);
-  };
-
-  const changeLanguage = () => {
-    const newLanguage = i18n.language === 'en' ? 'ua' : 'en';
-    i18n.changeLanguage(newLanguage);
-    localStorage.setItem('language', newLanguage);
   };
 
   return (
@@ -57,6 +52,7 @@ export const Header: React.FC = () => {
             {i18n.language === 'en' ? 'UA' : 'EN'}
           </button>
         </div>
+
         <div className={classes.Header__settings}>
           <Settings isOpen={isSettingsOpen} onToggle={toggleSettings} />
         </div>

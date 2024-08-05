@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import styles from './Settings.module.scss';
+
+import { CursorSettings } from "../CursorSettings";
+import { useTranslation } from 'react-i18next';
+
 import { ThemeToggleButton } from "../../contexts/ThemeToggleButton";
 import { useTheme } from "../../contexts/ThemeContext";
 import classNames from "classnames";
+
 
 interface SettingsProps {
   isOpen: boolean;
@@ -11,7 +16,17 @@ interface SettingsProps {
 
 export const Settings: React.FC<SettingsProps> = ({ onToggle, isOpen }) => {
   const [isDarkMode, setIsDarkMode] = useState(true);
+
+  const { i18n } = useTranslation();
+
+  const changeLanguage = () => {
+    const newLanguage = i18n.language === 'en' ? 'ua' : 'en';
+    i18n.changeLanguage(newLanguage);
+    localStorage.setItem('language', newLanguage);
+  };
+
   const { theme } = useTheme();
+
   
   const handleThemeToggle = () => {
     setIsDarkMode(!isDarkMode);
@@ -39,6 +54,7 @@ export const Settings: React.FC<SettingsProps> = ({ onToggle, isOpen }) => {
             <button
               type="button"
               className={styles.menuItem__language}
+              onClick={changeLanguage}
             >
               <img src={`/img/icons/Globe${suffixForImg}.png`} alt="Language" />
             </button>
@@ -47,12 +63,16 @@ export const Settings: React.FC<SettingsProps> = ({ onToggle, isOpen }) => {
           <ThemeToggleButton />
           </div>
           <div className={styles.menuItem}>
+
+          <CursorSettings />
+
           <button
               type="button"
               className={styles.menuItem__cursor}
             >
               <img src={`/img/icons/Globe${suffixForImg}.png`} alt="Language" />
             </button>
+
           </div>
         </div>
       )}
