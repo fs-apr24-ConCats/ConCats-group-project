@@ -10,6 +10,7 @@ import { getProducts } from '../../api/dataFromServer';
 import { ProductCard } from '../../components/ProductCard';
 import { SortOptions } from '../../types/SortOptions';
 import { getSearchWith, SearchParams, sortProducts } from '../../utils';
+import { NoResults } from '../../components/NoResults';
 import { useTranslation } from 'react-i18next';
 
 const DEFAULT_ITEM_PER_PAGE = 16;
@@ -151,7 +152,7 @@ export const Catalog: React.FC = () => {
         </form>
       </div>
 
-      {isLoading ? (
+      {isLoading && (
         <ThreeCircles
           visible={true}
           height="200"
@@ -161,9 +162,11 @@ export const Catalog: React.FC = () => {
           wrapperStyle={{}}
           wrapperClass={styles.loader}
         />
-      ) : (
+      )}
+
+      {!isLoading && currentItems.length > 0 && (
         <>
-          <ul
+          <div
             className={cn(styles.card_holder, {
               [styles.card_holder_justify]: currentItems.length > 3,
             })}
@@ -171,7 +174,7 @@ export const Catalog: React.FC = () => {
             {currentItems.map(product => (
               <ProductCard key={product.id} product={product} />
             ))}
-          </ul>
+          </div>
 
           <Pagination
             total={totalItems}
@@ -180,6 +183,14 @@ export const Catalog: React.FC = () => {
             onPageChange={handlePageChange}
           />
         </>
+      )}
+
+      {!isLoading && currentItems.length === 0 && (
+        <NoResults
+          title="We couldn't find any results"
+          imgUrl="img/icons/not_found.png"
+          withoutLink={true}
+        />
       )}
     </div>
   );

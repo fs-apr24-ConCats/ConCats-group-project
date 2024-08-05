@@ -6,11 +6,13 @@ import { Link } from 'react-router-dom';
 type Props = {
   title: string;
   imgUrl?: string;
+  withoutLink?: boolean;
 };
 
 export const NoResults: React.FC<Props> = ({
   title,
   imgUrl = 'img/product-not-found.png',
+  withoutLink,
 }) => {
   const { t } = useTranslation();
 
@@ -20,9 +22,11 @@ export const NoResults: React.FC<Props> = ({
 
       <img src={imgUrl} className={classes.NoResults__img} alt="404" />
 
-      <Link to="/" className={classes.NoResults__button}>
-        {t('buttons.goHome')}
-      </Link>
+      {!withoutLink && (
+        <Link to="/" className={classes.NoResults__button}>
+          {t('buttons.goHome')}
+        </Link>
+      )}
     </div>
   );
 };

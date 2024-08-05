@@ -6,7 +6,7 @@ import { useCallback, useState } from 'react';
 import debounce from 'lodash.debounce';
 import { useTranslation } from 'react-i18next';
 
-export const Search = () => {
+export const Search: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [value, setValue] = useState('');
   const searchQuery = searchParams.get('query') || '';

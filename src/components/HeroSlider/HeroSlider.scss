@@ -4,23 +4,23 @@ $tablet-height-img: 189px;
 $desktop-height-img: 400px;
 
 .hero-slider {
-  height: 352px;
+  min-height: 352px;
 
   @include on-tablet {
-    height: 221px;
+    min-height: 221px;
   }
   @include on-desktop {
-    height: 432px;
+    min-height: 432px;
   }
 
   &__wrap {
-    height: 320px;
+    min-height: 320px;
 
     @include on-tablet {
-      height: $tablet-height-img;
+      min-height: $tablet-height-img;
     }
     @include on-desktop {
-      height: $desktop-height-img;
+      min-height: $desktop-height-img;
     }
   }
 
